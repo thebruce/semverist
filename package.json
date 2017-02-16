@@ -1,0 +1,22 @@
+{
+  "name": "semverist",
+  "version": "0.0.0-development",
+  "description": "The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver influenced hierarchy.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebruce/semverist.git"
+  },
+  "keywords": [
+    "semver"
+  ],
+  "author": "David Diers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thebruce/semverist/issues"
+  },
+  "homepage": "https://github.com/thebruce/semverist#readme"
+}
