@@ -27,3 +27,8 @@ Semverist objects can utilize aribitrary groups of overrides for select objects/
 Named item overides applying to specific object/directories within a semver object/directory.
 
 The Semverist will inspect your directories/objects & tell you about them with Poirot and masterfully compose them with Schoenberg.
+
+## Lazy Semver
+
+### The power of laziness now brought to your semver experience.
+Lazy Semver allows you to create schema items once and inherit them until they change mirroring API versioning best practices. The lazy semver configuration option allows you to inherit properties up through a major version overriding and overwriting with defaults, groups, and redeclarations. This can be very useful for setting attributes once per major version of semver and lowering maintenance tasks and copy/paste type errors.
