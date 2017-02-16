@@ -17,4 +17,18 @@ The Semverist inspector can tell you about the attributes/files in the sember sh
 ## Schoenberg, the composer
 The Semverist composer builds a fleshed out object from the Semverist inspector with support for defaults, arbitrary groups and attribute/file overides or stubs. It also features lazy semver, a companion to API versioning best practices and lazy configuration inheritence that allows for minimal definition and maintenance but maximum impact.
 
+### Schoenberg Defaults
+Semverist Objects can utilize default overrides for all children objects/files. When combined with lazy semver it can create powerful inheritence structures with less effort or mirror best practice api behavior for documentation or schemas.
+
+### Schoenberg Groups
+Semverist objects can utilize aribitrary groups of overrides for select objects/directories.
+
+### Schoenberg attributes
+Named item overides applying to specific object/directories within a semver object/directory.
+
 The Semverist will inspect your directories/objects & tell you about them with Poirot and masterfully compose them with Schoenberg.
+
+## Lazy Semver
+
+### The power of laziness now brought to your semver experience.
+Lazy Semver allows you to create schema items once and inherit them until they change mirroring API versioning best practices. The lazy semver configuration option allows you to inherit properties up through a major version overriding and overwriting with defaults, groups, and redeclarations. This can be very useful for setting attributes once per major version of semver and lowering maintenance tasks and copy/paste type errors.
