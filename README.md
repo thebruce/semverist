@@ -17,13 +17,70 @@ The Semverist inspector can tell you about the attributes/files in the sember sh
 ## Schoenberg, the composer
 The Semverist composer builds a fleshed out object from the Semverist inspector with support for defaults, arbitrary groups and attribute/file overides or stubs. It also features lazy semver, a companion to API versioning best practices and lazy configuration inheritence that allows for minimal definition and maintenance but maximum impact.
 
-### Schoenberg Defaults
+## The Semverist Object: What is a semver shaped hierarchy?
+
+Semver is an extremely useful versioning standard whose declarative syntax helps machine and human readers to set package and software version use in a sane format. Read about semver at [http://semver.org/](http://semver.org/). Semver is not only useful for package versions however, using its declarative ranges within configuration, objects and directories is an awesome way to relate configuration, metadata, scripts, and schemas to constantly evolving services and software. The semverist was born out of a need to reliably deal with these realizations in objects and directories.
+
+A semver object might take the shape of:
+```
+{
+  1: {
+    0: {
+      0: {
+        attributeOfVersion100: 'value',
+        'thing': 'thingValue100'
+      },
+      1: {
+        attributeOfVersion101: 'value',
+        'thing': 'thingValue101'
+      }
+    }
+    1: {
+      0: {
+        attributeOfVersion110: 'value',
+        'thing': 'thingValue110'
+      }
+    }
+  }
+  2: {
+    0: {
+      0: {
+        attributeOfVersion200: 'value',
+        'thing': 'thingValue200'
+      }
+    }
+  }
+}
+```
+
+A semver shaped directory with similarly named children might look like the following:
+```
+|-- 1
+|   |-- 0
+|   |   |-- 0
+|   |   |   |-- file100.json
+|   |   |   |-- thing.json
+|   |   |-- 1
+|   |   |   |-- file101.json
+|   |   |   |-- thing.json
+|   |-- 1
+|   |   |-- 0
+|   |   |   |-- file110.json
+|   |   |   |-- thing.json
+|-- 2
+|   |-- 0
+|   |   |-- 0
+|   |   |   |-- file200.json
+|   |   |   |-- thing.json
+```
+
+### The Semverist Object: Defaults
 Semverist Objects can utilize default overrides for all children objects/files. When combined with lazy semver it can create powerful inheritence structures with less effort or mirror best practice api behavior for documentation or schemas.
 
-### Schoenberg Groups
+### The Semverist Object: Schoenberg Groups
 Semverist objects can utilize aribitrary groups of overrides for select objects/directories.
 
-### Schoenberg attributes
+### The Semverist Object: attributes
 Named item overides applying to specific object/directories within a semver object/directory.
 
 The Semverist will inspect your directories/objects & tell you about them with Poirot and masterfully compose them with Schoenberg.
