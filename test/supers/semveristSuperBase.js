@@ -266,3 +266,46 @@ test('extractSemveristElementDeepPathAlpha0', (t) => {
   );
 });
 
+test('setDefaultsName', (t) => {
+  const semveristSuperBase = new SemveristSuperBase();
+  semveristSuperBase.setDefaultName('default');
+  t.context.data = semveristSuperBase.getDefaultName();
+  t.deepEqual(
+    t.context.data,
+    'default',
+    'Set Default Name should be a clear pass through to default name value.'
+  );
+});
+
+test('doesAttributeBelongToGroupTrue', (t) => {
+  const semveristSuperBase = new SemveristSuperBase();
+  semveristSuperBase.setSemveristGroups(
+    {
+      testGroup: {
+        members: [
+          'testItem'
+        ]
+      }
+    }
+  );
+  t.true(semveristSuperBase.doesAttributeBelongToGroup('testItem', 'testGroup'),
+    'Attributes who are members of a group should report that they belong to that group.'
+  );
+});
+
+
+test('doesAttributeBelongToGroupFalse', (t) => {
+  const semveristSuperBase = new SemveristSuperBase();
+  semveristSuperBase.setSemveristGroups(
+    {
+      testGroup: {
+        members: [
+          'junkItem'
+        ]
+      }
+    }
+  );
+  t.false(semveristSuperBase.doesAttributeBelongToGroup('testItem', 'testGroup'),
+    'Attributes who are not members of a group should not report that they belong to that group.'
+  );
+});
