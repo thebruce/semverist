@@ -355,3 +355,97 @@ test('getSemveristGroups', (t) => {
     'Groups that have the attribute being sought should be added to the return'
   );
 });
+
+
+test('determineSemveristElementTypeAttribute', (t) => {
+  const semveristSuperBase = new SemveristSuperBase();
+  semveristSuperBase.setSemveristGroups(
+    {
+      testGroup: {
+        members: [
+          'testItem'
+        ]
+      },
+      fakeGroup: {
+        members: [
+          'punk'
+        ]
+      },
+      testGroup2: {
+        members: [
+          'punk',
+          'testItem'
+        ]
+      }
+    }
+  );
+  semveristSuperBase.setDefaultName('default');
+  t.context.data = semveristSuperBase.determineSemveristElementType('testItem');
+  t.deepEqual(
+    t.context.data,
+    'attribute',
+    'Attributes should report back that they are attributes.'
+  );
+});
+
+test('determineSemveristElementTypeGroup', (t) => {
+  const semveristSuperBase = new SemveristSuperBase();
+  semveristSuperBase.setSemveristGroups(
+    {
+      testGroup: {
+        members: [
+          'testItem'
+        ]
+      },
+      fakeGroup: {
+        members: [
+          'punk'
+        ]
+      },
+      testGroup2: {
+        members: [
+          'punk',
+          'testItem'
+        ]
+      }
+    }
+  );
+  semveristSuperBase.setDefaultName('default');
+  t.context.data = semveristSuperBase.determineSemveristElementType('testGroup2');
+  t.deepEqual(
+    t.context.data,
+    'group',
+    'Groups should report back that they are groups.'
+  );
+});
+
+test('determineSemveristElementTypeDefault', (t) => {
+  const semveristSuperBase = new SemveristSuperBase();
+  semveristSuperBase.setSemveristGroups(
+    {
+      testGroup: {
+        members: [
+          'testItem'
+        ]
+      },
+      fakeGroup: {
+        members: [
+          'punk'
+        ]
+      },
+      testGroup2: {
+        members: [
+          'punk',
+          'testItem'
+        ]
+      }
+    }
+  );
+  semveristSuperBase.setDefaultName('default');
+  t.context.data = semveristSuperBase.determineSemveristElementType('default');
+  t.deepEqual(
+    t.context.data,
+    'default',
+    'Defaults should report back that they are defaults.'
+  );
+});
