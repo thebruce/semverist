@@ -191,7 +191,7 @@ With a merge strategy of `replace` we would expect the following output:
 File 1 inherits the default.txt contents from the nearest parent, in this case the minor version where we added the new default. File 2 remains unchanged in this merge strategy and File 3 inherits from the nearest default.txt located in a parent, which is the original default.txt we placed in the major version folder.
 
 ### The Semverist Object: Schoenberg Groups
-Semverist objects can utilize aribitrary groups of overrides for select objects/directories.
+Semverist objects can utilize aribitrary groups of overrides for select objects/directories. This works a lot like defaults but instead of applying to every item underneath it in the hierarchy it only applies to items below it that are indicated for the group. For config and directories this is typically indicated inside the group object which functions fairly similarly to defaults. For directories groups are folders nested in the semver hierarchy including the files that belong to the group.
 
 ### The Semverist Object: attributes
 Named item overides applying to specific object/directories within a semver object/directory.

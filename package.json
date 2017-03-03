@@ -4,7 +4,13 @@
   "description": "The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver influenced hierarchy.",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "lint": "eslint .",
+    "test": "nyc ava && nyc report --reporter=html",
+    "precommit": "npm run lint",
+    "prepush": "npm test",
+    "coverage": "nyc check-coverage --statements 100 --lines 100 --branches 100 --functions 100",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
@@ -18,5 +24,26 @@
   "bugs": {
     "url": "https://github.com/thebruce/semverist/issues"
   },
-  "homepage": "https://github.com/thebruce/semverist#readme"
+  "homepage": "https://github.com/thebruce/semverist#readme",
+  "dependencies": {
+    "config": "^1.25.1",
+    "lodash": "^4.17.4",
+    "molotov": "0.0.0-development",
+    "require-directory": "^2.1.1",
+    "semver": "^5.3.0",
+    "version-comparison": "^2.1.1"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "coveralls": "^2.11.16",
+    "eslint": "^3.16.0",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-find-rules": "^1.13.0",
+    "eslint-plugin-ava": "^4.2.0",
+    "eslint-plugin-import": "^2.0.1",
+    "husky": "^0.13.1",
+    "npm-run-all": "^4.0.1",
+    "nyc": "^10.1.2",
+    "semantic-release": "^6.3.2"
+  }
 }
