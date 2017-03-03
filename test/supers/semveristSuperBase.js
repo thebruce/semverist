@@ -449,3 +449,18 @@ test('determineSemveristElementTypeDefault', (t) => {
     'Defaults should report back that they are defaults.'
   );
 });
+
+
+test('getSemveristConfig', (t) => {
+  const semveristSuperBase = new SemveristSuperBase();
+  semveristSuperBase.setSemveristConfig(
+    {
+      semveristBehaviors: {}
+    });
+  t.context.data = semveristSuperBase.getSemveristConfig();
+  t.deepEqual(
+    Object.keys(t.context.data),
+    ['semveristBehaviors'],
+    'Get Config should be a pass through to set config.'
+  );
+});
