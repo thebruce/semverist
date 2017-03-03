@@ -309,3 +309,49 @@ test('doesAttributeBelongToGroupFalse', (t) => {
     'Attributes who are not members of a group should not report that they belong to that group.'
   );
 });
+
+test('doesAttributeBelongToGroupError', (t) => {
+  const semveristSuperBase = new SemveristSuperBase();
+  semveristSuperBase.setSemveristGroups(
+    {
+      testGroup: {}
+    }
+  );
+  t.throws(() => {
+    semveristSuperBase.doesAttributeBelongToGroup('testItem', 'testGroup');
+  },
+  'testGroup group is not properly formed and has no members array');
+});
+
+test('getSemveristGroups', (t) => {
+  const semveristSuperBase = new SemveristSuperBase();
+  semveristSuperBase.setSemveristGroups(
+    {
+      testGroup: {
+        members: [
+          'testItem'
+        ]
+      },
+      fakeGroup: {
+        members: [
+          'punk'
+        ]
+      },
+      testGroup2: {
+        members: [
+          'punk',
+          'testItem'
+        ]
+      }
+    }
+  );
+  t.context.data = semveristSuperBase.getSemveristAttributeGroups('testItem');
+  t.deepEqual(
+    t.context.data.sort(),
+    [
+      'testGroup',
+      'testGroup2'
+    ],
+    'Groups that have the attribute being sought should be added to the return'
+  );
+});
