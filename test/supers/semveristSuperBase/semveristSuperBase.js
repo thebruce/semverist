@@ -1,6 +1,6 @@
 import test from 'ava';
 
-const SemveristSuperBase = require('../../lib/supers/semveristSuperBase');
+const SemveristSuperBase = require('../../../lib/supers/semveristSuperBase');
 
 test('extractSemverGoodSemver', (t) => {
   const semveristSuperBase = new SemveristSuperBase();
@@ -449,7 +449,6 @@ test('determineSemveristElementTypeDefault', (t) => {
     'Defaults should report back that they are defaults.'
   );
 });
-
 
 test('getSemveristConfig', (t) => {
   const semveristSuperBase = new SemveristSuperBase();
