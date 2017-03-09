@@ -10,8 +10,7 @@ test('optionsSemveristObjectDefaults', (t) => {
     t.context.data,
     {
       attributeType: 'semveristObject',
-      inheritence: true,
-      lazySemverist: false,
+      inheritence: null
     }
     );
 });
@@ -24,10 +23,9 @@ test('optionsSemveristGroupsDefaults', (t) => {
     t.context.data,
     {
       attributeType: 'group',
-      inheritence: true,
-      lazySemverist: false,
+      inheritence: 'semverImplied'
     }
-    );
+  );
 });
 
 
@@ -39,8 +37,7 @@ test('optionsSemveristDefaultDefaults', (t) => {
     t.context.data,
     {
       attributeType: 'default',
-      inheritence: true,
-      lazySemverist: false,
+      inheritence: 'semverImplied'
     }
     );
 });
@@ -53,8 +50,7 @@ test('optionsSemveristAttributeDefaults', (t) => {
     t.context.data,
     {
       attributeType: 'attribute',
-      inheritence: true,
-      lazySemverist: true,
+      inheritence: 'semverImplied'
     }
     );
 });
@@ -62,41 +58,12 @@ test('optionsSemveristAttributeDefaults', (t) => {
 test('optionsSemveristAttributeInheritenceFalseOverride', (t) => {
   const semveristSuperBase = new SemveristSuperBase();
   semveristSuperBase.init();
-  t.context.data = semveristSuperBase.createOptions('attribute', false);
+  t.context.data = semveristSuperBase.createOptions('attribute', null);
   t.deepEqual(
     t.context.data,
     {
       attributeType: 'attribute',
-      inheritence: false,
-      lazySemverist: true,
-    }
-    );
-});
-
-test('optionsSemveristAttributeLazySemveristFalseOverride', (t) => {
-  const semveristSuperBase = new SemveristSuperBase();
-  semveristSuperBase.init();
-  t.context.data = semveristSuperBase.createOptions('attribute', undefined, false);
-  t.deepEqual(
-    t.context.data,
-    {
-      attributeType: 'attribute',
-      inheritence: true,
-      lazySemverist: false,
-    }
-    );
-});
-
-test('optionsSemveristAttributeBothFalseOverride', (t) => {
-  const semveristSuperBase = new SemveristSuperBase();
-  semveristSuperBase.init();
-  t.context.data = semveristSuperBase.createOptions('attribute', false, false);
-  t.deepEqual(
-    t.context.data,
-    {
-      attributeType: 'attribute',
-      inheritence: false,
-      lazySemverist: false,
+      inheritence: null
     }
     );
 });

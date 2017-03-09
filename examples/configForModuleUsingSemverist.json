@@ -1,8 +1,9 @@
 {
   "semverist": {  // Name spaced to semverist module.
     "semveristBehaviors" : {
-      "inheritence": true, // Turns on inheritence for semverist object composer.
+      "inheritenceType": "semverImplied", // null, no inheritence, semverImplied - default semver elements override according to their position in the semver hierarchy, lazySemverist - semver elements override from this version upwards, across its parents and semver siblings.
       "lazySemverist": { // Turns on last occurence high water mark override for all future leaves and parents.
+        "preReleaseForwards": false,
         "attributes": true // The highest semver version of this attribute will be present on all subsequent semver spaces until it is specifically overridden.
       },
       "defaults": true, // Enables defaults capabilities for the semverist.
