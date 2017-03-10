@@ -2,6 +2,23 @@ import test from 'ava';
 
 const SemveristSuperBase = require('../../../lib/supers/semveristSuperBase');
 
+const alternateConfig = {
+  semveristBehaviors: {
+    inheritence: 'lazySemverist',
+    lazySemverist: {
+      attribute: true,
+      preReleaseForwards: false
+    },
+    default: true,
+    defaultName: 'default',
+    groups: true,
+    mergeStrategy: 'lastIn',
+    preReleasePattern: /\d-[a-zA-Z]*/g
+  },
+  groups: {},
+  prereleaseOrdering: {}
+};
+
 test('setPreleasePatternWithArg', (t) => {
   const semveristSuperBase = new SemveristSuperBase();
   semveristSuperBase.setPreReleasePattern(/\d-[A-Z]*/g);
@@ -146,3 +163,13 @@ test('getSemveristConfig', (t) => {
   );
 });
 
+test('init with overrides', (t) => {
+  const semveristSuperBase = new SemveristSuperBase();
+  semveristSuperBase.init(alternateConfig);
+  t.context.data = semveristSuperBase.getSemveristConfig().semveristBehaviors.inheritence;
+  t.deepEqual(
+    t.context.data,
+    'lazySemverist',
+    'Overridden config should be set by providing new config to init.'
+  );
+});
