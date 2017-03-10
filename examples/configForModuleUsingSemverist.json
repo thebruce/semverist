@@ -1,0 +1,37 @@
+{
+  "semverist": {  // Name spaced to semverist module.
+    "semveristBehaviors" : {
+      "inheritenceType": "semverImplied", // null, no inheritence, semverImplied - default semver elements override according to their position in the semver hierarchy, lazySemverist - semver elements override from this version upwards, across its parents and semver siblings.
+      "lazySemverist": { // Turns on last occurence high water mark override for all future leaves and parents.
+        "preReleaseForwards": false,
+        "attributes": true // The highest semver version of this attribute will be present on all subsequent semver spaces until it is specifically overridden.
+      },
+      "defaults": true, // Enables defaults capabilities for the semverist.
+      "defaultsName" : "defaults", // modifies the name of defaults from "default" to what is indicated here.
+      "groups": true, // Enables groups capabilities for the semverist.
+      "mergeStrategy": "lastIn",  // Merge strategies provide different options for merging attributes, groups and defaults together.
+      "preReleasePattern": "[a-z]" // A pattern to use to match prerelease portions of semver for your project. The default is 0-{name}.
+    },
+    "groups": {  // Groups are arbitrary collections of specific attributes.
+     "arbitraryGroupName": {  // this is an arbitrary group name
+       "members": [  // this is an array of attribute member names.
+         "attributeName1",
+         "attributeName2",
+         "attributeName3"
+       ]
+     }
+    },
+    "prereleaseOrdering": {  // PreReleases are supported.  By default only greek alphas - defaults need no declaration.
+      "4" : {
+        "0": {
+          "0": [ // But if you specify you can declare an order for your custom names if you do not wish to use greek alphas.
+            "deathstar",
+            "ni",
+            "alpha",
+            "doNotUseEver"
+          ]
+        }
+      }
+    }
+  }
+}
