@@ -133,3 +133,23 @@ test('semverLeadinZeroCountThreeValueNoZeroes', (t) => {
     'Tilde values should pass back the correct range'
   );
 });
+
+test('semverLeadinZeroCounTwoValuesLeadingZeroProperty', (t) => {
+  const semverishSuper = new SemverishSuper();
+  semverishSuper.setSemverParsed('0.1.0');
+  semverishSuper.setSemverishArray('0.1.entity');
+  t.context.data = semverishSuper.semverLeadingZeroCount('0.1.0');
+  t.deepEqual(
+    t.context.data,
+    0,
+    'Tilde values should pass back the correct range'
+  );
+});
+
+test('semverLeadingZeroCountNoParsed', (t) => {
+  t.throws(() => {
+    const semverishSuper = new SemverishSuper();
+    t.context.data = semverishSuper.semverLeadingZeroCount('1.0.0');
+  },
+  'There must be a parsed semver to analyze.');
+});

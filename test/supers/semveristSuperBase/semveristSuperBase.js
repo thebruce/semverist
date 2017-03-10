@@ -18,8 +18,8 @@ test('setPreleasePatternNoArg', (t) => {
   t.context.data = semveristSuperBase.getPreReleasePattern();
   t.deepEqual(
     t.context.data,
-    /\d+-([0-9A-Za-z-]*)(\.\d*(\+[a-zA-Z0-9-]*)*\.?|\+[a-zA-Z0-9-]+\.?)?/g,
-    'The default pattern for the PreReleasePattern is " /\d+-([0-9A-Za-z-]*)(\.\d*(\+[a-zA-Z0-9-]*)*\.?|\+[a-zA-Z0-9-]+\.?)?/g"'  //eslint-disable-line
+    /\d+-([0-9A-Za-z-]*)((\.\d*(\+[a-zA-Z0-9-]*)|\.\d+\b)*\.?|\+[a-zA-Z0-9-]+\.?)?/g,
+    'The default pattern for the PreReleasePattern is "/\d+-([0-9A-Za-z-]*)((\.\d*(\+[a-zA-Z0-9-]*)|\.\d+\b)*\.?|\+[a-zA-Z0-9-]+\.?)?/g"'  //eslint-disable-line
   );
 });
 

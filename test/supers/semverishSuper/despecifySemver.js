@@ -84,9 +84,20 @@ test('despecifySemver3toUndefined', (t) => {
   const semverishSuper = new SemverishSuper();
   semverishSuper.setSemverParsed('1.0.0');
   semverishSuper.setSemverishArray('1.0.0');
-  t.context.data = semverishSuper.despecifySemver(1);
+  t.context.data = semverishSuper.despecifySemver();
   t.deepEqual(
     t.context.data,
     '1'
+    );
+});
+
+test('despecifySemverishArrayEntity', (t) => {
+  const semverishSuper = new SemverishSuper();
+  semverishSuper.setSemverParsed('1.0.0');
+  semverishSuper.setSemverishArray('1.0.entity');
+  t.context.data = semverishSuper.despecifySemver(2);
+  t.deepEqual(
+    t.context.data,
+    '1.0'
     );
 });
