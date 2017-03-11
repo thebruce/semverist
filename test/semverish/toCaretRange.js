@@ -1,6 +1,6 @@
 import test from 'ava';
 
-const SemverishSuper = require('../../../lib/supers/semverishSuper');
+const SemverishSuper = require('../../lib/semverish/semverish');
 
 test('toCaretRange', (t) => {
   const semverishSuper = new SemverishSuper();

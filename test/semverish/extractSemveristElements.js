@@ -1,6 +1,6 @@
 import test from 'ava';
 
-const SemverishSuper = require('../../../lib/supers/semverishSuper');
+const SemverishSuper = require('../../lib/semverish/semverish');
 
 test('extractSemveristElementFromPath', (t) => {
   const semverishSuper = new SemverishSuper();
