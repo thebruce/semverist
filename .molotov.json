@@ -1,15 +1,17 @@
 {
+  "molotovPath": "lib/molotov.js",
   "semverist" : {
     "supersNameSpacePaths": {
-      "inspector": "/path/to/get/item/components",
-      "composer": "",
-      "semverist": ""
+      "semverist": "/lib/supers/semverist"
     },
     "molotovPlugins": {
-      "composer":{
-        "composeMerge": [],
-        "composeReplace": [],
-        "composeCustom": []
+      "semverist": {
+        "range": [
+          "parseSemverUtils"
+        ],
+        "semverish": [
+          "parseSemverUtils"
+        ]
       }
     }
   }

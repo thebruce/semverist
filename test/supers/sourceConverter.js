@@ -1,6 +1,6 @@
 import test from 'ava';
 
-const SourceConverter = require('../../lib/supers/converterSuper');
+const SourceConverter = require('../../lib/converter/converter');
 
 // test.todo('constructor');
 

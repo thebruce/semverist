@@ -1,6 +1,6 @@
 import test from 'ava';
 
-const SemveristSuperBase = require('../../../lib/supers/semveristSuperBase');
+const SemveristSuperBase = require('../../../lib/supers/semverist');
 
 test('optionsSemveristObjectDefaults', (t) => {
   const semveristSuperBase = new SemveristSuperBase();
