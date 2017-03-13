@@ -1,10 +1,13 @@
 import test from 'ava';
 
-const SemverishSuper = require('../../lib/semverish/semverish');
+const semverishFactory = require('../../lib/semverish/semverish');
 
-test('extractSemverGoodSemver', (t) => {
-  const semverishSuper = new SemverishSuper();
-  t.context.data = semverishSuper.extractSemverishFromPath('4.1.0');
+test('extractSemverGoodSemver', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    return semverishSuper.extractSemverishFromPath('4.1.0');
+  });
   t.deepEqual(
     t.context.data,
     '4.1.0',
@@ -12,9 +15,12 @@ test('extractSemverGoodSemver', (t) => {
     );
 });
 
-test('extractSemverMinorSemverOnly', (t) => {
-  const semverishSuper = new SemverishSuper();
-  t.context.data = semverishSuper.extractSemverishFromPath('4.1');
+test('extractSemverMinorSemverOnly', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    return semverishSuper.extractSemverishFromPath('4.1');
+  });
   t.deepEqual(
     t.context.data,
     '4.1',
@@ -22,9 +28,12 @@ test('extractSemverMinorSemverOnly', (t) => {
     );
 });
 
-test('extractSemverAlpha', (t) => {
-  const semverishSuper = new SemverishSuper();
-  t.context.data = semverishSuper.extractSemverishFromPath('4.1.0-alpha');
+test('extractSemverAlpha', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    return semverishSuper.extractSemverishFromPath('4.1.0-alpha');
+  });
   t.deepEqual(
     t.context.data,
     '4.1.0-alpha',
@@ -32,9 +41,12 @@ test('extractSemverAlpha', (t) => {
   );
 });
 
-test('extractSemverAlphaDotVersion', (t) => {
-  const semverishSuper = new SemverishSuper();
-  t.context.data = semverishSuper.extractSemverishFromPath('4.1.0-alpha.1');
+test('extractSemverAlphaDotVersion', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    return semverishSuper.extractSemverishFromPath('4.1.0-alpha.1');
+  });
   t.deepEqual(
     t.context.data,
     '4.1.0-alpha.1',
@@ -42,9 +54,12 @@ test('extractSemverAlphaDotVersion', (t) => {
   );
 });
 
-test('extractSemverDeathStar', (t) => {
-  const semverishSuper = new SemverishSuper();
-  t.context.data = semverishSuper.extractSemverishFromPath('4.1.0-deathstar.1');
+test('extractSemverDeathStar', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    return semverishSuper.extractSemverishFromPath('4.1.0-deathstar.1');
+  });
   t.deepEqual(
     t.context.data,
     '4.1.0-deathstar.1',
@@ -52,9 +67,12 @@ test('extractSemverDeathStar', (t) => {
   );
 });
 
-test('extractWithAttribute', (t) => {
-  const semverishSuper = new SemverishSuper();
-  t.context.data = semverishSuper.extractSemverishFromPath('4.1.0.entity');
+test('extractWithAttribute', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    return semverishSuper.extractSemverishFromPath('4.1.0.entity');
+  });
   t.deepEqual(
     t.context.data,
     '4.1.0',
@@ -62,9 +80,12 @@ test('extractWithAttribute', (t) => {
   );
 });
 
-test('extractParitalWithAttribute', (t) => {
-  const semverishSuper = new SemverishSuper();
-  t.context.data = semverishSuper.extractSemverishFromPath('4.1.entity');
+test('extractParitalWithAttribute', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    return semverishSuper.extractSemverishFromPath('4.1.entity');
+  });
   t.deepEqual(
     t.context.data,
     '4.1',
@@ -72,9 +93,12 @@ test('extractParitalWithAttribute', (t) => {
   );
 });
 
-test('extractMoreParitalWithAttribute', (t) => {
-  const semverishSuper = new SemverishSuper();
-  t.context.data = semverishSuper.extractSemverishFromPath('4.entity');
+test('extractMoreParitalWithAttribute', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    return semverishSuper.extractSemverishFromPath('4.entity');
+  });
   t.deepEqual(
     t.context.data,
     '4',
@@ -82,10 +106,13 @@ test('extractMoreParitalWithAttribute', (t) => {
     );
 });
 
-test('extractAttributeWithAlpha', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setPreReleasePattern();
-  t.context.data = semverishSuper.extractSemverishFromPath('4.1.0-alpha.entity');
+test('extractAttributeWithAlpha', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setPreReleasePattern();
+    return semverishSuper.extractSemverishFromPath('4.1.0-alpha.entity');
+  });
   t.deepEqual(
     t.context.data,
     '4.1.0-alpha',
@@ -93,10 +120,13 @@ test('extractAttributeWithAlpha', (t) => {
   );
 });
 
-test('extractAttributeWithAlpha1', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setPreReleasePattern();
-  t.context.data = semverishSuper.extractSemverishFromPath('4.1.0-alpha.0');
+test('extractAttributeWithAlpha1', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setPreReleasePattern();
+    return semverishSuper.extractSemverishFromPath('4.1.0-alpha.0');
+  });
   t.deepEqual(
     t.context.data,
     '4.1.0-alpha.0',
@@ -104,9 +134,12 @@ test('extractAttributeWithAlpha1', (t) => {
   );
 });
 
-test('extractAttributeWithAlphaAndNumber', (t) => {
-  const semverishSuper = new SemverishSuper();
-  t.context.data = semverishSuper.extractSemverishFromPath('4.1.0-alpha.0.entity');
+test('extractAttributeWithAlphaAndNumber', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    return semverishSuper.extractSemverishFromPath('4.1.0-alpha.0.entity');
+  });
   t.deepEqual(
     t.context.data,
     '4.1.0-alpha.0',
@@ -114,55 +147,63 @@ test('extractAttributeWithAlphaAndNumber', (t) => {
   );
 });
 
-test('setSourceBadSourceLeading0', (t) => {
-  t.throws(() => {
-    const semverishSuper = new SemverishSuper();
-    semverishSuper.extractSemverishFromPath('4.1.0-alpha.0entity');
-  },
-  'The semverish value must be able to be converted to a semver value. '
-  + 'SemveristElement names can not have leading 0s.');
-});
-
-test('setSourceBadSourceLeading0DeepPath', (t) => {
-  t.throws(() => {
-    const semverishSuper = new SemverishSuper();
-    semverishSuper.extractSemverishFromPath('4.1.0-alpha.0entity.attribute');
-  },
+test('setSourceBadSourceLeading0', async (t) => {
+  await t.throws(semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    return semverishSuper.extractSemverishFromPath('4.1.0-alpha.0entity');
+  }),
   'The semverish value must be able to be converted to a semver value.' +
   ' SemveristElement names can not have leading 0s.');
 });
 
-test('setSourceBadSource', (t) => {
-  t.throws(() => {
-    const semverishSuper = new SemverishSuper();
+test('setSourceBadSourceLeading0DeepPath', async (t) => {
+  await t.throws(semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.extractSemverishFromPath('4.1.0-alpha.0entity.attribute');
+  }),
+  'The semverish value must be able to be converted to a semver value.' +
+  ' SemveristElement names can not have leading 0s.');
+});
+
+test('setSourceBadSource', async (t) => {
+  await t.throws(semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
     semverishSuper.extractSemverishFromPath('entity');
-  },
+  }),
   'The semverish value must be able to be converted to a semver value.' +
   ' Unable to compare version string: entity');
 });
 
-test('extractDifferentBadValue', (t) => {
-  t.throws(() => {
-    const semverishSuper = new SemverishSuper();
+test('extractDifferentBadValue', async (t) => {
+  await t.throws(semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
     semverishSuper.extractSemverishFromPath('entity.0');
-  },
+  }),
   'The semverish value must be able to be converted to a semver value. '
   + 'Unable to compare version string: entity.');
 });
 
-test('extractTooManySemverWithoutPrerelease', (t) => {
-  t.throws(() => {
-    const semverishSuper = new SemverishSuper();
+test('extractTooManySemverWithoutPrerelease', async (t) => {
+  await t.throws(semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
     semverishSuper.extractSemverishFromPath('4.0.0.0');
-  },
+  }),
   'The semverish value must be able to be converted to a semver '
   + 'value. Unable to compare version string: 4.0.0.0');
 });
 
 
-test('extractSemverPartsFromTooManyPeriods', (t) => {
-  const semverishSuper = new SemverishSuper();
-  t.context.data = semverishSuper.extractSemverishFromPath('4.1.');
+test('extractSemverPartsFromTooManyPeriods', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    return semverishSuper.extractSemverishFromPath('4.1.');
+  });
   t.deepEqual(
     t.context.data,
     '4.1',
@@ -171,20 +212,22 @@ test('extractSemverPartsFromTooManyPeriods', (t) => {
   );
 });
 
-test('extractSemverPartsFromLeadingPeriods', (t) => {
-  t.throws(() => {
-    const semverishSuper = new SemverishSuper();
+test('extractSemverPartsFromLeadingPeriods', async (t) => {
+  await t.throws(semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
     semverishSuper.extractSemverishFromPath('.1.');
-  },
+  }),
   'The semverish value must be able to be converted to a semver value. '
   + 'The semverish value must have atleast a major portion.');
 });
 
-test('Very bad semverish', (t) => {
-  t.throws(() => {
-    const semverishSuper = new SemverishSuper();
+test('Very bad semverish', async (t) => {
+  await t.throws(semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
     semverishSuper.extractSemverishFromPath('1.1.entity......1');
-  },
+  }),
   'The semverish value must be able to be converted to a semver value. ' +
   'There was a problem with your semverish path and the regex pattern used '
   + 'to identify your prereleases.');

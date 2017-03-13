@@ -2,14 +2,14 @@
   "molotovPath": "lib/molotov.js",
   "semverist" : {
     "supersNameSpacePaths": {
-      "converter": "/lib/supers/converterSuper",
-      "base": "/lib/supers/semveristSuperBase",
-      "semverish": "/lib/supers/semverishSuper",
-      "range": "/lib/supers/semverishRange"
+      "semverist": "/lib/supers/semverist"
     },
     "molotovPlugins": {
-      "range": {
-        "parseSemverUtils": [
+      "semverist": {
+        "range": [
+          "parseSemverUtils"
+        ],
+        "semverish": [
           "parseSemverUtils"
         ]
       }

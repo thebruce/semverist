@@ -1,6 +1,6 @@
 import test from 'ava';
 
-const SemveristSuperBase = require('../../../lib/supers/semverist/semverist');
+const SemveristSuperBase = require('../../../lib/supers/semverist');
 
 const alternateConfig = {
   semveristBehaviors: {

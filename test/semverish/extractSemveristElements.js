@@ -1,11 +1,14 @@
 import test from 'ava';
 
-const SemverishSuper = require('../../lib/semverish/semverish');
+const semverishFactory = require('../../lib/semverish/semverish');
 
-test('extractSemveristElementFromPath', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setSemverish('4.0.0.entity');
-  t.context.data = semverishSuper.extractSemveristElementFromPath('4.0.0.entity');
+test('extractSemveristElementFromPath', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemverish('4.0.0.entity');
+    return semverishSuper.extractSemveristElementFromPath('4.0.0.entity');
+  });
   t.deepEqual(
     t.context.data,
     'entity',
@@ -13,22 +16,26 @@ test('extractSemveristElementFromPath', (t) => {
   );
 });
 
-test('extractSemveristElementBadPath', (t) => {
-  t.throws(() => {
-    const semverishSuper = new SemverishSuper();
+test('extractSemveristElementBadPath', async (t) => {
+  await t.throws(semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
     semverishSuper.setSemverish('.0.0.entity');
     semverishSuper.extractSemveristElementFromPath('.0.0.entity');
-  },
+  }),
   String.prototype.concat(
     'The semverish value must be able to be converted to a semver value. ',
     'The semverish value must have atleast a major portion.'
   ));
 });
 
-test('extractSemveristElementBadPath2', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setSemverish('1.0.0.');
-  t.context.data = semverishSuper.extractSemveristElementFromPath('1.0.0.');
+test('extractSemveristElementBadPath2', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemverish('1.0.0.');
+    return semverishSuper.extractSemveristElementFromPath('1.0.0.');
+  });
   t.deepEqual(
     t.context.data,
     '',
@@ -39,10 +46,13 @@ test('extractSemveristElementBadPath2', (t) => {
   );
 });
 
-test('extractSemveristElementDeepPath', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setSemverish('1.0.0.entity.property');
-  t.context.data = semverishSuper.extractSemveristElementFromPath('1.0.0.entity.property');
+test('extractSemveristElementDeepPath', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemverish('1.0.0.entity.property');
+    return semverishSuper.extractSemveristElementFromPath('1.0.0.entity.property');
+  });
   t.deepEqual(
     t.context.data,
     'entity.property',
@@ -53,12 +63,15 @@ test('extractSemveristElementDeepPath', (t) => {
   );
 });
 
-test('extractSemveristElementDeepPathAlpha', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setSemverish('1.0.0-deathstar.entity.property');
-  t.context.data = semverishSuper.extractSemveristElementFromPath(
-    '1.0.0-deathstar.entity.property'
-  );
+test('extractSemveristElementDeepPathAlpha', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemverish('1.0.0-deathstar.entity.property');
+    return semverishSuper.extractSemveristElementFromPath(
+      '1.0.0-deathstar.entity.property'
+    );
+  });
   t.deepEqual(
     t.context.data,
     'entity.property',
@@ -69,10 +82,13 @@ test('extractSemveristElementDeepPathAlpha', (t) => {
   );
 });
 
-test('extractSemveristElementDeepPathAlpha0', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setSemverish('1.0.0-deathstar.0.entity');
-  t.context.data = semverishSuper.extractSemveristElementFromPath('1.0.0-deathstar.0.entity');
+test('extractSemveristElementDeepPathAlpha0', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemverish('1.0.0-deathstar.0.entity');
+    return semverishSuper.extractSemveristElementFromPath('1.0.0-deathstar.0.entity');
+  });
   t.deepEqual(
     t.context.data,
     'entity',
@@ -83,10 +99,11 @@ test('extractSemveristElementDeepPathAlpha0', (t) => {
   );
 });
 
-test('extractSemveristElementNoSemverish', (t) => {
-  t.throws(() => {
-    const semverishSuper = new SemverishSuper();
+test('extractSemveristElementNoSemverish', async (t) => {
+  await t.throws(semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
     semverishSuper.extractSemveristElementFromPath('1.0.0.entity');
-  },
+  }),
   'You must have a semverish value set before extracting an element');
 });

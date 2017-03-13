@@ -1,31 +1,34 @@
 import test from 'ava';
 
-const SemverishSuper = require('../../lib/semverish/semverish');
+const semverishFactory = require('../../lib/semverish/semverish');
 
-test('determineSemveristElementTypeAttribute', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setSemveristGroups(
-    {
-      testGroup: {
-        members: [
-          'testItem'
-        ]
-      },
-      fakeGroup: {
-        members: [
-          'punk'
-        ]
-      },
-      testGroup2: {
-        members: [
-          'punk',
-          'testItem'
-        ]
+test('determineSemveristElementTypeAttribute', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemveristGroups(
+      {
+        testGroup: {
+          members: [
+            'testItem'
+          ]
+        },
+        fakeGroup: {
+          members: [
+            'punk'
+          ]
+        },
+        testGroup2: {
+          members: [
+            'punk',
+            'testItem'
+          ]
+        }
       }
-    }
-  );
-  semverishSuper.setDefaultName('default');
-  t.context.data = semverishSuper.determineSemveristElementType('testItem');
+    );
+    semverishSuper.setDefaultName('default');
+    return semverishSuper.determineSemveristElementType('testItem');
+  });
   t.deepEqual(
     t.context.data,
     'attribute',
@@ -33,30 +36,33 @@ test('determineSemveristElementTypeAttribute', (t) => {
   );
 });
 
-test('determineSemveristElementTypeGroup', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setSemveristGroups(
-    {
-      testGroup: {
-        members: [
-          'testItem'
-        ]
-      },
-      fakeGroup: {
-        members: [
-          'punk'
-        ]
-      },
-      testGroup2: {
-        members: [
-          'punk',
-          'testItem'
-        ]
+test('determineSemveristElementTypeGroup', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemveristGroups(
+      {
+        testGroup: {
+          members: [
+            'testItem'
+          ]
+        },
+        fakeGroup: {
+          members: [
+            'punk'
+          ]
+        },
+        testGroup2: {
+          members: [
+            'punk',
+            'testItem'
+          ]
+        }
       }
-    }
-  );
-  semverishSuper.setDefaultName('default');
-  t.context.data = semverishSuper.determineSemveristElementType('testGroup2');
+    );
+    semverishSuper.setDefaultName('default');
+    return semverishSuper.determineSemveristElementType('testGroup2');
+  });
   t.deepEqual(
     t.context.data,
     'group',
@@ -64,30 +70,33 @@ test('determineSemveristElementTypeGroup', (t) => {
   );
 });
 
-test('determineSemveristElementTypeDefault', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setSemveristGroups(
-    {
-      testGroup: {
-        members: [
-          'testItem'
-        ]
-      },
-      fakeGroup: {
-        members: [
-          'punk'
-        ]
-      },
-      testGroup2: {
-        members: [
-          'punk',
-          'testItem'
-        ]
+test('determineSemveristElementTypeDefault', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemveristGroups(
+      {
+        testGroup: {
+          members: [
+            'testItem'
+          ]
+        },
+        fakeGroup: {
+          members: [
+            'punk'
+          ]
+        },
+        testGroup2: {
+          members: [
+            'punk',
+            'testItem'
+          ]
+        }
       }
-    }
-  );
-  semverishSuper.setDefaultName('default');
-  t.context.data = semverishSuper.determineSemveristElementType('default');
+    );
+    semverishSuper.setDefaultName('default');
+    return semverishSuper.determineSemveristElementType('default');
+  });
   t.deepEqual(
     t.context.data,
     'default',
@@ -96,31 +105,34 @@ test('determineSemveristElementTypeDefault', (t) => {
 });
 
 
-test('setElementTypeAttribute', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setSemveristGroups(
-    {
-      testGroup: {
-        members: [
-          'testItem'
-        ]
-      },
-      fakeGroup: {
-        members: [
-          'punk'
-        ]
-      },
-      testGroup2: {
-        members: [
-          'punk',
-          'testItem'
-        ]
+test('setElementTypeAttribute', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemveristGroups(
+      {
+        testGroup: {
+          members: [
+            'testItem'
+          ]
+        },
+        fakeGroup: {
+          members: [
+            'punk'
+          ]
+        },
+        testGroup2: {
+          members: [
+            'punk',
+            'testItem'
+          ]
+        }
       }
-    }
-  );
-  semverishSuper.setDefaultName('default');
-  semverishSuper.setSemveristElementType('testItem');
-  t.context.data = semverishSuper.getSemveristElementType();
+    );
+    semverishSuper.setDefaultName('default');
+    semverishSuper.setSemveristElementType('testItem');
+    return semverishSuper.getSemveristElementType();
+  });
   t.deepEqual(
     t.context.data,
     'attribute',
@@ -128,31 +140,34 @@ test('setElementTypeAttribute', (t) => {
   );
 });
 
-test('setElementTypeGroup', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setSemveristGroups(
-    {
-      testGroup: {
-        members: [
-          'testItem'
-        ]
-      },
-      fakeGroup: {
-        members: [
-          'punk'
-        ]
-      },
-      testGroup2: {
-        members: [
-          'punk',
-          'testItem'
-        ]
+test('setElementTypeGroup', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemveristGroups(
+      {
+        testGroup: {
+          members: [
+            'testItem'
+          ]
+        },
+        fakeGroup: {
+          members: [
+            'punk'
+          ]
+        },
+        testGroup2: {
+          members: [
+            'punk',
+            'testItem'
+          ]
+        }
       }
-    }
-  );
-  semverishSuper.setDefaultName('default');
-  semverishSuper.setSemveristElementType('testGroup2');
-  t.context.data = semverishSuper.getSemveristElementType();
+    );
+    semverishSuper.setDefaultName('default');
+    semverishSuper.setSemveristElementType('testGroup2');
+    return semverishSuper.getSemveristElementType();
+  });
   t.deepEqual(
     t.context.data,
     'group',
@@ -160,31 +175,34 @@ test('setElementTypeGroup', (t) => {
   );
 });
 
-test('setElementTypeDefault', (t) => {
-  const semverishSuper = new SemverishSuper();
-  semverishSuper.setSemveristGroups(
-    {
-      testGroup: {
-        members: [
-          'testItem'
-        ]
-      },
-      fakeGroup: {
-        members: [
-          'punk'
-        ]
-      },
-      testGroup2: {
-        members: [
-          'punk',
-          'testItem'
-        ]
+test('setElementTypeDefault', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemveristGroups(
+      {
+        testGroup: {
+          members: [
+            'testItem'
+          ]
+        },
+        fakeGroup: {
+          members: [
+            'punk'
+          ]
+        },
+        testGroup2: {
+          members: [
+            'punk',
+            'testItem'
+          ]
+        }
       }
-    }
-  );
-  semverishSuper.setDefaultName('default');
-  semverishSuper.setSemveristElementType('default');
-  t.context.data = semverishSuper.getSemveristElementType();
+    );
+    semverishSuper.setDefaultName('default');
+    semverishSuper.setSemveristElementType('default');
+    return semverishSuper.getSemveristElementType();
+  });
   t.deepEqual(
     t.context.data,
     'default',
