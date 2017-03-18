@@ -183,3 +183,16 @@ test('init full semver', async (t) => {
     'A semverish value with a trailing "." should not return that trailing ".".'
   );
 });
+
+test('No plugin', async (t) => {
+  t.context.data = await semverishFactory('semverist')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    return semverishSuper.despecifySemver ? 'exists' : 'notExist';
+  });
+  t.deepEqual(
+    t.context.data,
+    'notExist',
+    'A semverish value with a trailing "." should not return that trailing ".".'
+  );
+});
