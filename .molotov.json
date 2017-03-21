@@ -17,13 +17,17 @@
           "nextHigherMajor",
           "semverishValue",
           "semveristElementType",
-          "sortRangeArray"
+          "sortRangeArray",
+          "semverishLevel",
+          "semverAdjacent"
         ],
         "semverish": [
           "semverishElement",
           "parseSemverUtils",
           "semverishValue",
-          "semveristElementType"
+          "semveristElementType",
+          "semverishLevel",
+          "semverAdjacent"
         ]
       }
     }

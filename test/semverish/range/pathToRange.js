@@ -95,6 +95,8 @@ test('semveristObjectTestsPartial1', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.setSemverish('1');
+    range.setSemverParsed('1.0.0');
     return range.pathToRange(
       '1', {attribute: 'semveristObject', inheritence: 'lazySemverist'}
     );
@@ -125,13 +127,18 @@ test('semveristObjectTestsAlpha', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.setLowerBounds('1.0.0-alpha.1');
+    range.setSemverish('1.0.0-alpha.1.entity');
+    range.setSemverishArray('1.0.0-alpha.1');
+    range.setSemverParsed('1.0.0-alpha.1');
+    range.setSemver('1.0.0-alpha.1');
     return range.pathToRange(
       '1.0.0-alpha.1', {attribute: 'semveristObject', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(
     t.context.data,
-    '>=1.0.0-alpha.1 <1.1.0',
+    '>=1.0.0-alpha.1 <1.0.0',
     'Semverist Objects with 3 objects and prerelease should be set to ~x.y.z-[0-9A-Za-z]'
   );
 });
@@ -200,13 +207,17 @@ test('semverImpliedTestsAlpha', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.setLowerBounds('1.0.0-alpha.1');
+    range.setSemverish('1.0.0-alpha.1');
+    range.setSemverishArray('1.0.0-alpha.1');
+    range.setSemver('1.0.0-alpha.1');
     return range.pathToRange(
       '1.0.0-alpha.1', {attribute: 'attribute', inheritence: 'semverImplied'}
     );
   });
   t.deepEqual(
     t.context.data,
-    '>=1.0.0-alpha.1 <1.1.0',
+    '>=1.0.0-alpha.1 <1.0.0',
     'Semverist Objects with 3 objects and prerelease should be set to ~x.y.z-[0-9A-Za-z]'
   );
 });
@@ -230,6 +241,7 @@ test('pathHasPrereleaseWithForwardingLeading0FullSemver', async (t) => {
     const range = new RangeClass();
     range.setSemveristConfig(tmpConfig);
     range.setSemverParsed('0.1.0-alpha.1');
+    range.setSemver('0.1.0-alpha.1');
     range.setSemverishArray('0.1.0-alpha.1');
     range.setSemveristConfigItem(
       'semveristBehaviors.lazySemverist.preReleaseForwards',
@@ -241,7 +253,7 @@ test('pathHasPrereleaseWithForwardingLeading0FullSemver', async (t) => {
   });
   t.deepEqual(
     t.context.data,
-    '>=0.1.0-alpha.1 <1.0.0',
+    '>=0.1.0-alpha.1 <0.1.0 >=0.1.0 <1.0.0',
     'Tilde values should pass back the correct range'
   );
 });
@@ -263,7 +275,7 @@ test('pathHasPrereleaseWithForwardingLeadingNonZeroFullSemver', async (t) => {
   });
   t.deepEqual(
     t.context.data,
-    '>=1.1.0-alpha.1 <2.0.0',
+    '>=1.1.0-alpha.1 <1.1.0 >=1.1.0 <2.0.0',
     'Tilde values should pass back the correct range'
   );
 });
@@ -274,6 +286,7 @@ test('pathHasPrereleaseWithForwardingLeadingZeroPartialSemver', async (t) => {
     const range = new RangeClass();
     range.setSemveristConfig(tmpConfig);
     range.setSemverParsed('0.1.0-alpha');
+    range.setSemver('0.1.0-alpha');
     range.setSemverishArray('0.1.0-alpha');
     range.setSemveristConfigItem(
       'semveristBehaviors.lazySemverist.preReleaseForwards',
@@ -285,7 +298,7 @@ test('pathHasPrereleaseWithForwardingLeadingZeroPartialSemver', async (t) => {
   });
   t.deepEqual(
     t.context.data,
-    '>=0.1.0-alpha.0 <1.0.0',
+    '>=0.1.0-alpha <0.1.0 >=0.1.0 <1.0.0',
     'Tilde values should pass back the correct range'
   );
 });
@@ -307,7 +320,7 @@ test('pathHasPrereleaseWithForwardingLeadingNonZeroPartialSemver', async (t) => 
   });
   t.deepEqual(
     t.context.data,
-    '>=1.1.0-alpha <2.0.0',
+    '>=1.1.0-alpha <1.1.0 >=1.1.0 <2.0.0',
     'Tilde values should pass back the correct range'
   );
 });
@@ -325,7 +338,7 @@ test('pathHasPrereleaseNoForwarding', async (t) => {
   });
   t.deepEqual(
     t.context.data,
-    '>=1.1.0-alpha.1 <1.2.0',
+    '>=1.1.0-alpha.1 <1.1.0',
     'Tilde values should pass back the correct range'
   );
 });
@@ -337,6 +350,7 @@ test('lazySemveristNoPrerelease3Long', async (t) => {
     const range = new RangeClass();
     range.setSemveristConfig(tmpConfig);
     range.setSemverParsed('1.1.0');
+    range.setSemver('1.1.0');
     range.setSemverishArray('1.1.0');
     return range.pathToRange(
       '1.1.0', {attribute: 'attribute', inheritence: 'lazySemverist'}
