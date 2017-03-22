@@ -19,6 +19,24 @@ const tmpConfig = {
   prereleaseOrdering: {}
 };
 
+// Set Defaults for semverist objects.
+const lazySemverConfig = {
+  semveristBehaviors: {
+    inheritence: 'lazySemverist',
+    lazySemverist: {
+      attribute: true,
+      preReleaseForwards: true
+    },
+    default: true,
+    defaultName: 'default',
+    groups: true,
+    mergeStrategy: 'lastIn',
+    preReleasePattern: /\d-[a-zA-Z]*/g
+  },
+  groups: {},
+  prereleaseOrdering: {}
+};
+
 test('pathToRangePathZeroLength', async (t) => {
   await t.throws(rangeFactory('semverist', 'range')
   .then((RangeClass) => {
@@ -44,7 +62,7 @@ test('pathToRangeOptionsBadInheritence', async (t) => {
     return range.pathToRange('1', {inheritence: 'bad'});
   }),
   String.prototype.concat('The options inheritence attribute must one of the following values:',
-  ' semverImplied, undefined, or lazySemverist'
+  ' semverImplied, null, or lazySemverist'
   ));
 });
 
@@ -52,6 +70,8 @@ test('pathToRangeInheritenceNull', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     return range.pathToRange('1.0.0', {inheritence: null});
   });
   t.deepEqual(
@@ -65,6 +85,8 @@ test('semveristObjectTestsMaxLevel3', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     return range.pathToRange(
       '1.0.0', {attribute: 'semveristObject', inheritence: 'lazySemverist'}
     );
@@ -80,6 +102,8 @@ test('semveristObjectTestsMaxLevel4', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     return range.pathToRange(
       '1.0.0-alpha.0+124', {attribute: 'semveristObject', inheritence: 'lazySemverist'}
     );
@@ -95,10 +119,12 @@ test('semveristObjectTestsPartial1', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     range.setSemverish('1');
     range.setSemverParsed('1.0.0');
     return range.pathToRange(
-      '1', {attribute: 'semveristObject', inheritence: 'lazySemverist'}
+      '1', {attributeType: 'semveristObject', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(
@@ -112,8 +138,10 @@ test('semveristObjectTestsPartial2', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     return range.pathToRange(
-      '1.0', {attribute: 'semveristObject', inheritence: 'lazySemverist'}
+      '1.0', {attributeType: 'semveristObject', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(
@@ -127,13 +155,15 @@ test('semveristObjectTestsAlpha', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     range.setLowerBounds('1.0.0-alpha.1');
     range.setSemverish('1.0.0-alpha.1.entity');
     range.setSemverishArray('1.0.0-alpha.1');
     range.setSemverParsed('1.0.0-alpha.1');
     range.setSemver('1.0.0-alpha.1');
     return range.pathToRange(
-      '1.0.0-alpha.1', {attribute: 'semveristObject', inheritence: 'lazySemverist'}
+      '1.0.0-alpha.1', {attributeType: 'semveristObject', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(
@@ -147,8 +177,10 @@ test('semverImpliedTestsMaxLevel3', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     return range.pathToRange(
-      '1.0.0', {attribute: 'attribute', inheritence: 'semverImplied'}
+      '1.0.0', {attributeType: 'attribute', inheritence: 'semverImplied'}
     );
   });
   t.deepEqual(
@@ -162,8 +194,10 @@ test('semverImpliedTestsMaxLevel4', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     return range.pathToRange(
-      '1.0.0-alpha.0+124', {attribute: 'attribute', inheritence: 'semverImplied'}
+      '1.0.0-alpha.0+124', {attributeType: 'attribute', inheritence: 'semverImplied'}
     );
   });
   t.deepEqual(
@@ -177,8 +211,10 @@ test('semverImpliedTestsPartial1', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     return range.pathToRange(
-      '1', {attribute: 'attribute', inheritence: 'semverImplied'}
+      '1', {attributeType: 'attribute', inheritence: 'semverImplied'}
     );
   });
   t.deepEqual(
@@ -192,8 +228,10 @@ test('semverImpliedTestsPartial2', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     return range.pathToRange(
-      '1.0', {attribute: 'attribute', inheritence: 'semverImplied'}
+      '1.0', {attributeType: 'attribute', inheritence: 'semverImplied'}
     );
   });
   t.deepEqual(
@@ -207,12 +245,14 @@ test('semverImpliedTestsAlpha', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     range.setLowerBounds('1.0.0-alpha.1');
     range.setSemverish('1.0.0-alpha.1');
     range.setSemverishArray('1.0.0-alpha.1');
     range.setSemver('1.0.0-alpha.1');
     return range.pathToRange(
-      '1.0.0-alpha.1', {attribute: 'attribute', inheritence: 'semverImplied'}
+      '1.0.0-alpha.1', {attributeType: 'attribute', inheritence: 'semverImplied'}
     );
   });
   t.deepEqual(
@@ -226,6 +266,8 @@ test('toTildeRange', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     return range.toTildeRange('1.0');
   });
   t.deepEqual(
@@ -239,16 +281,16 @@ test('pathHasPrereleaseWithForwardingLeading0FullSemver', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
-    range.setSemveristConfig(tmpConfig);
+
+    range.init(lazySemverConfig);
+    range.setOptions();
+    range.setSemveristConfig(lazySemverConfig);
     range.setSemverParsed('0.1.0-alpha.1');
     range.setSemver('0.1.0-alpha.1');
     range.setSemverishArray('0.1.0-alpha.1');
-    range.setSemveristConfigItem(
-      'semveristBehaviors.lazySemverist.preReleaseForwards',
-      true
-    );
+
     return range.pathToRange(
-      '0.1.0-alpha.1', {attribute: 'attribute', inheritence: 'lazySemverist'}
+      '0.1.0-alpha.1', {attributeType: 'attribute', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(
@@ -262,6 +304,8 @@ test('pathHasPrereleaseWithForwardingLeadingNonZeroFullSemver', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     range.setSemveristConfig(tmpConfig);
     range.setSemverParsed('1.1.0-alpha.1');
     range.setSemverishArray('1.1.0-alpha.1');
@@ -270,7 +314,7 @@ test('pathHasPrereleaseWithForwardingLeadingNonZeroFullSemver', async (t) => {
       true
     );
     return range.pathToRange(
-      '1.1.0-alpha.1', {attribute: 'attribute', inheritence: 'lazySemverist'}
+      '1.1.0-alpha.1', {attributeType: 'attribute', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(
@@ -284,6 +328,8 @@ test('pathHasPrereleaseWithForwardingLeadingZeroPartialSemver', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
+    range.init();
+    range.setOptions();
     range.setSemveristConfig(tmpConfig);
     range.setSemverParsed('0.1.0-alpha');
     range.setSemver('0.1.0-alpha');
@@ -293,7 +339,7 @@ test('pathHasPrereleaseWithForwardingLeadingZeroPartialSemver', async (t) => {
       true
     );
     return range.pathToRange(
-      '0.1.0-alpha', {attribute: 'attribute', inheritence: 'lazySemverist'}
+      '0.1.0-alpha', {attributeType: 'attribute', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(
@@ -315,7 +361,7 @@ test('pathHasPrereleaseWithForwardingLeadingNonZeroPartialSemver', async (t) => 
       true
     );
     return range.pathToRange(
-      '1.1.0-alpha', {attribute: 'attribute', inheritence: 'lazySemverist'}
+      '1.1.0-alpha', {attributeType: 'attribute', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(
@@ -333,7 +379,7 @@ test('pathHasPrereleaseNoForwarding', async (t) => {
     range.setSemverParsed('1.1.0-alpha.1');
     range.setSemverishArray('1.1.0-alpha.1');
     return range.pathToRange(
-      '1.1.0-alpha.1', {attribute: 'attribute', inheritence: 'lazySemverist'}
+      '1.1.0-alpha.1', {attributeType: 'attribute', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(
@@ -353,7 +399,7 @@ test('lazySemveristNoPrerelease3Long', async (t) => {
     range.setSemver('1.1.0');
     range.setSemverishArray('1.1.0');
     return range.pathToRange(
-      '1.1.0', {attribute: 'attribute', inheritence: 'lazySemverist'}
+      '1.1.0', {attributeType: 'attribute', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(
@@ -371,7 +417,7 @@ test('lazySemveristNoPrerelease3LongLeadingZero', async (t) => {
     range.setSemverParsed('0.1.0');
     range.setSemverishArray('0.1.0');
     return range.pathToRange(
-      '0.1.0', {attribute: 'attribute', inheritence: 'lazySemverist'}
+      '0.1.0', {attributeType: 'attribute', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(
@@ -389,7 +435,7 @@ test('lazySemveristNoPrerelease2Long', async (t) => {
     range.setSemverParsed('1.1.0');
     range.setSemverishArray('1.1');
     return range.pathToRange(
-      '1.1', {attribute: 'attribute', inheritence: 'lazySemverist'}
+      '1.1', {attributeType: 'attribute', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(
@@ -407,7 +453,7 @@ test('lazySemveristNoPrerelease1Long', async (t) => {
     range.setSemverParsed('1.0.0');
     range.setSemverishArray('1');
     return range.pathToRange(
-      '1', {attribute: 'attribute', inheritence: 'lazySemverist'}
+      '1', {attributeType: 'attribute', inheritence: 'lazySemverist'}
     );
   });
   t.deepEqual(

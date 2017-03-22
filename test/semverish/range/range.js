@@ -36,9 +36,9 @@ test('upperLowerBoundsDoesNotSatisfy', async (t) => {
   .then((RangeClass) => {
     const rangeClass = new RangeClass();
     rangeClass.setLowerBounds('1.1.1');
-    return rangeClass.setUpperBounds('< 1.0.0');
+    return rangeClass.setUpperBounds('<1.0.0');
   }),
-  'Lower bounds value must satisfy upperBounds range'
+  'Lower bounds value must satisfy or be less than upperBounds range'
   );
 });
 
@@ -175,7 +175,7 @@ test('setRangeNoUpper', async (t) => {
     ranger.init();
     ranger.setLowerBounds('1.0.0-alpha');
     ranger.setSemveristElement('entity');
-    ranger.setSemverish('1.0.0-alpha.entity');
+    ranger.setSemverish('1.0.0-alpha');
     ranger.setSemverishArray('1.0.0-alpha');
     ranger.setSemver('1.0.0-alpha.0');
     ranger.setOptions();
