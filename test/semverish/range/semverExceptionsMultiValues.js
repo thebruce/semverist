@@ -43,8 +43,8 @@ test.serial('semverImpliedMultiValues', async (t) => {
     t.context.data,
     [
       '1.1',
-      '1.3',
-      '1.2'
+      '1.2',
+      '1.3'
     ],
     'Lazy semver should be able to add lower semver items.'
   );
