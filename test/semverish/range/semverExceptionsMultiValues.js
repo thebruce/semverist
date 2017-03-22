@@ -20,7 +20,12 @@ const tmpConfig = {
   prereleaseOrdering: {}
 };
 
-test.serial('semverImpliedMultiValues', async (t) => {
+test.afterEach.always((t) => {
+  delete t.context.data;
+  delete t.context;
+});
+
+test('semverImpliedMultiValues', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const ranger = new RangeClass();
@@ -50,7 +55,7 @@ test.serial('semverImpliedMultiValues', async (t) => {
   );
 });
 
-test.serial('semverImpliedThreeoValuesParentNotReplacedByChild', async (t) => {
+test('semverImpliedThreeoValuesParentNotReplacedByChild', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
