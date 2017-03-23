@@ -301,3 +301,33 @@ test('SemverishAdjacentPrereleaseLevels', async (t) => {
     'Adjacency can only be guaranteed for number sub prereleases.'
   );
 });
+
+test('SemverishAdjacentishExplicitLowerDespecifiedHigher', async (t) => {
+  t.context.data = await rangeFactory('semverist', 'range')
+  .then((RangeClass) => {
+    const rangeClass = new RangeClass();
+    rangeClass.init();
+    rangeClass.setSemveristElementType('entity');
+    rangeClass.setOptions();
+    return rangeClass.analyzeSemverishAdjacency('1.2.2', '1.3');
+  });
+  t.false(
+    t.context.data.adjacent,
+    'A child path of a parent should return as a child when semverish values are compared.'
+  );
+});
+
+test('SemverishAdjacentishDespecifiedLowerExplicitHigher', async (t) => {
+  t.context.data = await rangeFactory('semverist', 'range')
+  .then((RangeClass) => {
+    const rangeClass = new RangeClass();
+    rangeClass.init();
+    rangeClass.setSemveristElementType('entity');
+    rangeClass.setOptions();
+    return rangeClass.analyzeSemverishAdjacency('1.1', '1.2.1');
+  });
+  t.false(
+    t.context.data.adjacent,
+    'A child path of a parent should return as a child when semverish values are compared.'
+  );
+});
