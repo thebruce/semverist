@@ -124,3 +124,24 @@ test.serial('exceptionRangeSixValuesWithMinorMerge', async (t) => {
   );
 });
 
+test.serial('no exceptions', async (t) => {
+  t.context.data = await rangeFactory('semverist', 'range')
+  .then((RangeClass) => {
+    const range = new RangeClass();
+    range.init(tmpConfig);
+    range.setLowerBounds('1.0.0');
+    range.setSemverish('1');
+    range.setSemverishArray('1');
+    range.setSemveristElementType('attribute');
+    range.setSemver('1.0.0');
+    range.setOptions();
+    range.setRange();
+    range.setExceptions();
+    return range.makeExceptionRange();
+  });
+  t.deepEqual(
+    t.context.data,
+    null,
+    'Exceptions should have no values.'
+  );
+});
