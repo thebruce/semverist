@@ -250,9 +250,9 @@ test('setSemveristRange', async (t) => {
     range.setSemverish('1');
     range.setSemverishArray('1');
     range.setSemver('1.0.0');
-    range.setRange();
     range.setExceptions();
     range.addException('1.1');
+    range.setRange();
     range.setSemveristRange();
     return range.getSemveristRange();
   });
@@ -267,8 +267,7 @@ test('setSemveristRange', async (t) => {
       exceptions: [
         '1.1'
       ],
-      range: '>=1.0.0 <1.1.0 >=1.2.0 <2.0.0',
-      upperBounds: '<2.0.0',
+      range: '>=1.0.0 <1.1.0 >=1.2.0 <2.0.0'
     },
     'Semverist Objects at max level are a pass through.'
   );

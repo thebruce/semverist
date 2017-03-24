@@ -161,29 +161,6 @@ test.serial('exceptionOneValueSmallerLazyExisting', async (t) => {
   );
 });
 
-test.serial('outsideRange', async (t) => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    range.init(lazySemverConfig);
-    range.setLowerBounds('1.0.0');
-    range.setSemverish('1.0.0');
-    range.setSemverishArray('1.0.0');
-    range.setSemveristElementType('attribute');
-    range.setSemver('1.0.0');
-    range.setOptions();
-    range.setRange();
-    range.setExceptions();
-    range.addException('2.1.0');
-    return range.getExceptions();
-  });
-  t.deepEqual(
-    t.context.data,
-    [],
-    'Lazy semver should be able to add lower semver items.'
-  );
-});
-
 test.serial('semverImpliedTwoValues', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
