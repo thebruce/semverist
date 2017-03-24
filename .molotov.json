@@ -12,8 +12,6 @@
           "semverAdjacent",
           "toCaretRange",
           "toTildeRange",
-          "semverLeadingZeroCount",
-          "leadingZerosToLazySemverist",
           "nextHigherMajor",
           "semverishValue",
           "semveristElementType",
