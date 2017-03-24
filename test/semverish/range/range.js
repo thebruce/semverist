@@ -2,6 +2,23 @@ import test from 'ava';
 
 const rangeFactory = require('../../../lib/semverish/range');
 
+const tmpConfig = {
+  semveristBehaviors: {
+    inheritence: 'semverImplied',
+    lazySemverist: {
+      attribute: true,
+      preReleaseForwards: false
+    },
+    default: true,
+    defaultName: 'default',
+    groups: true,
+    mergeStrategy: 'lastIn',
+    preReleasePattern: /\d-[a-zA-Z]*/g
+  },
+  groups: {},
+  prereleaseOrdering: {}
+};
+
 test('lowerBounds', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
@@ -218,5 +235,41 @@ test('SetRangeNoLowerBounds', async (t) => {
     return range.setRange();
   }),
   'Can not create a range without a lower bounds value.'
+  );
+});
+
+test('setSemveristRange', async (t) => {
+  t.context.data = await rangeFactory('semverist', 'range')
+  .then((RangeClass) => {
+    const range = new RangeClass();
+    range.init(tmpConfig);
+    range.setOptions();
+    range.setLowerBounds('1.0.0');
+    range.setSemveristElement('entity');
+    range.setSemveristElementType('attribute');
+    range.setSemverish('1');
+    range.setSemverishArray('1');
+    range.setSemver('1.0.0');
+    range.setRange();
+    range.setExceptions();
+    range.addException('1.1');
+    range.setSemveristRange();
+    return range.getSemveristRange();
+  });
+  t.deepEqual(
+    t.context.data,
+    {
+      lowerBounds: '1.0.0',
+      semveristElement: 'entity',
+      semveristElementType: 'attribute',
+      semverishValue: '1',
+      exceptionRange: '<1.1.0 >=1.2.0',
+      exceptions: [
+        '1.1'
+      ],
+      range: '>=1.0.0 <1.1.0 >=1.2.0 <2.0.0',
+      upperBounds: '<2.0.0',
+    },
+    'Semverist Objects at max level are a pass through.'
   );
 });

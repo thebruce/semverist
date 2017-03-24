@@ -37,7 +37,7 @@ test.serial('exceptionRangeOneValue', async (t) => {
   });
   t.deepEqual(
     t.context.data,
-    '<1.1.0 >1.2.0',
+    '<1.1.0 >=1.2.0',
     'Exceptions should have no values.'
   );
 });
