@@ -12,13 +12,14 @@
 // the semverist inspector object.
 
 const range = {  // eslint-disable-line no-unused-vars
-  range: '>= 1.0.0 < 1.1.0 > 1.1.0 < 1.2.0-alpha > 1.2.0-alpha',
+  range: '>= 1.0.0 <1.1.0 >1.2.0 > 1.2.0-alpha <2.0.0',
+  semveristElementType: 'attribute',
   lowerBounds: '1.0.0', // a fully realized semver string value extracted from the semverish that serves as the lower bounds of this range.
-  upperBounds: '< 2.0.0', // a fully realized semver string value extracted from the semverish value and then tempered by any terminal bounds from the range object.
   semveristElement: 'entity', // the semverist element this range relates to - can influence the options retrieved for this semverist element and thus the behavior of the range.
-  semverishValue: 1, // The actual semverish value on which this range is based and the sorting value for this range.
-  childrenSemverRanges: [ // child ranges found in the overall semverist object we are considering that satisfy this range.  These values would create exceptions in this semver range based on inheritence rules.
-    '>= 1.1.0 < 1.2.0-alpha',
-    '>= 1.2.0-alpha < 1.2.0'
-  ]
+  semverishValue: '1', // The actual semverish value on which this range is based and the sorting value for this range.
+  exceptions: [
+    '1.1',
+    '1.2.0'
+  ],
+  exceptionRange: '<1.1.0 >1.2.0'
 };
