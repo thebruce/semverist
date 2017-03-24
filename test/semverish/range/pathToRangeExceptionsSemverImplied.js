@@ -25,6 +25,7 @@ test.serial('exceptionRangeSixValuesWithMinorMerge', async (t) => {
     const range = new RangeClass();
     range.init(tmpConfig);
     range.setLowerBounds('1.0.0');
+    range.setUpperBounds('<2.0.0');
     range.setSemverish('1');
     range.setSemverishArray('1');
     range.setSemveristElementType('attribute');

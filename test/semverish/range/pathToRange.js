@@ -110,8 +110,8 @@ test('semveristObjectTestsMaxLevel4', async (t) => {
   });
   t.deepEqual(
     t.context.data,
-    '1.0.0-alpha.0+124',
-    'Semverist Objects at max level are a pass through.'
+    '1.0.0-alpha.0',
+    'Semverist Objects at max level are a pass through and builds do not factor into ranges'
   );
 });
 
@@ -197,12 +197,12 @@ test('semverImpliedTestsMaxLevel4', async (t) => {
     range.init();
     range.setOptions();
     return range.pathToRange(
-      '1.0.0-alpha.0+124', {attributeType: 'attribute', inheritence: 'semverImplied'}
+      '1.0.0-alpha+124', {attributeType: 'attribute', inheritence: 'semverImplied'}
     );
   });
   t.deepEqual(
     t.context.data,
-    '1.0.0-alpha.0+124',
+    '1.0.0-alpha',
     'Semverist Objects at max level are a pass through.'
   );
 });
