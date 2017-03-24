@@ -33,42 +33,6 @@ test('lowerBounds', async (t) => {
   );
 });
 
-test('upperBounds', async (t) => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const rangeClass = new RangeClass();
-    rangeClass.setLowerBounds('0.1.1');
-    rangeClass.setUpperBounds('< 1.0.0');
-    return rangeClass.getUpperBounds();
-  });
-  t.deepEqual(
-    t.context.data,
-    '<1.0.0',
-    'Semverish get should return from semverish set.'
-  );
-});
-
-test('upperLowerBoundsDoesNotSatisfy', async (t) => {
-  await t.throws(rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const rangeClass = new RangeClass();
-    rangeClass.setLowerBounds('1.1.1');
-    return rangeClass.setUpperBounds('<1.0.0');
-  }),
-  'Lower bounds value must satisfy or be less than upperBounds range'
-  );
-});
-
-
-test('UpperBoundsInvalidRange', async (t) => {
-  await t.throws(rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const rangeClass = new RangeClass();
-    rangeClass.setUpperBounds('> 1.R');
-  }),
-  'The passed range is not a valid semver range.');
-});
-
 test('semverishPlugin', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
@@ -93,66 +57,6 @@ test('semveristElementPlugin', async (t) => {
   t.deepEqual(
     t.context.data,
     'entity',
-    'Semverish get should return from semverish set.'
-  );
-});
-
-test('processedUpperBoundsOnlyUpper', async (t) => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const rangeClass = new RangeClass();
-    rangeClass.setLowerBounds('0.0.0');
-    rangeClass.setUpperBounds('< 1.0.0');
-    return rangeClass.getProcessedUpperBound();
-  });
-  t.deepEqual(
-    t.context.data,
-    '<1.0.0',
-    'Semverish get should return from semverish set.'
-  );
-});
-
-test('processedUpperBoundsOnlyTerminal', async (t) => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const rangeClass = new RangeClass();
-    rangeClass.setLowerBounds('0.0.0');
-    rangeClass.setUpperBounds('<1.0.0');
-    rangeClass.setTerminalBounds('0.9.9');
-    return rangeClass.getProcessedUpperBound();
-  });
-  t.deepEqual(
-    t.context.data,
-    '<0.9.9',
-    'Semverish get should return from semverish set.'
-  );
-});
-
-test('processedUpperBoundsNoUpperBounds', async (t) => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const rangeClass = new RangeClass();
-    return rangeClass.getProcessedUpperBound();
-  });
-  t.deepEqual(
-    t.context.data,
-    null,
-    'Semverish get should return from semverish set.'
-  );
-});
-
-test('processedUpperBoundsBothBounds', async (t) => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const rangeClass = new RangeClass();
-    rangeClass.setLowerBounds('0.0.0');
-    rangeClass.setUpperBounds('< 1.0.0');
-    rangeClass.setTerminalBounds('0.0.9');
-    return rangeClass.getProcessedUpperBound();
-  });
-  t.deepEqual(
-    t.context.data,
-    '<0.0.9',
     'Semverish get should return from semverish set.'
   );
 });
@@ -185,7 +89,7 @@ test('satisfiesRangeCantGetMeNoSatisfaction', async (t) => {
   );
 });
 
-test('setRangeNoUpper', async (t) => {
+test('setRangeGetRange', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const ranger = new RangeClass();
