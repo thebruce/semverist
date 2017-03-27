@@ -7,10 +7,24 @@
     "molotovPlugins": {
       "semverist": {
         "range": [
-          "parseSemverUtils"
+          "semverishElement",
+          "parseSemverUtils",
+          "semverAdjacent",
+          "toCaretRange",
+          "toTildeRange",
+          "semverishValue",
+          "semveristElementType",
+          "sortRangeArray",
+          "semverishLevel",
+          "semverAdjacent"
         ],
         "semverish": [
-          "parseSemverUtils"
+          "semverishElement",
+          "parseSemverUtils",
+          "semverishValue",
+          "semveristElementType",
+          "semverishLevel",
+          "semverAdjacent"
         ]
       }
     }
