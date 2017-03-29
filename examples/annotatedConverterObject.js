@@ -3,6 +3,11 @@
 // This is the raw ranges before merging but with inheritence and
 // lazy semverist considered.
 const converterObject = { // eslint-disable-line
+  semverRealizations: [ // Both implied and fully declared semantic versions in the semverish object.
+    '0.0.0',
+    '0.4.5',
+    '1.0.0'
+  ],
   default: {
     default: { // the name of default, by default it's...default!
       '0.0.0 < 1.0.0': { // Keyed by the range that this value satisfies.
@@ -15,7 +20,7 @@ const converterObject = { // eslint-disable-line
       }
     }
   },
-  groups: { // A collection of groups for this semverist Object.
+  group: { // A collection of groups for this semverist Object.
     groupName1: { // A group name
       '>= 0.0.0 < 0.4.5 > 0.4.5 < 1.0.0': {// Keyed by a range that the value satisfies.
         range: '0.0.0 <= 0.4.5',
@@ -41,7 +46,7 @@ const converterObject = { // eslint-disable-line
         '0.0.0' // the location of groupName 2 that will be used for this range key.
     }
   },
-  attributes: {
+  attribute: {
     entity1: {
       '0.0.0 <= 1.0.0': // Keyed by a range that the value satisfies.
         '0.0.0' // the location of entity1 that will be used for this range key.

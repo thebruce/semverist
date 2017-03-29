@@ -25,6 +25,12 @@
           "semveristElementType",
           "semverishLevel",
           "semverAdjacent"
+        ],
+        "converter": [
+          "parseSemverUtils",
+          "sortRangeArray",
+          "semverAdjacent",
+          "semverishLevel"
         ]
       }
     }

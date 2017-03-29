@@ -1,0 +1,33 @@
+{
+    "semveristBehaviors" : {
+      "inheritenceType": "semverImplied",
+      "lazySemverist": {
+        "preReleaseForwards": false,
+        "attributes": true
+      },
+      "defaults": true,
+      "defaultName" : "orchestraDefault",
+      "groups": true,
+      "mergeStrategy": "lastIn"
+    },
+    "groups": {
+     "strings": {
+       "members": [
+         "violin",
+         "viola"
+       ]
+     },
+     "winds": {
+       "members": [
+         "flute",
+         "clarinet"
+       ]
+     },
+     "brass": {
+       "members": [
+         "trumpet",
+         "trombone"
+       ]
+     }
+    }
+}

@@ -163,6 +163,9 @@ test('setSemveristRange', async (t) => {
   t.deepEqual(
     t.context.data,
     {
+      adjustedExceptions: [
+        '1.1'
+      ],
       lowerBounds: '1.0.0',
       semveristElement: 'entity',
       semveristElementType: 'attribute',

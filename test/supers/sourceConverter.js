@@ -1,30 +1,82 @@
 import test from 'ava';
 
-const SourceConverter = require('../../lib/converter/converter');
+const converterFactory = require('../../lib/converter/converter');
+const semveristObject = require('../helpers/semverishObject');
+const semverConfig = require('../helpers/semverImpliedConfig');
 
-// test.todo('constructor');
-
-// test.todo('assembleViaTraversal');
-
-// test.todo('populateConverter');
-
-test('setConverterAttribute', (t) => {
-  const sourceConverter = new SourceConverter();
-  sourceConverter.attribute = {test: 'value'};
-  sourceConverter.addConverterAttribute('default', '4.1.0', '4.1.0.default');
-  t.context.data = sourceConverter.getConverterAttribute('default', '4.1.0');
-  t.deepEqual(t.context.data, ['4.1.0.default']);
+test('initWithOptions', async (t) => {
+  t.context.data = await converterFactory('semverist', 'converter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject, semverConfig);
+    return converterClass.getSemveristObject();
+  });
+  t.deepEqual(
+    Object.keys(t.context.data['1']['0']['0']),
+    ['violin'],
+    'Semverish get should return from semverish set.'
+  );
 });
 
-// test.todo('pushConverterAttributeValue');
+test('setGetSemverRealizations', async (t) => {
+  t.context.data = await converterFactory('semverist', 'converter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject, semverConfig);
+    converterClass.setSemverRealizations(['1.0.0']);
+    return converterClass.getSemverRealizations();
+  });
+  t.deepEqual(
+    t.context.data,
+    ['1.0.0'],
+    'Semverish get should return from semverish set.'
+  );
+});
 
-// test.todo('identifySourceAttributeType');
+test('addSemverRealizations', async (t) => {
+  t.context.data = await converterFactory('semverist', 'converter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject, semverConfig);
+    converterClass.setSemverRealizations(['1.0.0']);
+    converterClass.addSemverRealizations('1.1.0');
+    converterClass.addSemverRealizations('1.2.0');
+    return converterClass.getSemverRealizations();
+  });
+  t.deepEqual(
+    t.context.data,
+    [
+      '1.0.0',
+      '1.1.0',
+      '1.2.0'
+    ],
+    'Semverish get should return from semverish set.'
+  );
+});
 
-// test.todo('assembleConverterComposition');
-
-test('setConverter', (t) => {
-  const sourceConverter = new SourceConverter();
-  sourceConverter.setConverter('test');
-  t.context.data = sourceConverter.getConverter();
-  t.deepEqual(t.context.data, 'test');
+test('semveristAssemble', async (t) => {
+  t.context.data = await converterFactory('semverist', 'converter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject, semverConfig);
+    return converterClass.semveristAssemble('root');
+  });
+  t.deepEqual(
+    t.context.data.semverRealizations,
+    [
+      '1.0.0',
+      '1.0.1',
+      '1.0.2',
+      '1.1.0',
+      '1.1.1',
+      '1.2.0',
+      '1.3.0',
+      '2.0.0-alpha.0',
+      '2.0.0-alpha.1',
+      '2.0.0-beta.0',
+      '2.0.0',
+      '2.0.1',
+    ],
+    'Semverish get should return from semverish set.'
+  );
 });

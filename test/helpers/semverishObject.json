@@ -1,0 +1,74 @@
+{
+	"1": {
+		"violin": {},
+		"viola": {},
+		"strings": {},
+		"winds": {},
+		"flute": {},
+		"orchestraDefault": {},
+		"0": {
+			"viola": {},
+			"violin": {},
+			"0": {
+				"violin": {}
+			},
+			"1": {
+				"violin": {}
+			},
+			"2": {
+				"violin": {}
+			}
+		},
+		"1": {
+			"clarinet": {},
+			"1": {
+				"clarinet": {}
+			}
+		},
+		"2": {
+			"clarinet": {},
+			"0": {
+				"flute": {}
+			}
+		},
+		"3": {
+			"clarinet": {},
+			"0": {
+				"flute": {},
+				"viola": {}
+			}
+		}
+	},
+	"2": {
+		"winds": {},
+		"strings": {},
+		"brass": {},
+		"violin": {},
+		"viola": {},
+		"flute": {},
+		"clarinet": {},
+		"trumpet": {},
+		"trombone": {},
+		"0": {
+			"brass": {},
+			"0-alpha": {
+				"0": {
+					"viola": {}
+				},
+				"1": {
+					"winds": {},
+					"clarinet": {}
+				}
+			},
+			"0-beta": {
+				"trombone": {}
+			},
+			"0": {
+				"trumpet": {}
+			},
+			"1": {
+				"flute": {}
+			}
+		}
+	}
+}
