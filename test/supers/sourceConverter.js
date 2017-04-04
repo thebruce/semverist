@@ -9,7 +9,7 @@ test('initWithOptions', async (t) => {
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
     converterClass.init(semveristObject, semverConfig);
-    return converterClass.getSemveristObject();
+    return converterClass.getSemverishObject();
   });
   t.deepEqual(
     Object.keys(t.context.data['1']['0']['0']),
@@ -59,7 +59,7 @@ test('semveristAssemble', async (t) => {
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
     converterClass.init(semveristObject, semverConfig);
-    return converterClass.semveristAssemble('root');
+    return converterClass.createConverter();
   });
   t.deepEqual(
     t.context.data.semverRealizations,
@@ -76,6 +76,67 @@ test('semveristAssemble', async (t) => {
       '2.0.0-beta.0',
       '2.0.0',
       '2.0.1',
+    ],
+    'Semverish get should return from semverish set.'
+  );
+});
+
+test('semveristAssemble2', async (t) => {
+  t.context.data = await converterFactory('semverist', 'converter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject, semverConfig);
+    return converterClass.semveristAssemble('root');
+  });
+  t.deepEqual(
+    Object.keys(t.context.data.attribute.violin).sort(),
+    [
+      '1',
+      '1.0',
+      '1.0.0',
+      '1.0.1',
+      '1.0.2',
+      '2'
+    ],
+    'Semverish get should return from semverish set.'
+  );
+});
+
+test('semveristAssemble3', async (t) => {
+  t.context.data = await converterFactory('semverist', 'converter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject, semverConfig);
+    return converterClass.semveristAssemble('root');
+  });
+  t.deepEqual(
+    Object.keys(t.context.data.attribute.violin).sort(),
+    [
+      '1',
+      '1.0',
+      '1.0.0',
+      '1.0.1',
+      '1.0.2',
+      '2'
+    ],
+    'Semverish get should return from semverish set.'
+  );
+});
+
+test('semveristAssemble4', async (t) => {
+  t.context.data = await converterFactory('semverist', 'converter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject, semverConfig);
+    return converterClass.createConverter();
+  });
+
+  t.deepEqual(
+    Object.keys(t.context.data.group.winds),
+    [
+      '>=1.0.0 <2.0.0',
+      '>=2.0.0-alpha.1 <2.0.0',
+      '>=2.0.0 <3.0.0'
     ],
     'Semverish get should return from semverish set.'
   );
