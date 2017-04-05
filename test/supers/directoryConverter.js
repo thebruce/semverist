@@ -8,7 +8,11 @@ test('initWithOptions', async (t) => {
   t.context.data = await converterFactory('semverist', 'directoryConverter')
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
-    converterClass.init(path.join(__dirname, '../../', 'test/helpers/semverishObject'), semverConfig);
+    converterClass.init(path.join(
+      __dirname,
+      '../../',
+      'test/helpers/semverishObject'),
+    semverConfig);
     return converterClass.getSemverishObject();
   });
   t.deepEqual(
@@ -22,7 +26,11 @@ test('setGetSemverRealizations', async (t) => {
   t.context.data = await converterFactory('semverist', 'directoryConverter')
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
-    converterClass.init(path.join(__dirname, '../../', 'test/helpers/semverishObject'), semverConfig);
+    converterClass.init(path.join(
+      __dirname,
+      '../../',
+      'test/helpers/semverishObject'),
+    semverConfig);
     converterClass.setSemverRealizations(['1.0.0']);
     return converterClass.getSemverRealizations();
   });
@@ -37,7 +45,11 @@ test('addSemverRealizations', async (t) => {
   t.context.data = await converterFactory('semverist', 'directoryConverter')
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
-    converterClass.init(path.join(__dirname, '../../', 'test/helpers/semverishObject'), semverConfig);
+    converterClass.init(path.join(
+      __dirname,
+      '../../',
+      'test/helpers/semverishObject'),
+    semverConfig);
     converterClass.setSemverRealizations(['1.0.0']);
     converterClass.addSemverRealizations('1.1.0');
     converterClass.addSemverRealizations('1.2.0');
@@ -58,7 +70,11 @@ test('semveristAssemble', async (t) => {
   t.context.data = await converterFactory('semverist', 'directoryConverter')
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
-    converterClass.init(path.join(__dirname, '../../', 'test/helpers/semverishObject'), semverConfig);
+    converterClass.init(path.join(
+      __dirname,
+      '../../',
+      'test/helpers/semverishObject'),
+    semverConfig);
     return converterClass.createConverter();
   });
   t.deepEqual(
@@ -85,7 +101,11 @@ test('testSemveristAssembleForViolin', async (t) => {
   t.context.data = await converterFactory('semverist', 'directoryConverter')
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
-    converterClass.init(path.join(__dirname, '../../', 'test/helpers/semverishObject'), semverConfig);
+    converterClass.init(path.join(
+      __dirname,
+      '../../',
+      'test/helpers/semverishObject'),
+    semverConfig);
     return converterClass.semveristAssemble('root');
   });
   t.deepEqual(
@@ -106,7 +126,11 @@ test('coverterRangeTests', async (t) => {
   t.context.data = await converterFactory('semverist', 'directoryConverter')
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
-    converterClass.init(path.join(__dirname, '../../', 'test/helpers/semverishObject'), semverConfig);
+    converterClass.init(path.join(
+      __dirname,
+      '../../',
+      'test/helpers/semverishObject'),
+    semverConfig);
     return converterClass.createConverter();
   });
 
@@ -125,7 +149,11 @@ test('getTraceIndex', async (t) => {
   t.context.data = await converterFactory('semverist', 'directoryConverter')
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
-    converterClass.init(path.join(__dirname, '../../', 'test/helpers/semverishObject'), semverConfig);
+    converterClass.init(path.join(
+      __dirname,
+      '../../',
+      'test/helpers/semverishObject'),
+    semverConfig);
     return ConverterClass.getTraceIndex(1);
   });
 
