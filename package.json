@@ -26,7 +26,9 @@
   },
   "homepage": "https://github.com/thebruce/semverist#readme",
   "dependencies": {
+    "callsite": "^1.0.0",
     "config": "^1.25.1",
+    "klaw-sync": "^1.1.2",
     "lodash": "^4.17.4",
     "molotov": "0.0.0-development",
     "require-directory": "^2.1.1",

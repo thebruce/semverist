@@ -31,6 +31,13 @@
           "sortRangeArray",
           "semverAdjacent",
           "semverishLevel"
+        ],
+        "directoryConverter": [
+          "directoryToSemverishObject",
+          "parseSemverUtils",
+          "sortRangeArray",
+          "semverAdjacent",
+          "semverishLevel"
         ]
       }
     }
