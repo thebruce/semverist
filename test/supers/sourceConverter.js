@@ -14,7 +14,7 @@ test('initWithOptions', async (t) => {
   t.deepEqual(
     Object.keys(t.context.data['1']['0']['0']),
     ['violin'],
-    'Semverish get should return from semverish set.'
+    'Violin was expected at this semverish location.'
   );
 });
 
@@ -29,7 +29,7 @@ test('setGetSemverRealizations', async (t) => {
   t.deepEqual(
     t.context.data,
     ['1.0.0'],
-    'Semverish get should return from semverish set.'
+    'Semver realizations should be an array with the set value 1.0.0'
   );
 });
 
@@ -50,7 +50,7 @@ test('addSemverRealizations', async (t) => {
       '1.1.0',
       '1.2.0'
     ],
-    'Semverish get should return from semverish set.'
+    'Semver realizations should be the initial set value 1.0.0 and those added, 1.1.0 and 1.2.0'
   );
 });
 
@@ -77,11 +77,11 @@ test('semveristAssemble', async (t) => {
       '2.0.0',
       '2.0.1',
     ],
-    'Semverish get should return from semverish set.'
+    'The semverish object should have all declared and implicit semver values as realizations.'
   );
 });
 
-test('semveristAssemble2', async (t) => {
+test('testSemveristAssembleForViolin', async (t) => {
   t.context.data = await converterFactory('semverist', 'converter')
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
@@ -98,32 +98,11 @@ test('semveristAssemble2', async (t) => {
       '1.0.2',
       '2'
     ],
-    'Semverish get should return from semverish set.'
+    'Violin converter class should include all semverish occurences of the attribute.'
   );
 });
 
-test('semveristAssemble3', async (t) => {
-  t.context.data = await converterFactory('semverist', 'converter')
-  .then((ConverterClass) => {
-    const converterClass = new ConverterClass();
-    converterClass.init(semveristObject, semverConfig);
-    return converterClass.semveristAssemble('root');
-  });
-  t.deepEqual(
-    Object.keys(t.context.data.attribute.violin).sort(),
-    [
-      '1',
-      '1.0',
-      '1.0.0',
-      '1.0.1',
-      '1.0.2',
-      '2'
-    ],
-    'Semverish get should return from semverish set.'
-  );
-});
-
-test('semveristAssemble4', async (t) => {
+test('coverterRangeTests', async (t) => {
   t.context.data = await converterFactory('semverist', 'converter')
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
@@ -138,6 +117,6 @@ test('semveristAssemble4', async (t) => {
       '>=2.0.0-alpha.1 <2.0.0',
       '>=2.0.0 <3.0.0'
     ],
-    'Semverish get should return from semverish set.'
+    'The converter objects winds group should be keyed by its valid ranges.'
   );
 });
