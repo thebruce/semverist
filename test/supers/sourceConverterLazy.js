@@ -2,7 +2,8 @@ import test from 'ava';
 
 const converterFactory = require('../../lib/converter/converter');
 const semveristObject = require('../helpers/semverishObject');
-const semverConfig = require('../helpers/semverImpliedConfig');
+const semverConfig = require('../helpers/lazySemveristConfig');
+const digestedHelper = require('../helpers/lazyConverterProcessed.json');
 
 test('initWithOptions', async (t) => {
   t.context.data = await converterFactory('semverist', 'converter')
@@ -30,27 +31,6 @@ test('setGetSemverRealizations', async (t) => {
     t.context.data,
     ['1.0.0'],
     'Semver realizations should be an array with the set value 1.0.0'
-  );
-});
-
-test('addSemverRealizations', async (t) => {
-  t.context.data = await converterFactory('semverist', 'converter')
-  .then((ConverterClass) => {
-    const converterClass = new ConverterClass();
-    converterClass.init(semveristObject, semverConfig);
-    converterClass.setSemverRealizations(['1.0.0']);
-    converterClass.addSemverRealizations('1.1.0');
-    converterClass.addSemverRealizations('1.2.0');
-    return converterClass.getSemverRealizations();
-  });
-  t.deepEqual(
-    t.context.data,
-    [
-      '1.0.0',
-      '1.1.0',
-      '1.2.0'
-    ],
-    'Semver realizations should be the initial set value 1.0.0 and those added, 1.1.0 and 1.2.0'
   );
 });
 
@@ -111,15 +91,8 @@ test('coverterRangeTests', async (t) => {
   });
 
   t.deepEqual(
-    Object.keys(t.context.data.attribute.violin),
-    [
-      '>=1.1.0 <2.0.0',
-      '>=1.0.3 <1.1.0',
-      '1.0.0',
-      '1.0.1',
-      '1.0.2',
-      '>=2.0.0 <3.0.0'
-    ],
+    t.context.data,
+    digestedHelper,
     'The converter objects winds group should be keyed by its valid ranges.'
   );
 });

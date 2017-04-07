@@ -12,7 +12,7 @@ test('terminalBounds', async (t) => {
   });
   t.deepEqual(
     t.context.data,
-    '<0.0.9',
+    '0.0.9',
     'Semverish get should return from semverish set.'
   );
 });

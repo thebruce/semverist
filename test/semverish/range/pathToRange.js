@@ -46,26 +46,6 @@ test('pathToRangePathZeroLength', async (t) => {
   'The path must have atleast a single major component.');
 });
 
-test('pathToRangeOptionsNoInheritence', async (t) => {
-  await t.throws(rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    return range.pathToRange('1', {});
-  }),
-  'The options object must have inheritence defined even if its value is null.');
-});
-
-test('pathToRangeOptionsBadInheritence', async (t) => {
-  await t.throws(rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    return range.pathToRange('1', {inheritence: 'bad'});
-  }),
-  String.prototype.concat('The options inheritence attribute must one of the following values:',
-  ' semverImplied, null, or lazySemverist'
-  ));
-});
-
 test('pathToRangeInheritenceNull', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {

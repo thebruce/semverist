@@ -1,6 +1,6 @@
 {
   "semveristBehaviors": {
-    "inheritence": "semverImplied",
+    "inheritence": "lazySemverist",
     "lazySemverist": {
       "preReleaseForwards": false,
       "attributes": true
