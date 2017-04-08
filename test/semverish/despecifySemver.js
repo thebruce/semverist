@@ -132,3 +132,33 @@ test('despecifySemverishArrayEntity', async (t) => {
     '1.0'
     );
 });
+
+
+test('despecifySemverishNoBuild', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemver('1.0.0-alpha+124');
+    semverishSuper.setSemverishArray('1.0.entity');
+    return semverishSuper.despecifySemver(4);
+  });
+  t.deepEqual(
+    t.context.data,
+    '1.0.0-alpha'
+    );
+});
+
+test('despecifySemverishWithBuild', async (t) => {
+  t.context.data = await semverishFactory('semverist', 'semverish')
+  .then((SemverishSuperClass) => {
+    const semverishSuper = new SemverishSuperClass();
+    semverishSuper.setSemver('1.0.0-alpha+124');
+    semverishSuper.setSemverishArray('1.0.entity');
+    return semverishSuper.despecifySemver(5);
+  });
+  t.deepEqual(
+    t.context.data,
+    '1.0.0-alpha+124'
+    );
+});
+

@@ -19,6 +19,19 @@ const tmpConfig = {
   prereleaseOrdering: {}
 };
 
+test('rangeClassNoPlugins', async (t) => {
+  t.context.data = await rangeFactory('semverist')
+  .then((RangeClass) => {
+    const rangeClass = new RangeClass();
+    return rangeClass.sortRangeArray;
+  });
+  t.deepEqual(
+    t.context.data,
+    undefined,
+    'Range class with no plugins should not have access to plugin functions.'
+  );
+});
+
 test('lowerBounds', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
@@ -179,5 +192,52 @@ test('setSemveristRange', async (t) => {
       terminalBounds: '<2.0.0'
     },
     'Semverist Objects at max level are a pass through.'
+  );
+});
+
+
+test('sortRangeArrayString', async (t) => {
+  await t.throws(rangeFactory('semverist', 'range')
+  .then((RangeClass) => {
+    const range = new RangeClass();
+    return range.sortRangeArray('not a range');
+  }),
+  'Can not sort a range Array that is not a range.'
+  );
+});
+
+test('testForFinalItem', async (t) => {
+  t.context.data = await rangeFactory('semverist', 'range')
+  .then((RangeClass) => {
+    const range = new RangeClass();
+    range.init(tmpConfig);
+    range.setOptions();
+    range.setLowerBounds('1.0.0');
+    range.setSemveristElement('entity');
+    range.setSemveristElementType('attribute');
+    range.setSemverish('1');
+    range.setSemverishArray('1');
+    range.setSemver('1.0.0');
+    range.setExceptions();
+    range.addException('1.1');
+    range.setRange();
+    range.setTerminalBounds('<2.0.0');
+    range.setSemveristRange();
+    return range.testFinalItemAgainstRangeSemverish('1.1.1', '1.1.1');
+  });
+  t.deepEqual(
+    t.context.data,
+    true,
+    'Semverist Objects at max level are a pass through.'
+  );
+});
+
+test('sortRangeArrayStringThrow', async (t) => {
+  await t.throws(rangeFactory('semverist', 'range')
+  .then((RangeClass) => {
+    const range = new RangeClass();
+    return range.sortRangeArray('not a range');
+  }),
+  'Can not sort a range Array that is not a range.'
   );
 });
