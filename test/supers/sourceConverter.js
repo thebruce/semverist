@@ -3,6 +3,7 @@ import test from 'ava';
 const converterFactory = require('../../lib/converter/converter');
 const semveristObject = require('../helpers/semverishObject');
 const semverConfig = require('../helpers/semverImpliedConfig');
+const digestedHelper = require('../helpers/semverImpliedProcessed.json');
 
 test('initWithOptions', async (t) => {
   t.context.data = await converterFactory('semverist', 'converter')
@@ -121,5 +122,109 @@ test('coverterRangeTests', async (t) => {
       '>=2.0.0 <3.0.0'
     ],
     'The converter objects winds group should be keyed by its valid ranges.'
+  );
+});
+
+test('converterClassNoPlugins', async (t) => {
+  t.context.data = await converterFactory('semverist')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject, semverConfig);
+    return converterClass.sortRangeArray;
+  });
+  t.deepEqual(
+    t.context.data,
+    undefined,
+    'Converter without plugins does not have plugin functions..'
+  );
+});
+
+test('coverterRangeAttributeTests', async (t) => {
+  t.context.data = await converterFactory('semverist', 'converter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject);
+    return converterClass.createConverter();
+  });
+
+  t.deepEqual(
+    Object.keys(t.context.data.attribute.violin),
+    [
+      '>=1.1.0 <2.0.0',
+      '>=1.0.3 <1.1.0',
+      '1.0.0',
+      '1.0.1',
+      '1.0.2',
+      '>=2.0.0 <3.0.0'
+    ],
+    'The converter objects violin attribute should be keyed by its valid ranges.'
+  );
+});
+
+test('addBadSemverRealizations', async (t) => {
+  await t.throws(converterFactory('semverist', 'converter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject);
+    converterClass.addSemverRealizations('notAGoodSemverish');
+  }),
+  'Semver realizations must be valid semver, notAGoodSemverish is not a valid semver.');
+});
+
+test('Add a non existant semverist element', async (t) => {
+  t.context.data = await converterFactory('semverist', 'converter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject, semverConfig);
+    converterClass.addConverterSemveristElement('aNewElement', 'mucky', '>1.1.0 <2.0.0', 'flappy');
+    return converterClass.converter;
+  });
+
+  t.deepEqual(
+    Object.keys(t.context.data).sort(),
+    [
+      'aNewElement',
+      'attribute',
+      'default',
+      'group',
+      'semverRealizations'
+    ],
+    'The converter will create new elements if asked to do so.'
+  );
+});
+
+test('Add a non existant semverist class item', async (t) => {
+  t.context.data = await converterFactory('semverist', 'converter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject, semverConfig);
+    converterClass.addSemveristClassItem('aNewElement', 'newNew', '1.1.0', 'semverish', {});
+    return converterClass.getSemveristClasses();
+  });
+
+  t.deepEqual(
+    Object.keys(t.context.data).sort(),
+    [
+      'aNewElement',
+      'attribute',
+      'default',
+      'group'
+    ],
+    'The converter will create new elements if asked to do so.'
+  );
+});
+
+test('Processed complete test', async (t) => {
+  t.context.data = await converterFactory('semverist', 'converter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(semveristObject, semverConfig);
+    return converterClass.createConverter();
+  });
+
+  t.deepEqual(
+    t.context.data,
+    digestedHelper,
+    'The converter object should be a complete match to the processed converter example..'
   );
 });

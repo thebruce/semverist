@@ -173,3 +173,13 @@ test('init with overrides', (t) => {
     'Overridden config should be set by providing new config to init.'
   );
 });
+
+test('get Semver Level index', (t) => {
+  t.context.data = SemveristSuperBase.getSemverLevelIndex('prerelease');
+  t.deepEqual(
+    t.context.data,
+    3,
+    'Prerelease should be transformed to release at index 3.'
+  );
+});
+
