@@ -1,0 +1,445 @@
+{
+     "attribute": {
+       "clarinet": {
+         "1.1.1": {
+           "adjustedExceptions": [],
+           "exceptionRange": null,
+           "exceptions": [],
+           "lowerBounds": "1.1.1",
+           "range": "1.1.1",
+           "semverishValue": "1.1.1",
+           "semveristElement": "clarinet",
+           "semveristElementType": "attribute",
+           "terminalBounds": "1.1.1"
+         },
+         ">=1.1.0 <1.1.1 >=1.1.2 <1.2.0": {
+            "adjustedExceptions": [
+              "1.1.1"
+            ],
+            "exceptionRange": "<1.1.1 >=1.1.2",
+            "exceptions": [
+              "1.1.1"
+            ],
+            "lowerBounds": "1.1.0",
+            "range": ">=1.1.0 <1.1.1 >=1.1.2 <1.2.0",
+            "semverishValue": "1.1",
+            "semveristElement": "clarinet",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<1.2.0"
+          },
+          ">=1.2.0 <1.3.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "1.2.0",
+            "range": ">=1.2.0 <1.3.0",
+            "semverishValue": "1.2",
+            "semveristElement": "clarinet",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<1.3.0"
+          },
+          ">=1.3.0 <1.4.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "1.3.0",
+            "range": ">=1.3.0 <1.4.0",
+            "semverishValue": "1.3",
+            "semveristElement": "clarinet",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<1.4.0"
+          },
+          ">=2.0.0 <3.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.0",
+            "range": ">=2.0.0 <3.0.0",
+            "semverishValue": "2",
+            "semveristElement": "clarinet",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<3.0.0"
+          },
+          ">=2.0.0-alpha.1 <2.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.0-alpha.1",
+            "range": ">=2.0.0-alpha.1 <2.0.0",
+            "semverishValue": "2.0.0-alpha.1",
+            "semveristElement": "clarinet",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<2.0.0"
+          }
+        },
+        "flute": {
+          "1.2.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "1.2.0",
+            "range": "1.2.0",
+            "semverishValue": "1.2.0",
+            "semveristElement": "flute",
+            "semveristElementType": "attribute",
+            "terminalBounds": "1.2.0"
+          },
+          "1.3.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "1.3.0",
+            "range": "1.3.0",
+            "semverishValue": "1.3.0",
+            "semveristElement": "flute",
+            "semveristElementType": "attribute",
+            "terminalBounds": "1.3.0"
+          },
+          "2.0.1": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.1",
+            "range": "2.0.1",
+            "semverishValue": "2.0.1",
+            "semveristElement": "flute",
+            "semveristElementType": "attribute",
+            "terminalBounds": "2.0.1"
+          },
+          ">=1.0.0 <1.2.0 <1.3.0 >=1.3.1 <2.0.0": {
+            "adjustedExceptions": [
+              "1.2.0",
+              "1.3.0"
+            ],
+            "exceptionRange": "<1.2.0 <1.3.0 >=1.3.1",
+            "exceptions": [
+              "1.2.0",
+              "1.3.0"
+            ],
+            "lowerBounds": "1.0.0",
+            "range": ">=1.0.0 <1.2.0 <1.3.0 >=1.3.1 <2.0.0",
+            "semverishValue": "1",
+            "semveristElement": "flute",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<2.0.0"
+          },
+          ">=2.0.0 <2.0.1 >=2.0.2 <3.0.0": {
+            "adjustedExceptions": [
+              "2.0.1"
+            ],
+            "exceptionRange": "<2.0.1 >=2.0.2",
+            "exceptions": [
+              "2.0.1"
+            ],
+            "lowerBounds": "2.0.0",
+            "range": ">=2.0.0 <2.0.1 >=2.0.2 <3.0.0",
+            "semverishValue": "2",
+            "semveristElement": "flute",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<3.0.0"
+          }
+        },
+        "trombone": {
+          ">=2.0.0 <3.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.0",
+            "range": ">=2.0.0 <3.0.0",
+            "semverishValue": "2",
+            "semveristElement": "trombone",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<3.0.0"
+          },
+          ">=2.0.0-beta <2.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.0-beta",
+            "range": ">=2.0.0-beta <2.0.0",
+            "semverishValue": "2.0.0-beta",
+            "semveristElement": "trombone",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<2.0.0"
+          }
+        },
+        "trumpet": {
+          "2.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.0",
+            "range": "2.0.0",
+            "semverishValue": "2.0.0",
+            "semveristElement": "trumpet",
+            "semveristElementType": "attribute",
+            "terminalBounds": "2.0.0"
+          },
+          ">=2.0.1 <3.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [
+              "2.0.0"
+            ],
+            "lowerBounds": "2.0.1",
+            "range": ">=2.0.1 <3.0.0",
+            "semverishValue": "2",
+            "semveristElement": "trumpet",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<3.0.0"
+          }
+        },
+        "viola": {
+          "1.3.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "1.3.0",
+            "range": "1.3.0",
+            "semverishValue": "1.3.0",
+            "semveristElement": "viola",
+            "semveristElementType": "attribute",
+            "terminalBounds": "1.3.0"
+          },
+          ">=1.0.0 <1.1.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "1.0.0",
+            "range": ">=1.0.0 <1.1.0",
+            "semverishValue": "1.0",
+            "semveristElement": "viola",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<1.1.0"
+          },
+          ">=1.1.0 <1.3.0 >=1.3.1 <2.0.0": {
+            "adjustedExceptions": [
+              "1.3.0"
+            ],
+            "exceptionRange": "<1.3.0 >=1.3.1",
+            "exceptions": [
+              "1.0",
+              "1.3.0"
+            ],
+            "lowerBounds": "1.1.0",
+            "range": ">=1.1.0 <1.3.0 >=1.3.1 <2.0.0",
+            "semverishValue": "1",
+            "semveristElement": "viola",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<2.0.0"
+          },
+          ">=2.0.0 <3.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.0",
+            "range": ">=2.0.0 <3.0.0",
+            "semverishValue": "2",
+            "semveristElement": "viola",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<3.0.0"
+          },
+          ">=2.0.0-alpha.0 <2.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.0-alpha.0",
+            "range": ">=2.0.0-alpha.0 <2.0.0",
+            "semverishValue": "2.0.0-alpha.0",
+            "semveristElement": "viola",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<2.0.0"
+          }
+        },
+        "violin": {
+          "1.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "1.0.0",
+            "range": "1.0.0",
+            "semverishValue": "1.0.0",
+            "semveristElement": "violin",
+            "semveristElementType": "attribute",
+            "terminalBounds": "1.0.0"
+          },
+          "1.0.1": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "1.0.1",
+            "range": "1.0.1",
+            "semverishValue": "1.0.1",
+            "semveristElement": "violin",
+            "semveristElementType": "attribute",
+            "terminalBounds": "1.0.1"
+          },
+          "1.0.2": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "1.0.2",
+            "range": "1.0.2",
+            "semverishValue": "1.0.2",
+            "semveristElement": "violin",
+            "semveristElementType": "attribute",
+            "terminalBounds": "1.0.2"
+          },
+          ">=1.0.3 <1.1.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [
+              "1.0.0",
+              "1.0.1",
+              "1.0.2"
+            ],
+            "lowerBounds": "1.0.3",
+            "range": ">=1.0.3 <1.1.0",
+            "semverishValue": "1.0",
+            "semveristElement": "violin",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<1.1.0"
+          },
+          ">=1.1.0 <2.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [
+              "1.0"
+            ],
+            "lowerBounds": "1.1.0",
+            "range": ">=1.1.0 <2.0.0",
+            "semverishValue": "1",
+            "semveristElement": "violin",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<2.0.0"
+          },
+          ">=2.0.0 <3.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.0",
+            "range": ">=2.0.0 <3.0.0",
+            "semverishValue": "2",
+            "semveristElement": "violin",
+            "semveristElementType": "attribute",
+            "terminalBounds": "<3.0.0"
+          }
+        }
+      },
+      "default": {
+        "orchestraDefault": {
+          ">=1.0.0 <2.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "1.0.0",
+            "range": ">=1.0.0 <2.0.0",
+            "semverishValue": "1",
+            "semveristElement": "orchestraDefault",
+            "semveristElementType": "default",
+            "terminalBounds": "<2.0.0"
+          }
+        }
+      },
+      "group": {
+        "brass": {
+          ">=2.0.0 <2.1.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.0",
+            "range": ">=2.0.0 <2.1.0",
+            "semverishValue": "2.0",
+            "semveristElement": "brass",
+            "semveristElementType": "group",
+            "terminalBounds": "<2.1.0"
+          },
+          ">=2.1.0 <3.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [
+              "2.0"
+            ],
+            "lowerBounds": "2.1.0",
+            "range": ">=2.1.0 <3.0.0",
+            "semverishValue": "2",
+            "semveristElement": "brass",
+            "semveristElementType": "group",
+            "terminalBounds": "<3.0.0"
+          }
+        },
+        "strings": {
+          ">=1.0.0 <2.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "1.0.0",
+            "range": ">=1.0.0 <2.0.0",
+            "semverishValue": "1",
+            "semveristElement": "strings",
+            "semveristElementType": "group",
+            "terminalBounds": "<2.0.0"
+          },
+          ">=2.0.0 <3.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.0",
+            "range": ">=2.0.0 <3.0.0",
+            "semverishValue": "2",
+            "semveristElement": "strings",
+            "semveristElementType": "group",
+            "terminalBounds": "<3.0.0"
+          }
+        },
+        "winds": {
+          ">=1.0.0 <2.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "1.0.0",
+            "range": ">=1.0.0 <2.0.0",
+            "semverishValue": "1",
+            "semveristElement": "winds",
+            "semveristElementType": "group",
+            "terminalBounds": "<2.0.0"
+          },
+          ">=2.0.0 <3.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.0",
+            "range": ">=2.0.0 <3.0.0",
+            "semverishValue": "2",
+            "semveristElement": "winds",
+            "semveristElementType": "group",
+            "terminalBounds": "<3.0.0"
+          },
+          ">=2.0.0-alpha.1 <2.0.0": {
+            "adjustedExceptions": [],
+            "exceptionRange": null,
+            "exceptions": [],
+            "lowerBounds": "2.0.0-alpha.1",
+            "range": ">=2.0.0-alpha.1 <2.0.0",
+            "semverishValue": "2.0.0-alpha.1",
+            "semveristElement": "winds",
+            "semveristElementType": "group",
+            "terminalBounds": "<2.0.0"
+          }
+        }
+      },
+      "semverRealizations": [
+        "1.0.0",
+        "1.0.1",
+        "1.0.2",
+        "1.1.0",
+        "1.1.1",
+        "1.2.0",
+        "1.3.0",
+        "2.0.0-alpha.0",
+        "2.0.0-alpha.1",
+        "2.0.0-beta.0",
+        "2.0.0",
+        "2.0.1"
+      ]
+    }

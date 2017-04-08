@@ -3,6 +3,7 @@ import test from 'ava';
 const converterFactory = require('../../lib/converter/converter');
 const semverConfig = require('../helpers/semverImpliedConfig');
 const path = require('path');
+const digestedHelper = require('../helpers/semverImpliedProcessed.json');
 
 test('initWithOptions', async (t) => {
   t.context.data = await converterFactory('semverist', 'directoryConverter')
@@ -142,6 +143,25 @@ test('coverterRangeTests', async (t) => {
       '>=2.0.0 <3.0.0'
     ],
     'The converter objects winds group should be keyed by its valid ranges.'
+  );
+});
+
+test('Processed complete test', async (t) => {
+  t.context.data = await converterFactory('semverist', 'directoryConverter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(path.join(
+      __dirname,
+      '../../',
+      'test/helpers/semverishObject'),
+    semverConfig);
+    return converterClass.createConverter();
+  });
+
+  t.deepEqual(
+    t.context.data,
+    digestedHelper,
+    'The converter object should be a complete match to the processed converter example..'
   );
 });
 
