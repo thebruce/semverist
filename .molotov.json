@@ -39,6 +39,14 @@
           "semverAdjacent",
           "semverishLevel"
         ]
+      },
+      "manifest": {
+        "composer": [
+          "composer"
+        ],
+        "inspector": [
+          "inspector"
+        ]
       }
     }
   }
