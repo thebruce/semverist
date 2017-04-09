@@ -59,7 +59,7 @@ test('setSourceBadSource', (t) => {
   'Could not set source, it must be an object.');
 });
 
-test('setDefaultsName', (t) => {
+test('setDefaultName', (t) => {
   const semveristSuperBase = new SemveristSuperBase();
   semveristSuperBase.setDefaultName('default');
   t.context.data = semveristSuperBase.getDefaultName();

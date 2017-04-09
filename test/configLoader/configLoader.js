@@ -1,60 +1,10 @@
 import test from 'ava';
 
 const configLoader = require('../../lib/configLoader');
-
-const nestedConfig = {
-  useLazySemverist: {
-    semveristBehaviors: {
-      inheritence: 'lazySemverist',
-      lazySemverist: {
-        attribute: true,
-        preReleaseForwards: false
-      },
-      default: true,
-      defaultName: 'default',
-      groups: true,
-      mergeStrategy: 'lastIn',
-      preReleasePattern: /\d-[a-zA-Z]*/g
-    },
-    groups: {},
-    prereleaseOrdering: {}
-  },
-  useSemverImplied: {
-    semveristBehaviors: {
-      inheritence: 'semverImplied',
-      lazySemverist: {
-        attribute: true,
-        preReleaseForwards: false
-      },
-      default: true,
-      defaultName: 'default',
-      groups: true,
-      mergeStrategy: 'lastIn',
-      preReleasePattern: /\d-[a-zA-Z]*/g
-    },
-    groups: {},
-    prereleaseOrdering: {}
-  },
-  useNoInheritence: {
-    semveristBehaviors: {
-      inheritence: null,
-      lazySemverist: {
-        attribute: true,
-        preReleaseForwards: false
-      },
-      default: true,
-      defaultName: 'default',
-      groups: true,
-      mergeStrategy: 'lastIn',
-      preReleasePattern: /\d-[a-zA-Z]*/g
-    },
-    groups: {},
-    prereleaseOrdering: {}
-  }
-};
+const nestedConfig = require('../helpers/nestedConfig.json');
 
 test('init with overrides lazy Semverist', (t) => {
-  t.context.data = configLoader('useLazySemverist', nestedConfig);
+  t.context.data = configLoader('useLazySemverist', nestedConfig.semverist);
   t.deepEqual(
     t.context.data.semveristBehaviors.inheritence,
     'lazySemverist',
@@ -63,7 +13,7 @@ test('init with overrides lazy Semverist', (t) => {
 });
 
 test('init with overrides semver Implied', (t) => {
-  t.context.data = configLoader('useSemverImplied', nestedConfig);
+  t.context.data = configLoader('useSemverImplied', nestedConfig.semverist);
   t.deepEqual(
     t.context.data.semveristBehaviors.inheritence,
     'semverImplied',
@@ -73,13 +23,13 @@ test('init with overrides semver Implied', (t) => {
 
 test('Config name space does not exist', (t) => {
   t.throws(() => {
-    configLoader('notAKey', nestedConfig);
+    configLoader('notAKey', nestedConfig.semverist);
   },
   'Configuration property "semverist.notAKey" is not defined');
 });
 
 test('init with overrides no name space', (t) => {
-  t.context.data = configLoader(null, nestedConfig);
+  t.context.data = configLoader(null, nestedConfig.semverist);
   t.deepEqual(
     t.context.data.semveristBehaviors.inheritence,
     'semverImplied',
