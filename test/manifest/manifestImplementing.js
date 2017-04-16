@@ -1,9 +1,17 @@
 import test from 'ava';
 
+const path = require('path');
+
 const manifestFactory = require('../../lib/manifest/manifest');
 const nestedConfig = require('../helpers/nestedConfig.json');
 const semveristObject = require('../helpers/semverishObject');
 const digestedHelper = require('../helpers/semverImpliedProcessed.json');
+
+const semverishPath = path.join(
+   __dirname,
+  '../../',
+  'test/helpers/semverishObject'
+);
 
 test('manifestNoPluginName still has capabilities', async (t) => {
   t.context.data = await manifestFactory(null, 'useLazySemverist', nestedConfig.semverist)
@@ -101,8 +109,52 @@ test('manifestNoPluginName default config still has capabilities', async (t) => 
 });
 
 test('Converter static object.', async (t) => {
-  t.context.data = await manifestFactory(null, 'semverImpliedOrchestra', nestedConfig.semverist)
+  t.context.data = await manifestFactory(
+    null,
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
   .then(ManifestClass => ManifestClass.createConverter(semveristObject));
+  t.deepEqual(
+    t.context.data,
+    digestedHelper,
+     'Static converter creation creates a converter object as with stand alone converter..'
+  );
+});
+
+test('Converter static object to manifest converter.', async (t) => {
+  t.context.data = await manifestFactory(
+    null,
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestComponents) => {
+    const schoenberg = new manifestComponents[1](manifestComponents[0]);
+    return schoenberg.getConverter();
+  });
+  t.deepEqual(
+    t.context.data,
+    digestedHelper,
+     'Static converter creation creates a converter object as with stand alone converter..'
+  );
+});
+
+test('Directory Converter static object to manifest converter.', async (t) => {
+  t.context.data = await manifestFactory(
+    null,
+    'semverImpliedOrchestraDirectory',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all([ManifestClass.createConverter(semverishPath), ManifestClass]))
+  .then((manifestComponents) => {
+    const schoenberg = new manifestComponents[1](manifestComponents[0]);
+    return schoenberg.getConverter();
+  });
   t.deepEqual(
     t.context.data,
     digestedHelper,
