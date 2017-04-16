@@ -89,6 +89,40 @@
       },
       "groups": {},
       "prereleaseOrdering": {}
+    },
+    "semverImpliedOrchestra": {
+      "semveristBehaviors": {
+        "inheritence": "semverImplied",
+        "lazySemverist": {
+          "preReleaseForwards": false,
+          "attributes": true
+        },
+        "default": true,
+        "defaultName": "orchestraDefault",
+        "groups": true,
+        "mergeStrategy": "lastIn"
+      },
+      "groups": {
+        "strings": {
+          "members": [
+            "violin",
+            "viola"
+          ]
+        },
+        "winds": {
+          "members": [
+            "flute",
+            "clarinet"
+          ]
+        },
+        "brass": {
+          "members": [
+            "trumpet",
+            "trombone"
+          ]
+        }
+      },
+      "directoryFileIgnorePattern": ".* ,*.!{json}"
     }
   }
 }

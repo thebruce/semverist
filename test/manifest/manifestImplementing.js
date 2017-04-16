@@ -2,6 +2,8 @@ import test from 'ava';
 
 const manifestFactory = require('../../lib/manifest/manifest');
 const nestedConfig = require('../helpers/nestedConfig.json');
+const semveristObject = require('../helpers/semverishObject');
+const digestedHelper = require('../helpers/semverImpliedProcessed.json');
 
 test('manifestNoPluginName still has capabilities', async (t) => {
   t.context.data = await manifestFactory(null, 'useLazySemverist', nestedConfig.semverist)
@@ -95,5 +97,15 @@ test('manifestNoPluginName default config still has capabilities', async (t) => 
       'groups'
     ],
      'Manifest config based mixins are registered even with no named plugin.'
+  );
+});
+
+test('Converter static object.', async (t) => {
+  t.context.data = await manifestFactory(null, 'semverImpliedOrchestra', nestedConfig.semverist)
+  .then(ManifestClass => ManifestClass.createConverter(semveristObject));
+  t.deepEqual(
+    t.context.data,
+    digestedHelper,
+     'Static converter creation creates a converter object as with stand alone converter..'
   );
 });

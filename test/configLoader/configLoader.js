@@ -3,7 +3,7 @@ import test from 'ava';
 const configLoader = require('../../lib/configLoader');
 const nestedConfig = require('../helpers/nestedConfig.json');
 
-test('init with overrides lazy Semverist', (t) => {
+test.serial('init with overrides lazy Semverist', (t) => {
   t.context.data = configLoader('useLazySemverist', nestedConfig.semverist);
   t.deepEqual(
     t.context.data.semveristBehaviors.inheritence,
@@ -12,7 +12,7 @@ test('init with overrides lazy Semverist', (t) => {
   );
 });
 
-test('init with overrides semver Implied', (t) => {
+test.serial('init with overrides semver Implied', (t) => {
   t.context.data = configLoader('useSemverImplied', nestedConfig.semverist);
   t.deepEqual(
     t.context.data.semveristBehaviors.inheritence,
@@ -21,14 +21,14 @@ test('init with overrides semver Implied', (t) => {
   );
 });
 
-test('Config name space does not exist', (t) => {
+test.serial('Config name space does not exist', (t) => {
   t.throws(() => {
     configLoader('notAKey', nestedConfig.semverist);
   },
-  'Configuration property "semverist.notAKey" is not defined');
+  'Name space does not exist in passed configs.');
 });
 
-test('init with overrides no name space', (t) => {
+test.serial('init with overrides no name space', (t) => {
   t.context.data = configLoader(null, nestedConfig.semverist);
   t.deepEqual(
     t.context.data.semveristBehaviors.inheritence,
@@ -37,7 +37,7 @@ test('init with overrides no name space', (t) => {
   );
 });
 
-test('init with defaults', (t) => {
+test.serial('init with defaults', (t) => {
   t.context.data = configLoader();
   t.deepEqual(
     t.context.data.semveristBehaviors.inheritence,
