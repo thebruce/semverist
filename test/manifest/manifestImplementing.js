@@ -6,6 +6,7 @@ const manifestFactory = require('../../lib/manifest/manifest');
 const nestedConfig = require('../helpers/nestedConfig.json');
 const semveristObject = require('../helpers/semverishObject');
 const digestedHelper = require('../helpers/semverImpliedProcessed.json');
+const manifestSemverImpliedProcessed = require('../helpers/manifestSemverImpliedProcessed');
 
 const semverishPath = path.join(
    __dirname,
@@ -246,5 +247,28 @@ test('Manifest component no Defaults.', async (t) => {
     t.context.data.clarinet['1.1.1'].components.indexOf('1.orchestraDefault'),
    -1,
    'If defaults are not enabled they should not create components'
+  );
+});
+
+test('Manifest component attributes.', async (t) => {
+  t.context.data = await manifestFactory(
+    null,
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
+    schoenberg.init();
+    return schoenberg.getManifestComponents();
+  });
+  t.deepEqual(
+    t.context.data,
+    manifestSemverImpliedProcessed,
+    'Groups should create components where they exist.'
   );
 });
