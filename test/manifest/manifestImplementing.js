@@ -179,3 +179,72 @@ test('Manifest component Defaults.', async (t) => {
      'Static converter creation creates a converter object as with stand alone converter..'
   );
 });
+
+test('Manifest component Groups.', async (t) => {
+  t.context.data = await manifestFactory(
+    null,
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
+    schoenberg.init();
+    return schoenberg.getManifestComponents();
+  });
+  t.not(
+    t.context.data.clarinet['1.1.1'].components.indexOf('1.winds'),
+   -1,
+     'Groups should create components where they exist.'
+  );
+});
+
+test('Manifest component no Groups.', async (t) => {
+  t.context.data = await manifestFactory(
+    null,
+    'semverImpliedNoDefaultsNoGroups',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
+    schoenberg.init();
+    return schoenberg.getManifestComponents();
+  });
+  t.is(
+    t.context.data.clarinet['1.1.1'].components.indexOf('1.winds'),
+   -1,
+     'If groups are not enabled in config they should not create components.'
+  );
+});
+
+test('Manifest component no Defaults.', async (t) => {
+  t.context.data = await manifestFactory(
+    null,
+    'semverImpliedNoDefaultsNoGroups',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
+    schoenberg.init();
+    return schoenberg.getManifestComponents();
+  });
+  t.is(
+    t.context.data.clarinet['1.1.1'].components.indexOf('1.orchestraDefault'),
+   -1,
+   'If defaults are not enabled they should not create components'
+  );
+});
