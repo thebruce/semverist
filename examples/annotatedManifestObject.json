@@ -1,0 +1,29 @@
+{
+  "episodes": {
+    "semverRange": "3.13.0 || ^4",
+    "inspectorItemType": "attribute",
+    "highestDeclaredRange": "4.0.1",
+    "lowestDeclaredRange": "3.13.0",
+    "items": {
+      "1.0.0": {
+        "components": [
+          "1.0.arbitraryGroupName",
+          "1.episodes"
+        ]
+      },
+      "1.0.1": {
+        "components": [
+          "1.0.1.episode",
+          "1.0.1.default",
+          "1.0.arbitraryGroupName"
+        ]
+      },
+      "^3.13.0": {
+        "components": [
+          "3.13.arbitraryGroupName",
+          "3.13.default"
+        ]
+      }
+    }
+  }
+}

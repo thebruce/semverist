@@ -17,16 +17,15 @@ test('manifestNoPluginName still has capabilities', async (t) => {
   t.context.data = await manifestFactory(null, 'useLazySemverist', nestedConfig.semverist)
   .then((ManifestClass) => {
     const schoenberg = new ManifestClass();
-    schoenberg.init();
-    schoenberg.setManifestComponents();
-    return schoenberg.getManifestComponents();
+    schoenberg.setManifestCapabilities();
+    return schoenberg.getManifestCapabilities();
   });
   t.deepEqual(
-    Object.keys(t.context.data).sort(),
+   t.context.data.sort(),
     [
-      'attributes',
+      'attribute',
       'default',
-      'groups'
+      'group'
     ],
      'Manifest config based mixins are registered even with no named plugin.'
   );
@@ -36,15 +35,14 @@ test('manifestNoPluginName No Defaults', async (t) => {
   t.context.data = await manifestFactory(null, 'semverImpliedNoDefaults', nestedConfig.semverist)
   .then((ManifestClass) => {
     const schoenberg = new ManifestClass();
-    schoenberg.init();
-    schoenberg.setManifestComponents();
-    return schoenberg.getManifestComponents();
+    schoenberg.setManifestCapabilities();
+    return schoenberg.getManifestCapabilities();
   });
   t.deepEqual(
-    Object.keys(t.context.data).sort(),
+    t.context.data.sort(),
     [
-      'attributes',
-      'groups'
+      'attribute',
+      'group'
     ],
      'Manifest config based mixins are registered even with no named plugin.'
   );
@@ -54,14 +52,13 @@ test('manifestNoPluginName No Groups', async (t) => {
   t.context.data = await manifestFactory(null, 'semverImpliedNoGroups', nestedConfig.semverist)
   .then((ManifestClass) => {
     const schoenberg = new ManifestClass();
-    schoenberg.init();
-    schoenberg.setManifestComponents();
-    return schoenberg.getManifestComponents();
+    schoenberg.setManifestCapabilities();
+    return schoenberg.getManifestCapabilities();
   });
   t.deepEqual(
-    Object.keys(t.context.data).sort(),
+    t.context.data.sort(),
     [
-      'attributes',
+      'attribute',
       'default'
     ],
      'Manifest config based mixins are registered even with no named plugin.'
@@ -76,14 +73,13 @@ test('manifestNoPluginName No Defaults No Groups', async (t) => {
   )
   .then((ManifestClass) => {
     const schoenberg = new ManifestClass();
-    schoenberg.init();
-    schoenberg.setManifestComponents();
-    return schoenberg.getManifestComponents();
+    schoenberg.setManifestCapabilities();
+    return schoenberg.getManifestCapabilities();
   });
   t.deepEqual(
-    Object.keys(t.context.data).sort(),
+    t.context.data.sort(),
     [
-      'attributes'
+      'attribute'
     ],
      'Manifest config based mixins are registered even with no named plugin.'
   );
@@ -93,16 +89,15 @@ test('manifestNoPluginName default config still has capabilities', async (t) => 
   t.context.data = await manifestFactory()
   .then((ManifestClass) => {
     const schoenberg = new ManifestClass();
-    schoenberg.init();
-    schoenberg.setManifestComponents();
-    return schoenberg.getManifestComponents();
+    schoenberg.setManifestCapabilities();
+    return schoenberg.getManifestCapabilities();
   });
   t.deepEqual(
-    Object.keys(t.context.data).sort(),
+    t.context.data.sort(),
     [
-      'attributes',
+      'attribute',
       'default',
-      'groups'
+      'group'
     ],
      'Manifest config based mixins are registered even with no named plugin.'
   );
@@ -133,8 +128,8 @@ test('Converter static object to manifest converter.', async (t) => {
       ManifestClass.createConverter(semveristObject),
       ManifestClass
     ]))
-  .then((manifestComponents) => {
-    const schoenberg = new manifestComponents[1](manifestComponents[0]);
+  .then((manifestIngredients) => {
+    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
     return schoenberg.getConverter();
   });
   t.deepEqual(
@@ -151,13 +146,36 @@ test('Directory Converter static object to manifest converter.', async (t) => {
     nestedConfig.semverist
   )
   .then(ManifestClass => Promise.all([ManifestClass.createConverter(semverishPath), ManifestClass]))
-  .then((manifestComponents) => {
-    const schoenberg = new manifestComponents[1](manifestComponents[0]);
+  .then((manifestIngredients) => {
+    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
     return schoenberg.getConverter();
   });
   t.deepEqual(
     t.context.data,
     digestedHelper,
+     'Static converter creation creates a converter object as with stand alone converter..'
+  );
+});
+
+test('Manifest component Defaults.', async (t) => {
+  t.context.data = await manifestFactory(
+    null,
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
+    schoenberg.init();
+    return schoenberg.getManifestComponents();
+  });
+  t.not(
+    t.context.data.clarinet['1.1.1'].components.indexOf('1.orchestraDefault'),
+   -1,
      'Static converter creation creates a converter object as with stand alone converter..'
   );
 });

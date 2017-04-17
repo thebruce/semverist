@@ -7,16 +7,15 @@ test('manifestDefaultClasses', async (t) => {
   t.context.data = await manifestFactory('composer', 'useLazySemverist', nestedConfig.semverist)
   .then((ManifestClass) => {
     const schoenberg = new ManifestClass();
-    schoenberg.init();
-    schoenberg.setManifestComponents();
-    return schoenberg.getManifestComponents();
+    schoenberg.setManifestCapabilities();
+    return schoenberg.getManifestCapabilities();
   });
   t.deepEqual(
-    Object.keys(t.context.data).sort(),
+    t.context.data.sort(),
     [
-      'attributes',
+      'attribute',
       'default',
-      'groups'
+      'group'
     ],
     'Named plugins should get config based mixins as well as their own.'
   );
