@@ -6,8 +6,8 @@
         "preReleaseForwards": false,
         "attributes": true // The highest semver version of this attribute will be present on all subsequent semver spaces until it is specifically overridden.
       },
-      "defaults": true, // Enables defaults capabilities for the semverist.
-      "defaultsName" : "defaults", // modifies the name of defaults from "default" to what is indicated here.
+      "default": true, // Enables defaults capabilities for the semverist.
+      "defaultName" : "defaults", // modifies the name of defaults from "default" to what is indicated here.
       "groups": true, // Enables groups capabilities for the semverist.
       "mergeStrategy": "lastIn",  // Merge strategies provide different options for merging attributes, groups and defaults together.
       "preReleasePattern": "[a-z]" // A pattern to use to match prerelease portions of semver for your project. The default is 0-{name}.
@@ -32,6 +32,9 @@
           ]
         }
       }
-    }
+    },
+    "directoryFileIgnorePattern": ".* ,*.!{json}",
+    "converterType": "default",  // can be default (for objects), config, (shorthand for objects in config) or directory
+    "semverishObjectLocation": "a path in an object, config or directory path"
   }
 }

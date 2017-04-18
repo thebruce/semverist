@@ -5,7 +5,7 @@
       "preReleaseForwards": false,
       "attributes": true
     },
-    "defaults": true,
+    "default": true,
     "defaultName": "orchestraDefault",
     "groups": true,
     "mergeStrategy": "lastIn"

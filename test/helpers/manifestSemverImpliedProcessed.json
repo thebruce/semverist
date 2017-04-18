@@ -1,0 +1,230 @@
+{
+  "clarinet": {
+    "1.1.1": {
+      "components": [
+        "1.winds",
+        "1.orchestraDefault",
+        "1.1.1.clarinet"
+      ]
+    },
+    "1.2.0": {
+      "components": [
+        "1.winds",
+        "1.orchestraDefault",
+        "1.2.clarinet"
+      ]
+    },
+    "1.3.0": {
+      "components": [
+        "1.winds",
+        "1.orchestraDefault",
+        "1.3.clarinet"
+      ]
+    },
+    "2.0.0": {
+      "components": [
+        "2.winds",
+        "2.clarinet"
+      ]
+    },
+    "2.0.0-alpha.1": {
+      "components": [
+        "2.0.0-alpha.1.winds",
+        "2.0.0-alpha.1.clarinet"
+      ]
+    },
+    "2.0.0-beta.0": {
+      "components": [
+        "2.0.0-alpha.1.winds",
+        "2.0.0-alpha.1.clarinet"
+      ]
+    },
+    "2.0.1": {
+      "components": [
+        "2.winds",
+        "2.clarinet"
+      ]
+    },
+    "items": {}
+  },
+  "flute": {
+    "1.2.0": {
+      "components": [
+        "1.winds",
+        "1.orchestraDefault",
+        "1.2.0.flute"
+      ]
+    },
+    "1.3.0": {
+      "components": [
+        "1.winds",
+        "1.orchestraDefault",
+        "1.3.0.flute"
+      ]
+    },
+    "2.0.1": {
+      "components": [
+        "2.winds",
+        "2.0.1.flute"
+      ]
+    },
+    "items": {}
+  },
+  "trombone": {
+    "2.0.0": {
+      "components": [
+        "2.0.brass",
+        "2.trombone"
+      ]
+    },
+    "2.0.0-beta.0": {
+      "components": [
+        "2.0.0-beta.trombone"
+      ]
+    },
+    "2.0.1": {
+      "components": [
+        "2.0.brass",
+        "2.trombone"
+      ]
+    },
+    "items": {}
+  },
+  "trumpet": {
+    "2.0.0": {
+      "components": [
+        "2.0.brass",
+        "2.0.0.trumpet"
+      ]
+    },
+    "2.0.1": {
+      "components": [
+        "2.0.brass",
+        "2.trumpet"
+      ]
+    },
+    "items": {}
+  },
+  "viola": {
+    "1.0.0": {
+      "components": [
+        "1.strings",
+        "1.orchestraDefault",
+        "1.0.viola"
+      ]
+    },
+    "1.0.1": {
+      "components": [
+        "1.strings",
+        "1.orchestraDefault",
+        "1.0.viola"
+      ]
+    },
+    "1.0.2": {
+      "components": [
+        "1.strings",
+        "1.orchestraDefault",
+        "1.0.viola"
+      ]
+    },
+    "1.3.0": {
+      "components": [
+        "1.strings",
+        "1.orchestraDefault",
+        "1.3.0.viola"
+      ]
+    },
+    "2.0.0": {
+      "components": [
+        "2.strings",
+        "2.viola"
+      ]
+    },
+    "2.0.0-alpha.0": {
+      "components": [
+        "2.0.0-alpha.0.viola"
+      ]
+    },
+    "2.0.0-alpha.1": {
+      "components": [
+        "2.0.0-alpha.0.viola"
+      ]
+    },
+    "2.0.0-beta.0": {
+      "components": [
+        "2.0.0-alpha.0.viola"
+      ]
+    },
+    "2.0.1": {
+      "components": [
+        "2.strings",
+        "2.viola"
+      ]
+    },
+    "items": {}
+  },
+  "violin": {
+    "1.0.0": {
+      "components": [
+        "1.strings",
+        "1.orchestraDefault",
+        "1.0.0.violin"
+      ]
+    },
+    "1.0.1": {
+      "components": [
+        "1.strings",
+        "1.orchestraDefault",
+        "1.0.1.violin"
+      ]
+    },
+    "1.0.2": {
+      "components": [
+        "1.strings",
+        "1.orchestraDefault",
+        "1.0.2.violin"
+      ]
+    },
+    "1.1.0": {
+      "components": [
+        "1.strings",
+        "1.orchestraDefault",
+        "1.violin"
+      ]
+    },
+    "1.1.1": {
+      "components": [
+        "1.strings",
+        "1.orchestraDefault",
+        "1.violin"
+      ]
+    },
+    "1.2.0": {
+      "components": [
+        "1.strings",
+        "1.orchestraDefault",
+        "1.violin"
+      ]
+    },
+    "1.3.0": {
+      "components": [
+        "1.strings",
+        "1.orchestraDefault",
+        "1.violin"
+      ]
+    },
+    "2.0.0": {
+      "components": [
+        "2.strings",
+        "2.violin"
+      ]
+    },
+    "2.0.1": {
+      "components": [
+        "2.strings",
+        "2.violin"
+      ]
+    },
+    "items": {}
+  }
+}
