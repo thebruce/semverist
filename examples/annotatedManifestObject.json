@@ -1,9 +1,5 @@
 {
   "episodes": {
-    "semverRange": "3.13.0 || ^4",
-    "inspectorItemType": "attribute",
-    "highestDeclaredRange": "4.0.1",
-    "lowestDeclaredRange": "3.13.0",
     "items": {
       "1.0.0": {
         "components": [
