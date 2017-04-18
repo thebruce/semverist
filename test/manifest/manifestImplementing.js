@@ -7,6 +7,7 @@ const nestedConfig = require('../helpers/nestedConfig.json');
 const semveristObject = require('../helpers/semverishObject');
 const digestedHelper = require('../helpers/semverImpliedProcessed.json');
 const manifestSemverImpliedProcessed = require('../helpers/manifestSemverImpliedProcessed');
+const semverUtils = require('semver-utils');
 
 const semverishPath = path.join(
    __dirname,
@@ -320,5 +321,116 @@ test('Manifest converter class.', async (t) => {
     t.context.data,
     semveristObject,
     'Converter class is a fully functioning converter class.'
+  );
+});
+
+test('pathBuildImprovement.', async (t) => {
+  t.context.data = await manifestFactory(
+    'composer',
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
+    schoenberg.init();
+    const parsedPath = semverUtils.parse('1.1.1-alpha+124');
+    return ManifestClass.pathBuildImprovement(parsedPath);
+  });
+  t.deepEqual(
+    t.context.data,
+    '1.1.1-alpha.124',
+    'Builds should be parsed out to proper dot paths.'
+  );
+});
+
+test('pathBuildImprovement no build.', async (t) => {
+  t.context.data = await manifestFactory(
+    'composer',
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
+    schoenberg.init();
+    const parsedPath = semverUtils.parse('1.1.1-alpha.1');
+    return ManifestClass.pathBuildImprovement(parsedPath);
+  });
+  t.deepEqual(
+    t.context.data,
+    '1.1.1-alpha.1',
+    'Builds should be parsed out to proper dot paths.'
+  );
+});
+
+test('create semver hierarchy.', async (t) => {
+  t.context.data = await manifestFactory(
+    'composer',
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
+    schoenberg.init();
+    return schoenberg.createSemverHierarchy({});
+  });
+  t.deepEqual(
+    t.context.data,
+    {
+      1: {
+        0: {
+          0: {},
+          1: {},
+          2: {}
+        },
+        1: {
+          0: {},
+          1: {},
+        },
+        2: {
+          0: {},
+        },
+        3: {
+          0: {},
+        },
+      },
+      2: {
+        0: {
+          0: {},
+          '0-alpha': {
+            0: {},
+            1: {},
+          },
+          '0-beta': {
+            0: {},
+          },
+          1: {},
+        }
+      }
+    },
+     'Should build out objects for all semver realizations.'
   );
 });

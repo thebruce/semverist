@@ -4,13 +4,13 @@ const manifestFactory = require('../../../lib/manifest/manifest');
 const nestedConfig = require('../../helpers/nestedConfig.json');
 const semveristObject = require('../../helpers/semverishObject');
 const path = require('path');
+const processedComposition = require('../../helpers/processedComposition');
 
 const semverishPath = path.join(
    __dirname,
   '../../../',
   'test/helpers/semverishObject'
 );
-
 
 test('manifestDefaultClasses', async (t) => {
   t.context.data = await manifestFactory(
@@ -143,9 +143,9 @@ test('strategizeComposition.', async (t) => {
         1: {
           1: {
             clarinet: {
-              fromClarinet: 'this is 1.1.1',
-              fromDefault: true,
-              fromWinds: true,
+              fromClarinet: 'this is from 1.1.1',
+              fromDefault: 'this is from 1',
+              fromWinds: 'this is from 1',
               toItem: 'clarinet',
             },
           },
@@ -222,5 +222,93 @@ test('prioritize component no groups', async (t) => {
       '1.1.1.clarinet'
     ],
     'Composer strategize with merge functionality should merge all components down for an item.'
+  );
+});
+
+test('prioritize component no defaults', async (t) => {
+  t.context.data = await manifestFactory(
+    'composer',
+    'semverImpliedOrchestraObjectNoDefaults',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
+    schoenberg.init();
+    const semveristArray = [
+      'clarinet',
+      '1.1.1'
+    ];
+    schoenberg.prioritizeComponent(semveristArray);
+    return schoenberg.getManifestComponents().clarinet['1.1.1'].components;
+  });
+  t.deepEqual(
+    t.context.data,
+    [
+      '1.winds',
+      '1.1.1.clarinet'
+    ],
+    'Composer strategize with merge functionality should merge all components down for an item.'
+  );
+});
+
+test('write composition.', async (t) => {
+  t.context.data = await manifestFactory(
+    'composer',
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
+    schoenberg.init();
+    schoenberg.writeComposition();
+    return schoenberg.getComposition();
+  });
+  t.deepEqual(
+    t.context.data,
+    processedComposition,
+     'Should build out objects for all semver realizations.'
+  );
+});
+
+test('assemble manifest.', async (t) => {
+  t.context.data = await manifestFactory(
+    'composer',
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
+    schoenberg.init();
+    schoenberg.assembleManifest();
+    return schoenberg.getComposition();
+  });
+  t.deepEqual(
+    t.context.data,
+    processedComposition,
+     'Should build out objects for all semver realizations.'
   );
 });
