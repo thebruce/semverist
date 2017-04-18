@@ -13,7 +13,12 @@
         "mergeStrategy": "lastIn"
       },
       "groups": {},
-      "prereleaseOrdering": {}
+      "prereleaseOrdering": {},
+      "composer": {
+        "composerType": "default",
+        "destination": null,
+        "priority": "default"
+      }
     },
     "useSemverImplied": {
       "semveristBehaviors": {
@@ -28,7 +33,12 @@
         "mergeStrategy": "lastIn"
       },
       "groups": {},
-      "prereleaseOrdering": {}
+      "prereleaseOrdering": {},
+      "composer": {
+        "composerType": "default",
+        "destination": null,
+        "priority": "default"
+      }
     },
     "useNoInheritence": {
       "semveristBehaviors": {
@@ -43,7 +53,12 @@
         "mergeStrategy": "lastIn"
       },
       "groups": {},
-      "prereleaseOrdering": {}
+      "prereleaseOrdering": {},
+      "composer": {
+        "composerType": "default",
+        "destination": null,
+        "priority": "default"
+      }
     },
     "semverImpliedNoDefaults": {
       "semveristBehaviors": {
@@ -58,7 +73,12 @@
         "mergeStrategy": "lastIn"
       },
       "groups": {},
-      "prereleaseOrdering": {}
+      "prereleaseOrdering": {},
+      "composer": {
+        "composerType": "default",
+        "destination": null,
+        "priority": "default"
+      }
     },
     "semverImpliedNoGroups": {
       "semveristBehaviors": {
@@ -73,7 +93,12 @@
         "mergeStrategy": "lastIn"
       },
       "groups": {},
-      "prereleaseOrdering": {}
+      "prereleaseOrdering": {},
+      "composer": {
+        "composerType": "default",
+        "destination": null,
+        "priority": "default"
+      }
     },
     "semverImpliedNoDefaultsNoGroups": {
       "semveristBehaviors": {
@@ -88,7 +113,12 @@
         "mergeStrategy": "lastIn"
       },
       "groups": {},
-      "prereleaseOrdering": {}
+      "prereleaseOrdering": {},
+      "composer": {
+        "composerType": "default",
+        "destination": null,
+        "priority": "default"
+      }
     },
     "semverImpliedOrchestraObject": {
       "semveristBehaviors": {
@@ -100,41 +130,7 @@
         "default": true,
         "defaultName": "orchestraDefault",
         "groups": true,
-        "mergeStrategy": "lastIn"
-      },
-      "groups": {
-        "strings": {
-          "members": [
-            "violin",
-            "viola"
-          ]
-        },
-        "winds": {
-          "members": [
-            "flute",
-            "clarinet"
-          ]
-        },
-        "brass": {
-          "members": [
-            "trumpet",
-            "trombone"
-          ]
-        }
-      },
-      "directoryFileIgnorePattern": ".* ,*.!{json}"
-    },
-    "semverImpliedOrchestraDirectory": {
-      "semveristBehaviors": {
-        "inheritence": "semverImplied",
-        "lazySemverist": {
-          "preReleaseForwards": false,
-          "attributes": true
-        },
-        "default": true,
-        "defaultName": "orchestraDefault",
-        "groups": true,
-        "mergeStrategy": "lastIn"
+        "mergeStrategy": "merge"
       },
       "groups": {
         "strings": {
@@ -157,7 +153,132 @@
         }
       },
       "directoryFileIgnorePattern": ".* ,*.!{json}",
-      "converterType": "directory"
+      "converterType": "default",
+      "composer": {
+        "composerType": "default",
+        "destination": null,
+        "priority": "default"
+      }
+    },
+    "semverImpliedOrchestraDirectory": {
+      "semveristBehaviors": {
+        "inheritence": "semverImplied",
+        "lazySemverist": {
+          "preReleaseForwards": false,
+          "attributes": true
+        },
+        "default": true,
+        "defaultName": "orchestraDefault",
+        "groups": true,
+        "mergeStrategy": "merge"
+      },
+      "groups": {
+        "strings": {
+          "members": [
+            "violin",
+            "viola"
+          ]
+        },
+        "winds": {
+          "members": [
+            "flute",
+            "clarinet"
+          ]
+        },
+        "brass": {
+          "members": [
+            "trumpet",
+            "trombone"
+          ]
+        }
+      },
+      "directoryFileIgnorePattern": ".* ,*.!{json}",
+      "converterType": "directory",
+      "composer": {
+        "composerType": "directory",
+        "destination": "./",
+        "priority": "default"
+      }
+    },
+    "semverImpliedOrchestraDirectoryBroken": {
+      "semveristBehaviors": {
+        "inheritence": "semverImplied",
+        "lazySemverist": {
+          "preReleaseForwards": false,
+          "attributes": true
+        },
+        "default": true,
+        "defaultName": "orchestraDefault",
+        "groups": true,
+        "mergeStrategy": "merge"
+      },
+      "groups": {
+        "strings": {
+          "members": [
+            "violin",
+            "viola"
+          ]
+        },
+        "winds": {
+          "members": [
+            "flute",
+            "clarinet"
+          ]
+        },
+        "brass": {
+          "members": [
+            "trumpet",
+            "trombone"
+          ]
+        }
+      },
+      "directoryFileIgnorePattern": ".* ,*.!{json}",
+      "converterType": "directory",
+      "composer": {
+        "composerType": "directory",
+        "destination": null,
+        "priority": "default"
+      }
+    },
+    "semverImpliedOrchestraObjectNoGroups": {
+      "semveristBehaviors": {
+        "inheritence": "semverImplied",
+        "lazySemverist": {
+          "preReleaseForwards": false,
+          "attributes": true
+        },
+        "default": true,
+        "defaultName": "orchestraDefault",
+        "groups": false,
+        "mergeStrategy": "merge"
+      },
+      "groups": {
+        "strings": {
+          "members": [
+            "violin",
+            "viola"
+          ]
+        },
+        "winds": {
+          "members": [
+            "flute",
+            "clarinet"
+          ]
+        },
+        "brass": {
+          "members": [
+            "trumpet",
+            "trombone"
+          ]
+        }
+      },
+      "directoryFileIgnorePattern": ".* ,*.!{json}",
+      "converterType": "default",
+      "composer": {
+        "composerType": "default",
+        "destination": null,
+        "priority": "default"
+      }
     }
   }
 }

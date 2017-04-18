@@ -3,9 +3,15 @@
 		"violin": {},
 		"viola": {},
 		"strings": {},
-		"winds": {},
+		"winds": {
+			"fromWinds": true,
+			"toItem": "winds"
+		},
 		"flute": {},
-		"orchestraDefault": {},
+		"orchestraDefault": {
+			"fromDefault": true,
+			"toItem": "default"
+		},
 		"0": {
 			"viola": {},
 			"violin": {},
@@ -22,7 +28,10 @@
 		"1": {
 			"clarinet": {},
 			"1": {
-				"clarinet": {}
+				"clarinet": {
+					"fromClarinet": "this is 1.1.1",
+					"toItem": "clarinet"
+				}
 			}
 		},
 		"2": {
