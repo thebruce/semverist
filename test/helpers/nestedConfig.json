@@ -196,7 +196,7 @@
       "converterType": "directory",
       "composer": {
         "composerType": "directory",
-        "destination": "./",
+        "destination": "/tmp/semverist",
         "priority": "default"
       }
     },
