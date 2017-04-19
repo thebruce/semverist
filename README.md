@@ -1,11 +1,51 @@
 # The Semverist
 
-The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver influenced hierarchy.
+> Intelligent Semver-based hierarchy processing
 
-We work better when we work together. So, the Semverist is two powerful components working together. The first is an inspector, Poirot, and the second a composer, Schoenberg.
+The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver based hierarchy.
 
-## Poirot, the inspector
+We work better when we work together. So, the Semverist is two powerful components working together. The first is an inspector, Poirot, and the second a composer, Schoenberg. These two components will allow you to construct richly populated semver hierarchies with reduced maintenance, bloat, and only meaningful additions.
 
+## Contents
+- [Usage](#usage)
+- [Semverist Components](#semverist-components)
+- [What is a semverist object?](#what-is-a-semverist-object)
+- [Capabilities: defaults](#capabilities-defaults)
+- [Capabilities: groups](#capabilities-groups)
+- [Capabilities: attributes](#capabilities-attributes)
+
+## Usage
+See the config example for options:
+
+```
+const schoenberg = require('semverist/schoenberg');
+const nestedConfig = {
+  "semverist": {
+    "exampleNameSpace": {
+      "yourConfiguration": "See config example."
+    }
+  }
+};
+
+const semveristComposer = schoenberg(
+  semverishObject,  // A semverish object or path according to config.
+  nestedConfig.semverist, // Passing in config in this example but can use config/
+  'exampleNameSpace'
+)
+.then((composer) => {
+  // Now you have a composer class and can assemble your semverish objects.
+  // Like so.
+  composer.assembleManifest();
+  return composer.getComposition();
+})
+```
+
+## Semverist Components
+
+### Schoenberg, the composer
+The Semverist composer builds a fleshed out object from the Semverist inspector with support for defaults, arbitrary groups and attribute/file overides or stubs. It also features lazy semver, a companion to API versioning best practices and lazy configuration inheritence that allows for minimal definition and maintenance but maximum impact.
+
+### Poirot, the inspector (COMING SOON)
 The Semverist inspector can tell you about the attributes/files in the sember shaped object/directory you pass to the Semverist. It can:
 * Tell you the semver number of the last occurence of an attribute in a semver object/directory.
 * Tell you whether an attribute/file exists for a given semver range/value.
@@ -14,10 +54,10 @@ The Semverist inspector can tell you about the attributes/files in the sember sh
 * Tell you the semver range for an attribute, default, or group.
 * Tell you the first occurence of a given attribute /file in this semver object/directory.
 
-## Schoenberg, the composer
-The Semverist composer builds a fleshed out object from the Semverist inspector with support for defaults, arbitrary groups and attribute/file overides or stubs. It also features lazy semver, a companion to API versioning best practices and lazy configuration inheritence that allows for minimal definition and maintenance but maximum impact.
 
-## The Semverist Object: What is a semver shaped hierarchy?
+## What is a semverist object?
+
+### The Semverist Object: What is a semver shaped hierarchy?
 
 Semver is an extremely useful versioning standard whose declarative syntax helps machine and human readers to set package and software version use in a sane format. Read about semver at [http://semver.org/](http://semver.org/). Semver is not only useful for package versions however, using its declarative ranges within configuration, objects and directories is an awesome way to relate configuration, metadata, scripts, and schemas to constantly evolving services and software. The semverist was born out of a need to reliably deal with these realizations in objects and directories.
 
@@ -75,6 +115,8 @@ A semver shaped directory with similarly named children might look like the foll
 |   |   |   |-- file200.json
 |   |   |   |-- thing.json
 ```
+
+## Capabilities: Defaults
 
 ### The Semverist Object: Defaults
 Semverist Objects can utilize default overrides for all children objects/files. When combined with lazy semver it can create powerful inheritence structures with less effort or mirror best practice api behavior for documentation or schemas.
@@ -190,8 +232,13 @@ With a merge strategy of `replace` we would expect the following output:
 
 File 1 inherits the default.txt contents from the nearest parent, in this case the minor version where we added the new default. File 2 remains unchanged in this merge strategy and File 3 inherits from the nearest default.txt located in a parent, which is the original default.txt we placed in the major version folder.
 
+
+## Capabilities: Groups
+
 ### The Semverist Object: Schoenberg Groups
 Semverist objects can utilize aribitrary groups of overrides for select objects/directories. This works a lot like defaults but instead of applying to every item underneath it in the hierarchy it only applies to items below it that are indicated for the group. For config and directories this is typically indicated inside the group object which functions fairly similarly to defaults. For directories groups are folders nested in the semver hierarchy including the files that belong to the group.
+
+## Capabilities: Attributes
 
 ### The Semverist Object: attributes
 Named item overides applying to specific object/directories within a semver object/directory.
