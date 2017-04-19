@@ -1,5 +1,7 @@
 # The Semverist
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/thebruce/semverist.svg)](https://greenkeeper.io/)
+
 > Intelligent Semver-based hierarchy processing
 
 The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver based hierarchy.
