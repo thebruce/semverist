@@ -4,6 +4,11 @@
 
 > Intelligent Semver-based hierarchy processing
 
+[![Build Status](https://travis-ci.org/thebruce/semverist.svg?branch=master)](https://travis-ci.org/thebruce/semverist)
+[![Coverage Status](https://coveralls.io/repos/github/thebruce/semverist/badge.svg?branch=master)](https://coveralls.io/github/thebruce/semverist?branch=master)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
+
 The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver based hierarchy.
 
 We work better when we work together. So, the Semverist is two powerful components working together. The first is an inspector, Poirot, and the second a composer, Schoenberg. These two components will allow you to construct richly populated semver hierarchies with reduced maintenance, bloat, and only meaningful additions.
