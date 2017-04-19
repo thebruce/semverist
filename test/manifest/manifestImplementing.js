@@ -7,6 +7,7 @@ const nestedConfig = require('../helpers/nestedConfig.json');
 const semveristObject = require('../helpers/semverishObject');
 const digestedHelper = require('../helpers/semverImpliedProcessed.json');
 const manifestSemverImpliedProcessed = require('../helpers/manifestSemverImpliedProcessed');
+const semverUtils = require('semver-utils');
 
 const semverishPath = path.join(
    __dirname,
@@ -112,7 +113,7 @@ test('Converter static object.', async (t) => {
   )
   .then(ManifestClass => ManifestClass.createConverter(semveristObject));
   t.deepEqual(
-    t.context.data,
+    t.context.data[0],
     digestedHelper,
      'Static converter creation creates a converter object as with stand alone converter..'
   );
@@ -130,7 +131,10 @@ test('Converter static object to manifest converter.', async (t) => {
       ManifestClass
     ]))
   .then((manifestIngredients) => {
-    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
     return schoenberg.getConverter();
   });
   t.deepEqual(
@@ -146,9 +150,15 @@ test('Directory Converter static object to manifest converter.', async (t) => {
     'semverImpliedOrchestraDirectory',
     nestedConfig.semverist
   )
-  .then(ManifestClass => Promise.all([ManifestClass.createConverter(semverishPath), ManifestClass]))
+  .then(ManifestClass => Promise.all([
+    ManifestClass.createConverter(semverishPath),
+    ManifestClass]
+  ))
   .then((manifestIngredients) => {
-    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
     return schoenberg.getConverter();
   });
   t.deepEqual(
@@ -170,7 +180,10 @@ test('Manifest component Defaults.', async (t) => {
       ManifestClass
     ]))
   .then((manifestIngredients) => {
-    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
     schoenberg.init();
     return schoenberg.getManifestComponents();
   });
@@ -193,7 +206,10 @@ test('Manifest component Groups.', async (t) => {
       ManifestClass
     ]))
   .then((manifestIngredients) => {
-    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
     schoenberg.init();
     return schoenberg.getManifestComponents();
   });
@@ -216,7 +232,10 @@ test('Manifest component no Groups.', async (t) => {
       ManifestClass
     ]))
   .then((manifestIngredients) => {
-    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
     schoenberg.init();
     return schoenberg.getManifestComponents();
   });
@@ -239,7 +258,10 @@ test('Manifest component no Defaults.', async (t) => {
       ManifestClass
     ]))
   .then((manifestIngredients) => {
-    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
     schoenberg.init();
     return schoenberg.getManifestComponents();
   });
@@ -262,7 +284,10 @@ test('Manifest component attributes.', async (t) => {
       ManifestClass
     ]))
   .then((manifestIngredients) => {
-    const schoenberg = new manifestIngredients[1](manifestIngredients[0]);
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
     schoenberg.init();
     return schoenberg.getManifestComponents();
   });
@@ -270,5 +295,142 @@ test('Manifest component attributes.', async (t) => {
     t.context.data,
     manifestSemverImpliedProcessed,
     'Groups should create components where they exist.'
+  );
+});
+
+test('Manifest converter class.', async (t) => {
+  t.context.data = await manifestFactory(
+    null,
+    'semverImpliedOrchestraObjectNoGroups',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
+    schoenberg.init();
+    return schoenberg.getConverterClass().getSemverishObject();
+  });
+  t.deepEqual(
+    t.context.data,
+    semveristObject,
+    'Converter class is a fully functioning converter class.'
+  );
+});
+
+test('pathBuildImprovement.', async (t) => {
+  t.context.data = await manifestFactory(
+    'composer',
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
+    schoenberg.init();
+    const parsedPath = semverUtils.parse('1.1.1-alpha+124');
+    return ManifestClass.pathBuildImprovement(parsedPath);
+  });
+  t.deepEqual(
+    t.context.data,
+    '1.1.1-alpha.124',
+    'Builds should be parsed out to proper dot paths.'
+  );
+});
+
+test('pathBuildImprovement no build.', async (t) => {
+  t.context.data = await manifestFactory(
+    'composer',
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
+    schoenberg.init();
+    const parsedPath = semverUtils.parse('1.1.1-alpha.1');
+    return ManifestClass.pathBuildImprovement(parsedPath);
+  });
+  t.deepEqual(
+    t.context.data,
+    '1.1.1-alpha.1',
+    'Builds should be parsed out to proper dot paths.'
+  );
+});
+
+test('create semver hierarchy.', async (t) => {
+  t.context.data = await manifestFactory(
+    'composer',
+    'semverImpliedOrchestraObject',
+    nestedConfig.semverist
+  )
+  .then(ManifestClass => Promise.all(
+    [
+      ManifestClass.createConverter(semveristObject),
+      ManifestClass
+    ]))
+  .then((manifestIngredients) => {
+    const ManifestClass = manifestIngredients[1];
+    const converter = manifestIngredients[0][0];
+    const converterClass = manifestIngredients[0][1];
+    const schoenberg = new ManifestClass(converter, converterClass);
+    schoenberg.init();
+    return schoenberg.createSemverHierarchy({});
+  });
+  t.deepEqual(
+    t.context.data,
+    {
+      1: {
+        0: {
+          0: {},
+          1: {},
+          2: {}
+        },
+        1: {
+          0: {},
+          1: {},
+        },
+        2: {
+          0: {},
+        },
+        3: {
+          0: {},
+        },
+      },
+      2: {
+        0: {
+          0: {},
+          '0-alpha': {
+            0: {},
+            1: {},
+          },
+          '0-beta': {
+            0: {},
+          },
+          1: {},
+        }
+      }
+    },
+     'Should build out objects for all semver realizations.'
   );
 });
