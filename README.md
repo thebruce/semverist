@@ -1,5 +1,7 @@
 # The Semverist
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/thebruce/semverist.svg)](https://greenkeeper.io/)
+
 > Intelligent Semver-based hierarchy processing
 
 [![Build Status](https://travis-ci.org/thebruce/semverist.svg?branch=master)](https://travis-ci.org/thebruce/semverist)
