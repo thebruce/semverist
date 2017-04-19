@@ -50,6 +50,7 @@
     "husky": "^0.13.1",
     "npm-run-all": "^4.0.1",
     "nyc": "^10.1.2",
-    "semantic-release": "^6.3.2"
+    "semantic-release": "^6.3.2",
+    "temp": "^0.8.3"
   }
 }

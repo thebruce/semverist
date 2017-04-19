@@ -2,9 +2,10 @@ import test from 'ava';
 
 const manifestFactory = require('../../../lib/manifest/manifest');
 const nestedConfig = require('../../helpers/nestedConfig.json');
-const semveristObject = require('../../helpers/semverishObject');
 const path = require('path');
-const processedComposition = require('../../helpers/processedComposition');
+const fs = require('fs-extra');
+const temp = require('temp').track();
+const _ = require('lodash');
 
 const semverishPath = path.join(
    __dirname,
@@ -12,12 +13,27 @@ const semverishPath = path.join(
   'test/helpers/semverishObject'
 );
 
-test.only('write composition.', async (t) => {
-  t.context.data = await manifestFactory(
-    'composer',
-    'semverImpliedOrchestraDirectory',
-    nestedConfig.semverist
-  )
+test.after.always('cleanup', t => { // eslint-disable-line
+  temp.cleanupSync();
+});
+
+test('write composition.', async (t) => {
+  const tmpConfig = _.cloneDeep(nestedConfig.semverist);
+
+  const mkDirAsPromise = (filePath) => // eslint-disable-line
+    new Promise((resolve, reject) =>
+      temp.mkdir(filePath, (err, data) => // eslint-disable-line
+      err ? reject(err) : resolve(data)));
+
+  t.context.data = await mkDirAsPromise('semverist')
+  .then((dirPath) => {
+    _.set(tmpConfig, 'semverImpliedOrchestraDirectory.composer.destination', dirPath);
+    return manifestFactory(
+      'composer',
+      'semverImpliedOrchestraDirectory',
+      tmpConfig
+    );
+  })
   .then(ManifestClass => Promise.all(
     [
       ManifestClass.createConverter(semverishPath),
@@ -30,11 +46,16 @@ test.only('write composition.', async (t) => {
     const schoenberg = new ManifestClass(converter, converterClass);
     schoenberg.init();
     schoenberg.writeComposition();
-    return schoenberg.getComposition();
+    return fs.readJsonSync(`${schoenberg.getCompositionDestination()}/1/1/1/clarinet.json`);
   });
   t.deepEqual(
     t.context.data,
-    processedComposition,
-     'Should build out objects for all semver realizations.'
+    {
+      fromClarinet: 'this is from 1.1.1',
+      fromDefault: 'this is from 1',
+      fromWinds: 'this is from 1',
+      toItem: 'clarinet'
+    },
+    'Should build out objects for all semver realizations.'
   );
 });
