@@ -22,30 +22,93 @@ We work better when we work together. So, the Semverist is two powerful componen
 - [Capabilities: attributes](#capabilities-attributes)
 
 ## Usage
-See the config example for options:
+
+Let's look at two of our tests for inspiration, an object based one and a directory based one.
+
+### A directory based example.
+
+The semverist requires that valid configuration be past to it or live in the config module's configuration files.
+
+A example configuration file is fully commented in the /examples directory: [Example Config](https://github.com/thebruce/semverist/blob/master/examples/configForModuleUsingSemverist.yml)
+
+We will be using the following configuration for our script:
 
 ```
-const schoenberg = require('semverist/schoenberg');
-const nestedConfig = {
+{
   "semverist": {
-    "exampleNameSpace": {
-      "yourConfiguration": "See config example."
+   "semverImpliedOrchestraObject": {
+      "semveristBehaviors": {
+        "inheritence": "semverImplied",
+        "lazySemverist": {
+          "preReleaseForwards": false,
+          "attributes": true
+        },
+        "default": true,
+        "defaultName": "orchestraDefault",
+        "groups": true,
+        "mergeStrategy": "merge"
+      },
+      "groups": {
+        "strings": {
+          "members": [
+            "violin",
+            "viola"
+          ]
+        },
+        "winds": {
+          "members": [
+            "flute",
+            "clarinet"
+          ]
+        },
+        "brass": {
+          "members": [
+            "trumpet",
+            "trombone"
+          ]
+        }
+      },
+      "directoryFileIgnorePattern": ".* ,*.!{json}",
+      "converterType": "default",
+      "composer": {
+        "composerType": "default",
+        "destination": null,
+        "priority": "default"
+      }
     }
   }
-};
+}
 
-const semveristComposer = schoenberg(
-  semverishObject,  // A semverish object or path according to config.
-  nestedConfig.semverist, // Passing in config in this example but can use config/
-  'exampleNameSpace'
+```
+This configuration lists the groups we have and their members, our custom default name, as well as the kind of source material we have (converterType: default - an object), and what we want to return (composerType:default - an object).
+
+As indicated in the configuration we will be using an object as our source. You can take a look at that object here:  [semveristOrchestraExampleObject](https://github.com/thebruce/semverist/blob/master/test/helpers/semverishObject.json)
+
+Take a look at that file and notice that we have attributes within typical semver hierarchies. Since we've indicated that we would like a semver implied approach to our composition we will be merging our groups, defaults, and attributes in, hierarchically, with like elements overwriting as we become more specific in our semver places (i.e. minor attributes will overwrite major attributes of the same name, just as prerelease attributes will overwrite minor items of the same name.)
+
+Our script to turn this 'semverish object' into a semverist object is as follows:
+
+```
+const nestedConfig = 'path/to/the/json/config/above'; // note this could also live in the config modules config files.
+
+const schoenberg = semverist.composer(
+  semverishObject,  // A semverish object
+  nestedConfig.semverist,
+  'semverImpliedOrchestraObject'  // Namespace within the semverist config that applies.
 )
 .then((composer) => {
   // Now you have a composer class and can assemble your semverish objects.
   // Like so.
   composer.assembleManifest();
-  return composer.getComposition();
+  return composer.getComposition(); // returns semver object.
 })
 ```
+
+This results in a semver object which is quite different than the originating semverish object compare:
+| semverish Object | Semver Object |
+|---|---|
+| [semverish Object](https://github.com/thebruce/semverist/blob/master/test/helpers/semverishObject.json)  | [semver object](https://github.com/thebruce/semverist/blob/master/test/helpers/processedComposition.json) |
+
 
 ## Semverist Components
 
