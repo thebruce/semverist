@@ -14,8 +14,6 @@
         link: 'https://github.com/semantic-release/semantic-release'
 - text: The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver based hierarchy.
 - include: './docs/intro.md'
-- text: API
-- jsdoc: lib/configLoader.js
-- jsdoc: lib/supers/semverist.js
+- text: Read our full API docs at [https://thebruce.github.io/semverist/](https://thebruce.github.io/semverist/)
 - license: true
 - contributors: true
