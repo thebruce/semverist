@@ -42,6 +42,7 @@
   "devDependencies": {
     "ava": "^0.18.2",
     "coveralls": "^2.13.0",
+    "emdaer": "^0.3.3",
     "eslint": "^3.16.0",
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-find-rules": "^1.13.0",

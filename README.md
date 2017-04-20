@@ -1,11 +1,12 @@
-# The Semverist
+# semverist
 
-> Intelligent Semver-based hierarchy processing
+Intelligent Semver-based hierarchy processing
 
-[![Build Status](https://travis-ci.org/thebruce/semverist.svg?branch=master)](https://travis-ci.org/thebruce/semverist)
-[![Coverage Status](https://coveralls.io/repos/github/thebruce/semverist/badge.svg?branch=master)](https://coveralls.io/github/thebruce/semverist?branch=master)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![Build Status](https://img.shields.io/https://travis-ci.org/thebruce/semverist.svg?branch=master?style=flat-square)](https://travis-ci.org/thebruce/semverist)
+[![Coverage Status](https://img.shields.io/https://coveralls.io/repos/github/thebruce/semverist/badge.svg?branch=master?style=flat-square)](https://coveralls.io/github/thebruce/semverist?branch=master)
+[![Semantic Release](https://img.shields.io/https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
+The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver based hierarchy.
 
 The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver based hierarchy.
 
@@ -254,3 +255,416 @@ The Semverist will inspect your directories/objects & tell you about them with P
 
 ### The power of laziness now brought to your semver experience.
 Lazy Semver allows you to create schema items once and inherit them until they change mirroring API versioning best practices. The lazy semver configuration option allows you to inherit properties up through a major version overriding and overwriting with defaults, groups, and redeclarations. This can be very useful for setting attributes once per major version of semver and lowering maintenance tasks and copy/paste type errors.
+API
+
+<a name="module_configLoader"></a>
+
+## configLoader
+A module to load configuration for the semverist.
+
+
+* [configLoader](#module_configLoader)
+    * [configLoader(configNameSpace, configs)](#exp_module_configLoader--configLoader) ⏏
+        * [~semveristBehaviors](#module_configLoader--configLoader..semveristBehaviors) : <code>Object</code>
+
+<a name="exp_module_configLoader--configLoader"></a>
+
+### configLoader(configNameSpace, configs) ⏏
+Initializes the manifest class.
+
+**Kind**: Exported function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| configNameSpace | <code>string</code> | A namespace in configuration   to draw configuration from for this manifest. |
+| configs | <code>semveristBehaviors</code> | A configurtion override   object. [semveristBehaviors](semveristBehaviors) |
+
+<a name="module_configLoader--configLoader..semveristBehaviors"></a>
+
+#### configLoader~semveristBehaviors : <code>Object</code>
+The semverist Behavior object. A part of semverist configuration
+which if provided from the config module should be namespaced to
+'semverist'.
+
+**Kind**: inner typedef of <code>[configLoader](#exp_module_configLoader--configLoader)</code>  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| inheritence | <code>boolean</code> | <code>semverImplied</code> | (null|semverImplied|lasySemverist) Enables inheritence for   the semverist object composer. Can be 1) null, or no   inheritence, 2) semverImplied the default   in which Parent semverist elements are inherited to   their child leaves unless they are overridden by another   instance of the same semverist element. Inheritence does not   cross over from parent to its siblings or 3) lazySemverist which Affects   inheritence by treating   the the highest semver occurence of a semverist element (elements   indicated below), as the element to inherit from for all future   parent and children leaves until specifically overriden by another   instance of the same semverist element. Adjacent higher siblings   in the semverist object can inherit elements from a previous sibling or   its children. |
+| lazySemverist | <code>Object</code> |  | Configuration for lazySemverist   behavior. This is only in effect if the inheritence is   lazySemverist. |
+| lazySemverist.preReleaseForwards | <code>boolean</code> | <code>false</code> | If true   allows lazy semverist enabled semverist elements to carry forward from   prereleases. |
+| lazySemverist.attributes | <code>boolean</code> | <code>true</code> | Applies   lazySemverist inheritence to the semverist element, attributes.   Currently this is the only kind of lazySemverist though we plan to add   groups and defaults as well. |
+| default | <code>boolean</code> | <code>true</code> | Enables default semverist   elements to influence semverist composer inheritence and merge   strategies. |
+| defaultName | <code>string</code> | <code>&quot;default&quot;</code> | An override name for   defaults.Semverist elements with this name will be utilized as   defaults. |
+| groups | <code>boolean</code> | <code>true</code> | Enables group semverist   elements to influence semverist composer inheritence and   merge strategies. |
+| mergeStrategy | <code>string</code> | <code>&quot;lastIn&quot;</code> | Sets the mergeStrategy   for use with semverist composer realizations of semverist   element attributes. |
+| preReleasePattern | <code>RegExp</code> |  | A regex pattern to use to   match your prerelease naming and versioning. Please   note that any item that the bounds of your prerelease pattern could   create conflicts with your semverist attribute names. Please be sure   to tightly cordon off your patterns. |
+
+
+<a name="module_semveristSuper"></a>
+
+## semveristSuper
+A module to load configuration for the semverist.
+
+
+* [semveristSuper](#module_semveristSuper)
+    * [semverist](#exp_module_semveristSuper--semverist) ⏏
+        * _instance_
+            * [.init([configs])](#module_semveristSuper--semverist+init)
+            * [.splitStringNoEmpties(semverishString)](#module_semveristSuper--semverist+splitStringNoEmpties) ⇒ <code>array</code>
+            * [.createOptions(attributeType, [inheritenceOverride], [lazySemverOverride])](#module_semveristSuper--semverist+createOptions) ⇒ <code>semveristItemOptions</code>
+            * [.setDefaultName(defaultName)](#module_semveristSuper--semverist+setDefaultName)
+            * [.getDefaultName()](#module_semveristSuper--semverist+getDefaultName) ⇒ <code>string</code>
+            * [.setSemveristGroups(groupsConfig)](#module_semveristSuper--semverist+setSemveristGroups)
+            * [.getSemveristGroups()](#module_semveristSuper--semverist+getSemveristGroups) ⇒ <code>Object</code>
+            * [.setSemver(semverish)](#module_semveristSuper--semverist+setSemver)
+            * [.getSemver()](#module_semveristSuper--semverist+getSemver) ⇒ <code>string</code>
+            * [.getSemveristConfig()](#module_semveristSuper--semverist+getSemveristConfig) ⇒ <code>Object</code>
+            * [.setSemveristConfig(configuration)](#module_semveristSuper--semverist+setSemveristConfig)
+            * [.setSemveristConfigItem(itemPath, value)](#module_semveristSuper--semverist+setSemveristConfigItem)
+            * [.valueToSemver(semverString)](#module_semveristSuper--semverist+valueToSemver) ⇒ <code>string</code>
+            * [.setSource(source)](#module_semveristSuper--semverist+setSource)
+            * [.getSource()](#module_semveristSuper--semverist+getSource) ⇒ <code>Object</code>
+            * [.validateSource(source)](#module_semveristSuper--semverist+validateSource) ⇒ <code>boolean</code>
+            * [.setPreReleasePattern(pattern)](#module_semveristSuper--semverist+setPreReleasePattern)
+            * [.getPreReleasePattern()](#module_semveristSuper--semverist+getPreReleasePattern) ⇒ <code>RegExp</code>
+            * [.isAttributeDefault(attributeName)](#module_semveristSuper--semverist+isAttributeDefault) ⇒ <code>boolean</code>
+            * [.getSemveristAttributeGroups(semveristAttribute)](#module_semveristSuper--semverist+getSemveristAttributeGroups) ⇒ <code>array</code>
+            * [.doesAttributeBelongToGroup(attributeName, groupName)](#module_semveristSuper--semverist+doesAttributeBelongToGroup) ⇒ <code>boolean</code>
+        * _static_
+            * [.getSemverLevels()](#module_semveristSuper--semverist.getSemverLevels) ⇒ <code>Array</code>
+        * _inner_
+            * [~semveristBehaviors](#module_semveristSuper--semverist..semveristBehaviors) : <code>Object</code>
+            * [~semveristGroups](#module_semveristSuper--semverist..semveristGroups) : <code>Object</code>
+            * [~preReleasedOrdering](#module_semveristSuper--semverist..preReleasedOrdering) : <code>Object</code>
+            * [~semveristItemOptions](#module_semveristSuper--semverist..semveristItemOptions) : <code>Object</code>
+
+<a name="exp_module_semveristSuper--semverist"></a>
+
+### semverist ⏏
+A super class for semverish instances like semverish, range and converter.
+
+**Kind**: Exported class  
+<a name="module_semveristSuper--semverist+init"></a>
+
+#### semverist.init([configs])
+Initialization of semverist classes.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [configs] | <code>Object</code> | An optional config object. If it   comes from the config module it will be namespaced to   'semverist' |
+| [configs.semveristBehaviors] | <code>semveristBehaviors</code> | An   object with overall semverist behavior configuration.   [semveristBehaviors](semveristBehaviors) |
+| [configs.groups] | <code>semveristGroups</code> | An object with   any number of arbitrarily named group configurations   [semveristGroups](semveristGroups) |
+| [configs.preReleasedOrdering] | <code>preReleaseOrdering</code> | An object with any number of semver hierarchies.   [preReleaseOrdering](preReleaseOrdering) |
+
+<a name="module_semveristSuper--semverist+splitStringNoEmpties"></a>
+
+#### semverist.splitStringNoEmpties(semverishString) ⇒ <code>array</code>
+Returns an array of the semverString split.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Returns**: <code>array</code> - An array of semverish values.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| semverishString | <code>string</code> | A semverish string. |
+
+<a name="module_semveristSuper--semverist+createOptions"></a>
+
+#### semverist.createOptions(attributeType, [inheritenceOverride], [lazySemverOverride]) ⇒ <code>semveristItemOptions</code>
+Creates an options object for a given attribute type,
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Returns**: <code>semveristItemOptions</code> - [emveristItemOptions](emveristItemOptions)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| attributeType | <code>string</code> | A semverist element   (attribute, group, default) or the semverist object   itself (semveristObject) |
+| [inheritenceOverride] | <code>boolean</code> |  |
+| [lazySemverOverride] | <code>boolean</code> |  |
+
+<a name="module_semveristSuper--semverist+setDefaultName"></a>
+
+#### semverist.setDefaultName(defaultName)
+Sets the default name
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| defaultName | <code>string</code> | <code>&quot;default&quot;</code> | The name of the   default semverist defaults element. By default it is,   well, "default"; |
+
+<a name="module_semveristSuper--semverist+getDefaultName"></a>
+
+#### semverist.getDefaultName() ⇒ <code>string</code>
+Get the name of the semverist defaults element.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+<a name="module_semveristSuper--semverist+setSemveristGroups"></a>
+
+#### semverist.setSemveristGroups(groupsConfig)
+Sets semverist group elements.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| groupsConfig | <code>Object</code> | Groups config detailing   membership, typically comes from config. |
+
+<a name="module_semveristSuper--semverist+getSemveristGroups"></a>
+
+#### semverist.getSemveristGroups() ⇒ <code>Object</code>
+Get semverist group element details for this semverist.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+<a name="module_semveristSuper--semverist+setSemver"></a>
+
+#### semverist.setSemver(semverish)
+Sets a valid semver value related to the semverish value
+  used to initialize this object. This will fill out missing
+  elements of the semver if anything less than a patch or 3
+  position was provided.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Throws**:
+
+- Throws an error is the semverish value can not be transformed
+  into a valid semver value.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| semverish | <code>string</code> | A semverish value to transform into a valid semver string. |
+
+<a name="module_semveristSuper--semverist+getSemver"></a>
+
+#### semverist.getSemver() ⇒ <code>string</code>
+Returns a valid semver value for the semverish value of this object.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Returns**: <code>string</code> - A valid semver string.  
+<a name="module_semveristSuper--semverist+getSemveristConfig"></a>
+
+#### semverist.getSemveristConfig() ⇒ <code>Object</code>
+Returns semverist config.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Returns**: <code>Object</code> - - Configuration for use with the semverist.  
+<a name="module_semveristSuper--semverist+setSemveristConfig"></a>
+
+#### semverist.setSemveristConfig(configuration)
+Sets configuration from config Module or passed in.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| configuration | <code>obj</code> | A configuration object for the   semverist. |
+
+<a name="module_semveristSuper--semverist+setSemveristConfigItem"></a>
+
+#### semverist.setSemveristConfigItem(itemPath, value)
+Sets an internal item with itemPath within the config to the
+  the passed value.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| itemPath | <code>string</code> | An attribute or . separated path to an attribute. |
+| value | <code>any</code> | A value you would like to assignt to the passed path within     semverist config. |
+
+<a name="module_semveristSuper--semverist+valueToSemver"></a>
+
+#### semverist.valueToSemver(semverString) ⇒ <code>string</code>
+Convert a *semverish* value i.e. 4, 4.0 to a valid semver
+  value.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Returns**: <code>string</code> - - A valid semver string.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| semverString | <code>string</code> | A semver-ish value to convert   to a propert semver value. |
+
+<a name="module_semveristSuper--semverist+setSource"></a>
+
+#### semverist.setSource(source)
+Set the source for semverist subclasses and mixins.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Throws**:
+
+- - Will throw an error if the source does not validate.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| source | <code>Object</code> | The semverist base class is capable   of handling objects with a semver style hierarchy. |
+
+<a name="module_semveristSuper--semverist+getSource"></a>
+
+#### semverist.getSource() ⇒ <code>Object</code>
+Returns semverist semver style source object.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Returns**: <code>Object</code> - - An object with semver style hierarchy.  
+<a name="module_semveristSuper--semverist+validateSource"></a>
+
+#### semverist.validateSource(source) ⇒ <code>boolean</code>
+Validates that the source is the correct type.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Returns**: <code>boolean</code> - - True if the source is a valid type
+   of source, False otherwise.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| source | <code>any</code> | A source value to validate. |
+
+<a name="module_semveristSuper--semverist+setPreReleasePattern"></a>
+
+#### semverist.setPreReleasePattern(pattern)
+Sets the prerelease pattern for the semverist.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pattern | <code>RegExp</code> | A regex pattern that matches your preRelease pattern |
+
+<a name="module_semveristSuper--semverist+getPreReleasePattern"></a>
+
+#### semverist.getPreReleasePattern() ⇒ <code>RegExp</code>
+Returns your prerelease pattern.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+<a name="module_semveristSuper--semverist+isAttributeDefault"></a>
+
+#### semverist.isAttributeDefault(attributeName) ⇒ <code>boolean</code>
+Checks to see if the attribute Name passed is the default name.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Returns**: <code>boolean</code> - True if they are the same.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| attributeName | <code>string</code> | An attribute name. |
+
+<a name="module_semveristSuper--semverist+getSemveristAttributeGroups"></a>
+
+#### semverist.getSemveristAttributeGroups(semveristAttribute) ⇒ <code>array</code>
+Gets an array of group names to which the attribute belongs.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Returns**: <code>array</code> - - An array of semverist group names.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| semveristAttribute | <code>string</code> | The name of a semverist   attribute element. |
+
+<a name="module_semveristSuper--semverist+doesAttributeBelongToGroup"></a>
+
+#### semverist.doesAttributeBelongToGroup(attributeName, groupName) ⇒ <code>boolean</code>
+Checks to see whether this semverist attribute belongs to the passed group.
+
+**Kind**: instance method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Returns**: <code>boolean</code> - - True if the attribute belongs to this group,
+false if otherwise.  
+**Throws**:
+
+- - Throws error if group does not have members.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| attributeName | <code>string</code> | a semverist element attribute name. |
+| groupName | <code>any</code> | A semverist element group name. |
+
+<a name="module_semveristSuper--semverist.getSemverLevels"></a>
+
+#### semverist.getSemverLevels() ⇒ <code>Array</code>
+Returns an array of semver parts in order of their occurence.
+
+**Kind**: static method of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Returns**: <code>Array</code> - - An array of semver parts in order.  
+<a name="module_semveristSuper--semverist..semveristBehaviors"></a>
+
+#### semverist~semveristBehaviors : <code>Object</code>
+The semverist Behavior object. A part of semverist configuration
+which if provided from the config module should be namespaced to
+'semverist'.
+
+**Kind**: inner typedef of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| inheritence | <code>boolean</code> | <code>semverImplied</code> | (null|semverImplied|lasySemverist) Enables inheritence for   the semverist object composer. Can be 1) null, or no   inheritence, 2) semverImplied the default   in which Parent semverist elements are inherited to   their child leaves unless they are overridden by another   instance of the same semverist element. Inheritence does not   cross over from parent to its siblings or 3) lazySemverist which Affects   inheritence by treating   the the highest semver occurence of a semverist element (elements   indicated below), as the element to inherit from for all future   parent and children leaves until specifically overriden by another   instance of the same semverist element. Adjacent higher siblings   in the semverist object can inherit elements from a previous sibling or   its children. |
+| lazySemverist | <code>Object</code> |  | Configuration for lazySemverist   behavior. This is only in effect if the inheritence is   lazySemverist. |
+| lazySemverist.preReleaseForwards | <code>boolean</code> | <code>false</code> | If true   allows lazy semverist enabled semverist elements to carry forward from   prereleases. |
+| lazySemverist.attributes | <code>boolean</code> | <code>true</code> | Applies   lazySemverist inheritence to the semverist element, attributes.   Currently this is the only kind of lazySemverist though we plan to add   groups and defaults as well. |
+| default | <code>boolean</code> | <code>true</code> | Enables default semverist   elements to influence semverist composer inheritence and merge   strategies. |
+| defaultName | <code>string</code> | <code>&quot;default&quot;</code> | An override name for   defaults.Semverist elements with this name will be utilized as   defaults. |
+| groups | <code>boolean</code> | <code>true</code> | Enables group semverist   elements to influence semverist composer inheritence and   merge strategies. |
+| mergeStrategy | <code>string</code> | <code>&quot;lastIn&quot;</code> | Sets the mergeStrategy   for use with semverist composer realizations of semverist   element attributes. |
+| preReleasePattern | <code>RegExp</code> |  | A regex pattern to use to   match your prerelease naming and versioning. Please   note that any item that the bounds of your prerelease pattern could   create conflicts with your semverist attribute names. Please be sure   to tightly cordon off your patterns. |
+
+<a name="module_semveristSuper--semverist..semveristGroups"></a>
+
+#### semverist~semveristGroups : <code>Object</code>
+A semverist group element which allows you to create any number
+of arbirarily named groups for any combination of semverist
+attributes.
+
+**Kind**: inner typedef of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| groups.groupName | <code>Object</code> | Any number of   group name keyed objects. |
+| groups.groupName.members | <code>Array.string</code> | An array   of semverist element attributes who belongs to this group.  Any   occurence of a group within the semverist hierarchy will apply to   the members listed here according to the inheritence and merge   strategy in play at that leaf of the hierarchy. |
+
+<a name="module_semveristSuper--semverist..preReleasedOrdering"></a>
+
+#### semverist~preReleasedOrdering : <code>Object</code>
+A prerelease configuration object which represents the semver hierarchy
+object. These should be complete semver hierarchies complete to the patch
+version where release order for non-alphabetical prerelease names can
+be indicated.
+
+**Kind**: inner typedef of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| majorVersion | <code>Object</code> | Any number of major   versions. |
+| majorVersion.minorVersion | <code>Object</code> | Any number of minor   versions. // eslint-disable-next-line max-len |
+| majorVersion.minorVersion.releaseArray | <code>Array.string</code> | A patch version key with an array of prerelease names in their release   order. If they are alphabetical this is optional. If however, they   deviate, you will need to indicate their release order here in every   patch were you use a non   alphabetical prerelease tag. |
+
+<a name="module_semveristSuper--semverist..semveristItemOptions"></a>
+
+#### semverist~semveristItemOptions : <code>Object</code>
+An options object for use when creating and working with ranges.
+
+**Kind**: inner typedef of <code>[semverist](#exp_module_semveristSuper--semverist)</code>  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| inheritence | <code>boolean</code> | Determines whether inheritence should   be used in considering the item's range. |
+| lazySemverist | <code>boolean</code> | Determines whether lazySemverist   should be applied to the item's range. |
+| type | <code>string</code> | The type element or semveristObject, attribute,   default, group, semveristObject. |
+
+
+## License
+
+MIT
+## Contributors
+
+[![](https://avatars.githubusercontent.com/u/?s=130)]()
+---
+[]()
