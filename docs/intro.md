@@ -1,14 +1,3 @@
-# semverist
-
-Intelligent Semver-based hierarchy processing
-
-[![Travis](https://img.shields.io/travis/thebruce/semverist/master.svg?style=flat-square)](https://travis-ci.org/thebruce/semverist)
-[![coveralls](https://img.shields.io/coveralls/thebruce/semverist.svg?style=flat-square)](https://coveralls.io/github/thebruce/semverist?branch=master)
-
-The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver based hierarchy.
-
-Read our full API docs at [https://thebruce.github.io/semverist/](https://thebruce.github.io/semverist/)
-
 The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver based hierarchy.
 
 We work better when we work together. So, the Semverist is two powerful components working together. The first is an inspector, Poirot, and the second a composer, Schoenberg. These two components will allow you to construct richly populated semver hierarchies with reduced maintenance, bloat, and only meaningful additions.
@@ -256,11 +245,3 @@ The Semverist will inspect your directories/objects & tell you about them with P
 
 ### The power of laziness now brought to your semver experience.
 Lazy Semver allows you to create schema items once and inherit them until they change mirroring API versioning best practices. The lazy semver configuration option allows you to inherit properties up through a major version overriding and overwriting with defaults, groups, and redeclarations. This can be very useful for setting attributes once per major version of semver and lowering maintenance tasks and copy/paste type errors.
-## License
-
-MIT @ [David Diers](http://github.com/thebruce)
-## Contributors
-
-[![David Diers](https://avatars.githubusercontent.com/u/590058?s=130)](http://github.com/thebruce)
----
-[David Diers](http://github.com/thebruce)
