@@ -11,7 +11,7 @@
         link: 'https://coveralls.io/github/thebruce/semverist?branch=master'
 
 - text: The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver based hierarchy.
-- include: './docs/intro.md'
 - text: Read our full API docs at [https://thebruce.github.io/semverist/](https://thebruce.github.io/semverist/)
+- include: './docs/intro.md'
 - license: true
 - contributors: true
