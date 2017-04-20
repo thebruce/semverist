@@ -1,0 +1,2426 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>semverist 0.0.0-development | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>semverist</h3>
+          <div class='mb1'><code>0.0.0-development</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#semveristbehaviors'
+                  class="">
+                  semveristBehaviors
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#semveristgroups'
+                  class="">
+                  semveristGroups
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#prereleasedordering'
+                  class="">
+                  preReleasedOrdering
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#converter'
+                  class="">
+                  converter
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#createconverter'
+                  class="">
+                  createConverter
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#getmanifestconfig'
+                  class="">
+                  getManifestConfig
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#composer'
+                  class="">
+                  composer
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#pathbuildimprovement'
+                  class="">
+                  pathBuildImprovement
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#pathbuildimprovement'
+                  class="">
+                  pathBuildImprovement
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#defaultmanifestcomponents'
+                  class="">
+                  defaultManifestComponents
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#defaultpriority'
+                  class="">
+                  defaultPriority
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#directorywriter'
+                  class="">
+                  directoryWriter
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#groupmanifestcomponents'
+                  class="">
+                  groupManifestComponents
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#inspector'
+                  class="">
+                  inspector
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#mergestrategy'
+                  class="">
+                  mergeStrategy
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#objectwriter'
+                  class="">
+                  objectWriter
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#directorytosemverishobject'
+                  class="">
+                  directoryToSemverishObject
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#parsesemverutils'
+                  class="">
+                  parseSemverUtils
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#semveradjacent'
+                  class="">
+                  semverAdjacent
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#semverishelement'
+                  class="">
+                  semverishElement
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#semverishlevel'
+                  class="">
+                  semverishLevel
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#semverishvalue'
+                  class="">
+                  semverishValue
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#semveristelementtype'
+                  class="">
+                  semveristElementType
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#sortrangearray'
+                  class="">
+                  sortRangeArray
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#tocaretrange'
+                  class="">
+                  toCaretRange
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#totilderange'
+                  class="">
+                  toTildeRange
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#validaterange'
+                  class="">
+                  validateRange
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#rangemaker'
+                  class="">
+                  rangeMaker
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#getsemverlevels'
+                  class="">
+                  getSemverLevels
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='semveristbehaviors'>
+      semveristBehaviors
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The semverist Behavior object. A part of semverist configuration
+which if provided from the config module should be namespaced to
+'semverist'.</p>
+
+
+  <div class='pre p1 fill-light mt0'>semveristBehaviors</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>configNameSpace</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>configs</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>inheritence</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?)</code>
+          :   (null|semverImplied|lasySemverist) Enables inheritence for
+the semverist object composer. Can be 1) null, or no
+inheritence, 2) semverImplied the default
+in which Parent semverist elements are inherited to
+their child leaves unless they are overridden by another
+instance of the same semverist element. Inheritence does not
+cross over from parent to its siblings or 3) lazySemverist which Affects
+inheritence by treating
+the the highest semver occurence of a semverist element (elements
+indicated below), as the element to inherit from for all future
+parent and children leaves until specifically overriden by another
+instance of the same semverist element. Adjacent higher siblings
+in the semverist object can inherit elements from a previous sibling or
+its children.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>lazySemverist</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
+          : Configuration for lazySemverist
+behavior. This is only in effect if the inheritence is
+lazySemverist.
+
+          
+            <ul>
+              
+                <li><code>lazySemverist.preReleaseForwards</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?
+                  
+                  <p>If true
+allows lazy semverist enabled semverist elements to carry forward from
+prereleases.</p>
+</li>
+              
+                <li><code>lazySemverist.attributes</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?
+                  
+                  <p>Applies
+lazySemverist inheritence to the semverist element, attributes.
+Currently this is the only kind of lazySemverist though we plan to add
+groups and defaults as well.</p>
+</li>
+              
+            </ul>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>default</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?)</code>
+          : Enables default semverist
+elements to influence semverist composer inheritence and merge
+strategies.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>defaultName</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?)</code>
+          : An override name for
+defaults.Semverist elements with this name will be utilized as
+defaults.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>groups</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?)</code>
+          : Enables group semverist
+elements to influence semverist composer inheritence and
+merge strategies.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>mergeStrategy</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?)</code>
+          : Sets the mergeStrategy
+for use with semverist composer realizations of semverist
+element attributes.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>preReleasePattern</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">RegExp</a>?)</code>
+          : A regex pattern to use to
+match your prerelease naming and versioning. Please
+note that any item that the bounds of your prerelease pattern could
+create conflicts with your semverist attribute names. Please be sure
+to tightly cordon off your patterns.
+
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='semveristgroups'>
+      semveristGroups
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A semverist group element which allows you to create any number
+of arbirarily named groups for any combination of semverist
+attributes.</p>
+
+
+  <div class='pre p1 fill-light mt0'>semveristGroups</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>configNameSpace</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>configs</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>groups.groupName</span> <code class='quiet'>(...<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
+          : Any number of
+group name keyed objects.
+
+          
+            <ul>
+              
+                <li><code>groups.groupName.members</code> Array.string?
+                  
+                  <p>An array
+of semverist element attributes who belongs to this group.  Any
+occurence of a group within the semverist hierarchy will apply to
+the members listed here according to the inheritence and merge
+strategy in play at that leaf of the hierarchy.</p>
+</li>
+              
+            </ul>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='prereleasedordering'>
+      preReleasedOrdering
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A prerelease configuration object which represents the semver hierarchy
+object. These should be complete semver hierarchies complete to the patch
+version where release order for non-alphabetical prerelease names can
+be indicated.</p>
+
+
+  <div class='pre p1 fill-light mt0'>preReleasedOrdering</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>configNameSpace</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>configs</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>majorVersion</span> <code class='quiet'>(...<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
+          : Any number of major
+versions.
+
+          
+            <ul>
+              
+                <li><code>majorVersion.minorVersion</code> ...<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?
+                  
+                  <p>Any number of minor
+versions.
+// eslint-disable-next-line max-len</p>
+</li>
+              
+            </ul>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='converter'>
+      converter
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>sourceConverter factory.</p>
+
+
+  <div class='pre p1 fill-light mt0'>converter(superNameSpace: any, pluginName: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superNameSpace</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>pluginName</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='createconverter'>
+      createConverter
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Static converter creator to supply manifest class
+with its converter object and class.</p>
+
+
+  <div class='pre p1 fill-light mt0'>createConverter(converterSource: SemveristObject): Promise.Array</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>converterSource</span> <code class='quiet'>(SemveristObject)</code>
+	    -
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Promise.Array</code>:
+        converterPromise - An array
+of converter object and the converter class. Which returns
+the appropriate object or directory version of a converter.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='getmanifestconfig'>
+      getManifestConfig
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Gets the config for the manifest created during the factory based on
+the config namespace.</p>
+
+
+  <div class='pre p1 fill-light mt0'>getManifestConfig(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+        configuration for the semverist.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='composer'>
+      composer
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>composer(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='pathbuildimprovement'>
+      pathBuildImprovement
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Revises the path to handle any special cases.
+Can be a place for super overrides to modify
+the path for special prereleases and the like.</p>
+
+
+  <div class='pre p1 fill-light mt0'>pathBuildImprovement(parsedPath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>parsedPath</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    A semver utils parsed
+path.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        A valid object path.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='pathbuildimprovement'>
+      pathBuildImprovement
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Revises the path to handle any special cases.
+Can be a place for super overrides to modify
+the path for special prereleases and the like.</p>
+
+
+  <div class='pre p1 fill-light mt0'>pathBuildImprovement(parsedPath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>parsedPath</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    A semver utils parsed
+path.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        A valid object path.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='defaultmanifestcomponents'>
+      defaultManifestComponents
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>defaultManifestComponents(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='defaultpriority'>
+      defaultPriority
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>defaultPriority(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='directorywriter'>
+      directoryWriter
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>directoryWriter(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='groupmanifestcomponents'>
+      groupManifestComponents
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>groupManifestComponents(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='inspector'>
+      inspector
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>inspector(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='mergestrategy'>
+      mergeStrategy
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>mergeStrategy(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='objectwriter'>
+      objectWriter
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>objectWriter(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='directorytosemverishobject'>
+      directoryToSemverishObject
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>directoryToSemverishObject(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='parsesemverutils'>
+      parseSemverUtils
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for semver parsing. It is self-contained.
+Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>parseSemverUtils(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='semveradjacent'>
+      semverAdjacent
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for analyzing the adjacency of two semver.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>semverAdjacent(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='semverishelement'>
+      semverishElement
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>semverishElement(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='semverishlevel'>
+      semverishLevel
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>semverishLevel(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='semverishvalue'>
+      semverishValue
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>semverishValue(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='semveristelementtype'>
+      semveristElementType
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>semveristElementType(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='sortrangearray'>
+      sortRangeArray
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for sorting ranges.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>sortRangeArray(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='tocaretrange'>
+      toCaretRange
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>toCaretRange(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='totilderange'>
+      toTildeRange
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This is a semverist plugin for set/geting the semverist element.
+It is self-contained.</p>
+<p>Mixins follow the formula for mixins described at:
+<a href="http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/">http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/</a>
+More info in the README.</p>
+
+
+  <div class='pre p1 fill-light mt0'>toTildeRange(superclass: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>superclass</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='validaterange'>
+      validateRange
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Validate a range string.</p>
+
+
+  <div class='pre p1 fill-light mt0'>validateRange(rangeString: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>rangeString</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    A semver range string.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Throws</div>
+    <ul>
+      
+        <li>any: Throws an error If the passed range is not valid.
+</li>
+      
+    </ul>
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='rangemaker'>
+      rangeMaker
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A range making utility function.</p>
+
+
+  <div class='pre p1 fill-light mt0'>rangeMaker(firstValue: sting, firstOperator: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, secondValue: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, secondOperator: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, exception: any): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>firstValue</span> <code class='quiet'>(sting)</code>
+	    a semverish value.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>firstOperator</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    a semver range operator string.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>secondValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    a semverish value.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>secondOperator</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    a semver range operator string.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>exception</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        a valid semver range string.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='getsemverlevels'>
+      getSemverLevels
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Returns an array of semver parts in order of their occurence.</p>
+
+
+  <div class='pre p1 fill-light mt0'>getSemverLevels(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></code>:
+        An array of semver parts in order.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>
