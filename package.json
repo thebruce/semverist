@@ -19,7 +19,11 @@
   "keywords": [
     "semver"
   ],
-  "author": "David Diers",
+  "author": {
+    "name": "David Diers",
+    "url": "http://github.com/thebruce",
+    "id": 590058
+},
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/thebruce/semverist/issues"

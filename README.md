@@ -2,9 +2,9 @@
 
 Intelligent Semver-based hierarchy processing
 
-[![Build Status](https://img.shields.io/https://travis-ci.org/thebruce/semverist.svg?branch=master?style=flat-square)](https://travis-ci.org/thebruce/semverist)
-[![Coverage Status](https://img.shields.io/https://coveralls.io/repos/github/thebruce/semverist/badge.svg?branch=master?style=flat-square)](https://coveralls.io/github/thebruce/semverist?branch=master)
-[![Semantic Release](https://img.shields.io/https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
+[![Travis](https://img.shields.io/https://travis-ci.org/thebruce/semverist.svg?branch=master?style=flat-square)](https://travis-ci.org/thebruce/semverist)
+[![coveralls](https://img.shields.io/coveralls/thebruce/semverist.svg?style=flat-square)](https://coveralls.io/github/thebruce/semverist?branch=master)
+[![semantic-release](https://img.shields.io/https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
 The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver based hierarchy.
 
@@ -662,9 +662,9 @@ An options object for use when creating and working with ranges.
 
 ## License
 
-MIT
+MIT @ [David Diers](http://github.com/thebruce)
 ## Contributors
 
-[![](https://avatars.githubusercontent.com/u/?s=130)]()
+[![David Diers](https://avatars.githubusercontent.com/u/590058?s=130)](http://github.com/thebruce)
 ---
-[]()
+[David Diers](http://github.com/thebruce)
