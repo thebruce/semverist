@@ -4,14 +4,12 @@
     style: 'flat-square'
     shields:
       - alt: 'Travis'
-        image: 'https://travis-ci.org/thebruce/semverist.svg?branch=master'
+        image: 'travis/thebruce/semverist/master.svg'
         link: 'https://travis-ci.org/thebruce/semverist'
       - alt: coveralls
         image: 'coveralls/thebruce/semverist.svg'
         link: 'https://coveralls.io/github/thebruce/semverist?branch=master'
-      - alt: semantic-release
-        image: 'https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg'
-        link: 'https://github.com/semantic-release/semantic-release'
+
 - text: The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver based hierarchy.
 - include: './docs/intro.md'
 - text: Read our full API docs at [https://thebruce.github.io/semverist/](https://thebruce.github.io/semverist/)
