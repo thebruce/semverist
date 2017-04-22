@@ -1,11 +1,15 @@
 The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver based hierarchy.
 
-We work better when we work together. So, the Semverist is two powerful components working together. The first is an inspector, Poirot, and the second a composer, Schoenberg. These two components will allow you to construct richly populated semver hierarchies with reduced maintenance, bloat, and only meaningful additions.
+## Semantic Version upgrades for objects and directories
+
+With the semverist you can reduce the overhead associated with producing semver shaped objects or file directories such as for api schema descriptions, functions, or configuration (to name a few). Overhead is lessened by adopting [semverish](#what-is-a-semverish-object) hierarchy, an organizational structure that marries semver to traditional tree based hierarchy. By using **semver implied** inheritence within an object or directory you can compose a powerful final product with less repetition and a consistent and declarative approach. Alternatively, you can use the **lazy semverist** style of authoring to mirror API best practices where the last instance of an element in a semver structure will carry through a major version from its definition until overridden.
+
+The semverist can be used with the [config](https://www.npmjs.com/package/config) module (we recommend it) or you can pass your own in and has a wide variety of helpful tools to keep your semver source files as Dry as possible, such as defaults, groups, file pattern matching, object or directory input sources with configurable object or directory output sources.
 
 ## Contents
 - [Usage](#usage)
 - [Semverist Components](#semverist-components)
-- [What is a semverist object?](#what-is-a-semverist-object)
+- [What is a semverish object?](#what-is-a-semverish-object)
 - [Capabilities: defaults](#capabilities-defaults)
 - [Capabilities: groups](#capabilities-groups)
 - [Capabilities: attributes](#capabilities-attributes)
@@ -14,7 +18,7 @@ We work better when we work together. So, the Semverist is two powerful componen
 
 Let's look at two of our tests for inspiration, an object based one and a directory based one.
 
-### A directory based example.
+### Create a semver object from a semverish object source
 
 The semverist requires that valid configuration be past to it or live in the config module's configuration files.
 
@@ -94,9 +98,12 @@ const schoenberg = semverist.composer(
 ```
 
 This results in a semver object which is quite different than the originating semverish object compare:
-| semverish Object | Semver Object |
-|---|---|
-| [semverish Object](https://github.com/thebruce/semverist/blob/master/test/helpers/semverishObject.json)  | [semver object](https://github.com/thebruce/semverist/blob/master/test/helpers/processedComposition.json) |
+
+> Original semverish Object: [semverish Object](https://github.com/thebruce/semverist/blob/master/test/helpers/semverishObject.json)
+
+-vs-
+
+> Transformed Semver Object: [semver Object](https://github.com/thebruce/semverist/blob/master/test/helpers/processedComposition.json)
 
 
 ## Semverist Components
@@ -114,13 +121,13 @@ The Semverist inspector can tell you about the attributes/files in the sember sh
 * Tell you the first occurence of a given attribute /file in this semver object/directory.
 
 
-## What is a semverist object?
+## What is a semverish object?
 
-### The Semverist Object: What is a semver shaped hierarchy?
+### The Semverish Object: What is a semver shaped hierarchy?
 
 Semver is an extremely useful versioning standard whose declarative syntax helps machine and human readers to set package and software version use in a sane format. Read about semver at [http://semver.org/](http://semver.org/). Semver is not only useful for package versions however, using its declarative ranges within configuration, objects and directories is an awesome way to relate configuration, metadata, scripts, and schemas to constantly evolving services and software. The semverist was born out of a need to reliably deal with these realizations in objects and directories.
 
-The semverist object is declarative and meant to be useful to both Inspector, Poirot and Composer, Schoenberg. Additional utility is provided by defaults and groups and lazy semver funcitonality but even without these concepts you will still be able to inspect and learn about the semverist object you have and build it out with the correct composition.
+The semverish object is declarative and meant to be useful to both Inspector, Poirot and Composer, Schoenberg. Additional utility is provided by defaults and groups and lazy semver funcitonality but even without these concepts you will still be able to inspect and learn about the semverist object you have and build it out with the correct composition.
 
 A semver object might take the shape of:
 ```
