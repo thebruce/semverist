@@ -144,11 +144,11 @@
 				},
 				"1": {
 					"winds": {
-			      "fromWinds": "this is from 2.0.1",
+			      "fromWinds": "this is from 2.0.1-alpha",
 			      "toItem": "winds"
 					},
 					"clarinet": {
-			      "fromClarinet": "this is from 2.0.1",
+			      "fromClarinet": "this is from 2.0.1-alpha",
 			      "toItem": "clarinet"
 					}
 				}

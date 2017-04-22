@@ -319,6 +319,86 @@
         "destination": null,
         "priority": "default"
       }
+    },
+    "lazySemveristOrchestraObject": {
+      "semveristBehaviors": {
+        "inheritence": "lazySemverist",
+        "lazySemverist": {
+          "preReleaseForwards": false,
+          "attributes": true
+        },
+        "default": true,
+        "defaultName": "orchestraDefault",
+        "groups": true,
+        "mergeStrategy": "merge"
+      },
+      "groups": {
+        "strings": {
+          "members": [
+            "violin",
+            "viola"
+          ]
+        },
+        "winds": {
+          "members": [
+            "flute",
+            "clarinet"
+          ]
+        },
+        "brass": {
+          "members": [
+            "trumpet",
+            "trombone"
+          ]
+        }
+      },
+      "directoryFileIgnorePattern": ".* ,*.!{json}",
+      "converterType": "default",
+      "composer": {
+        "composerType": "default",
+        "destination": null,
+        "priority": "default"
+      }
+    },
+    "lazySemveristOrchestraDirectory": {
+      "semveristBehaviors": {
+        "inheritence": "lazySemverist",
+        "lazySemverist": {
+          "preReleaseForwards": false,
+          "attributes": true
+        },
+        "default": true,
+        "defaultName": "orchestraDefault",
+        "groups": true,
+        "mergeStrategy": "merge"
+      },
+      "groups": {
+        "strings": {
+          "members": [
+            "violin",
+            "viola"
+          ]
+        },
+        "winds": {
+          "members": [
+            "flute",
+            "clarinet"
+          ]
+        },
+        "brass": {
+          "members": [
+            "trumpet",
+            "trombone"
+          ]
+        }
+      },
+      "directoryFileIgnorePattern": ".* ,*.!{json}",
+      "converterType": "directory",
+      "composer": {
+        "composerType": "default",
+        "destination": null,
+        "priority": "default"
+      }
     }
   }
 }
