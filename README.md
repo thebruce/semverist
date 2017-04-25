@@ -328,9 +328,9 @@ The Semverist will inspect your directories/objects & tell you about them with P
 Lazy Semver allows you to create schema items once and inherit them until they change mirroring API versioning best practices. The lazy semver configuration option allows you to inherit properties up through a major version overriding and overwriting with defaults, groups, and redeclarations. This can be very useful for setting attributes once per major version of semver and lowering maintenance tasks and copy/paste type errors.
 ## License
 
-MIT @ [David Diers](http://github.com/thebruce)
+MIT @ [David Diers](http://daviddiers.com)
 ## Contributors
 
-[![David Diers](https://avatars.githubusercontent.com/u/590058?s=130)](http://github.com/thebruce)
----
-[David Diers](http://github.com/thebruce)
+[![David Diers](https://avatars.githubusercontent.com/u/590058?s=130)](http://daviddiers.com) | [![Elliott Foster](https://avatars.githubusercontent.com/u/447151?s=130)](http://codebrews.com) | [![Flip](https://avatars.githubusercontent.com/u/1306968?s=130)](http://github.com/flipactual)
+--- | --- | --- | ---
+[David Diers](http://daviddiers.com) | [Elliott Foster](http://codebrews.com) | [Flip](http://github.com/flipactual)

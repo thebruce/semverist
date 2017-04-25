@@ -22,9 +22,26 @@
   ],
   "author": {
     "name": "David Diers",
-    "url": "http://github.com/thebruce",
-    "id": 590058
-},
+    "id": 590058,
+    "url": "http://daviddiers.com"
+  },
+  "contributors": [
+    {
+      "name": "David Diers",
+      "id": 590058,
+      "url": "http://daviddiers.com"
+    },
+    {
+      "name": "Elliott Foster",
+      "id": 447151,
+      "url": "http://codebrews.com"
+    },
+    {
+      "name": "Flip",
+      "url": "http://github.com/flipactual",
+      "id": 1306968
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/thebruce/semverist/issues"
