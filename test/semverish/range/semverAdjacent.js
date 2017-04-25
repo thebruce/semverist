@@ -92,7 +92,7 @@ test('Semverish2ParentToChild', async (t) => {
   );
 });
 
-test('Semverish4ParentToChild', async (t) => {
+test.only('Semverish4ParentToChild', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const rangeClass = new RangeClass();
@@ -106,6 +106,22 @@ test('Semverish4ParentToChild', async (t) => {
     'A child path of a parent should return as a child when semverish values are compared.'
   );
 });
+
+test.only('Semverish76ParentToChild', async (t) => {
+  t.context.data = await rangeFactory('semverist', 'range')
+  .then((RangeClass) => {
+    const rangeClass = new RangeClass();
+    rangeClass.init();
+    rangeClass.setSemveristElementType('entity');
+    rangeClass.setOptions();
+    return rangeClass.analyzeSemverishAdjacency('1.0.0-alpha.0', '1.0.0-alpha.1');
+  });
+  t.false(
+    t.context.data.child,
+    'A child path of a parent should return as a child when semverish values are compared.'
+  );
+});
+
 
 test('Semverish5ParentToChild', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
