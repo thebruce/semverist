@@ -123,7 +123,7 @@ test('testSemveristAssembleForViolin', async (t) => {
   );
 });
 
-test('coverterRangeTests', async (t) => {
+test('converterRangeTests', async (t) => {
   t.context.data = await converterFactory('semverist', 'directoryConverter')
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
@@ -139,7 +139,7 @@ test('coverterRangeTests', async (t) => {
     Object.keys(t.context.data.group.winds),
     [
       '>=1.0.0 <2.0.0',
-      '>=2.0.0-alpha.1 <2.0.0',
+      '>=2.0.0-alpha.1 <2.0.0-beta.0',
       '>=2.0.0 <3.0.0'
     ],
     'The converter objects winds group should be keyed by its valid ranges.'

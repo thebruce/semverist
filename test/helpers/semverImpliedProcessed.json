@@ -60,16 +60,16 @@
             "semveristElementType": "attribute",
             "terminalBounds": "<3.0.0"
           },
-          ">=2.0.0-alpha.1 <2.0.0": {
+          ">=2.0.0-alpha.1 <2.0.0-beta.0": {
             "adjustedExceptions": [],
             "exceptionRange": null,
             "exceptions": [],
             "lowerBounds": "2.0.0-alpha.1",
-            "range": ">=2.0.0-alpha.1 <2.0.0",
+            "range": ">=2.0.0-alpha.1 <2.0.0-beta.0",
             "semverishValue": "2.0.0-alpha.1",
             "semveristElement": "clarinet",
             "semveristElementType": "attribute",
-            "terminalBounds": "<2.0.0"
+            "terminalBounds": "<2.0.0-beta.0"
           }
         },
         "flute": {
@@ -139,6 +139,32 @@
             "terminalBounds": "<3.0.0"
           }
         },
+      "harp": {
+           ">=2.0.0-alpha.0 <2.0.0-alpha.1": {
+             "adjustedExceptions": [],
+             "exceptionRange": null,
+             "exceptions": [],
+             "lowerBounds": "2.0.0-alpha.0",
+             "range": ">=2.0.0-alpha.0 <2.0.0-alpha.1",
+             "semverishValue": "2.0.0-alpha.0",
+             "semveristElement": "harp",
+             "semveristElementType": "attribute",
+             "terminalBounds": "<2.0.0-alpha.1"
+           }
+         },
+         "saxophone":{
+           ">=2.0.0-alpha <2.0.0-beta.0": {
+             "adjustedExceptions": [],
+             "exceptionRange": null,
+             "exceptions": [],
+             "lowerBounds": "2.0.0-alpha",
+             "range": ">=2.0.0-alpha <2.0.0-beta.0",
+             "semverishValue": "2.0.0-alpha",
+             "semveristElement": "saxophone",
+             "semveristElementType": "attribute",
+             "terminalBounds": "<2.0.0-beta.0"
+           }
+         },
         "trombone": {
           ">=2.0.0 <3.0.0": {
             "adjustedExceptions": [],
@@ -239,16 +265,16 @@
             "semveristElementType": "attribute",
             "terminalBounds": "<3.0.0"
           },
-          ">=2.0.0-alpha.0 <2.0.0": {
+          ">=2.0.0-alpha.0 <2.0.0-alpha.1": {
             "adjustedExceptions": [],
             "exceptionRange": null,
             "exceptions": [],
             "lowerBounds": "2.0.0-alpha.0",
-            "range": ">=2.0.0-alpha.0 <2.0.0",
+            "range": ">=2.0.0-alpha.0 <2.0.0-alpha.1",
             "semverishValue": "2.0.0-alpha.0",
             "semveristElement": "viola",
             "semveristElementType": "attribute",
-            "terminalBounds": "<2.0.0"
+            "terminalBounds": "<2.0.0-alpha.1"
           }
         },
         "violin": {
@@ -415,16 +441,16 @@
             "semveristElementType": "group",
             "terminalBounds": "<3.0.0"
           },
-          ">=2.0.0-alpha.1 <2.0.0": {
+          ">=2.0.0-alpha.1 <2.0.0-beta.0": {
             "adjustedExceptions": [],
             "exceptionRange": null,
             "exceptions": [],
             "lowerBounds": "2.0.0-alpha.1",
-            "range": ">=2.0.0-alpha.1 <2.0.0",
+            "range": ">=2.0.0-alpha.1 <2.0.0-beta.0",
             "semverishValue": "2.0.0-alpha.1",
             "semveristElement": "winds",
             "semveristElementType": "group",
-            "terminalBounds": "<2.0.0"
+            "terminalBounds": "<2.0.0-beta.0"
           }
         }
       },

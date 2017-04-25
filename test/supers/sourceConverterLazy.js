@@ -82,7 +82,7 @@ test('testSemveristAssembleForViolin', async (t) => {
   );
 });
 
-test('coverterRangeTests', async (t) => {
+test('converterRangeTests', async (t) => {
   t.context.data = await converterFactory('semverist', 'converter')
   .then((ConverterClass) => {
     const converterClass = new ConverterClass();
