@@ -92,7 +92,7 @@ test('Semverish2ParentToChild', async (t) => {
   );
 });
 
-test.only('Semverish4ParentToChild', async (t) => {
+test('Semverish4ParentToChild', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const rangeClass = new RangeClass();
@@ -107,7 +107,7 @@ test.only('Semverish4ParentToChild', async (t) => {
   );
 });
 
-test.only('Semverish76ParentToChild', async (t) => {
+test('Semverish76ParentToChild', async (t) => {
   t.context.data = await rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const rangeClass = new RangeClass();
