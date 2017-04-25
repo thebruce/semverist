@@ -125,6 +125,32 @@
         "terminalBounds": "2.0.1"
       }
     },
+    "harp": {
+      "2.0.0-alpha.0": {
+        "adjustedExceptions": [],
+        "exceptionRange": null,
+        "exceptions": [],
+        "lowerBounds": "2.0.0-alpha.0",
+        "range": "2.0.0-alpha.0",
+        "semverishValue": "2.0.0-alpha.0",
+        "semveristElement": "harp",
+        "semveristElementType": "attribute",
+        "terminalBounds": "<2.0.0"
+      }
+    },
+    "saxophone": {
+      "2.0.0-alpha.0": {
+        "adjustedExceptions": [],
+        "exceptionRange": null,
+        "exceptions": [],
+        "lowerBounds": "2.0.0-alpha",
+        "range": "2.0.0-alpha.0",
+        "semverishValue": "2.0.0-alpha",
+        "semveristElement": "saxophone",
+        "semveristElementType": "attribute",
+        "terminalBounds": "<2.0.0"
+      }
+    },
     "trombone": {
       "2.0.0": {
         "adjustedExceptions": [],
@@ -137,12 +163,12 @@
         "semveristElementType": "attribute",
         "terminalBounds": "<3.0.0"
       },
-      "2.0.0-beta": {
+      "2.0.0-beta.0": {
         "adjustedExceptions": [],
         "exceptionRange": null,
         "exceptions": [],
         "lowerBounds": "2.0.0-beta",
-        "range": "2.0.0-beta",
+        "range": "2.0.0-beta.0",
         "semverishValue": "2.0.0-beta",
         "semveristElement": "trombone",
         "semveristElementType": "attribute",

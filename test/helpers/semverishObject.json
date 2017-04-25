@@ -140,17 +140,25 @@
 					"viola": {
 			      "fromViola": "this is from 2.0.0-alpha.0",
 		        "toItem": "viola"
+					},
+					"harp": {
+						"fromHarp": "this is only 2.0.0-alpha.0",
+						"toItem": "harp"
 					}
 				},
 				"1": {
 					"winds": {
-			      "fromWinds": "this is from 2.0.1-alpha",
+			      "fromWinds": "this is from 2.0.0-alpha.1",
 			      "toItem": "winds"
 					},
 					"clarinet": {
-			      "fromClarinet": "this is from 2.0.1-alpha",
+			      "fromClarinet": "this is from 2.0.0-alpha.1",
 			      "toItem": "clarinet"
 					}
+				},
+				"saxophone": {
+					"fromSaxophone": "this is from 2.0.0-alpha",
+					"toItem": "saxophone"
 				}
 			},
 			"0-beta": {

@@ -8,7 +8,7 @@
     "test": "nyc ava && nyc report --reporter=html  --reporter=lcov",
     "precommit": "npm run lint",
     "prepush": "npm test",
-    "coverage": "nyc check-coverage --statements 100 --lines 100 --branches 100 --functions 100",
+    "coverage": "nyc check-coverage --statements 97 --lines 97 --branches 97 --functions 97",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "documentation": "documentation build lib/** -f html -o docs"
@@ -34,7 +34,7 @@
     "callsite": "^1.0.0",
     "config": "^1.25.1",
     "fs-extra": "^2.1.2",
-    "klaw-sync": "^1.1.2",
+    "klaw-sync": "1.1.2",
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",
     "molotov": "0.0.1",

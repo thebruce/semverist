@@ -33,12 +33,6 @@
         "2.0.0-alpha.1.clarinet"
       ]
     },
-    "2.0.0-beta.0": {
-      "components": [
-        "2.0.0-alpha.1.winds",
-        "2.0.0-alpha.1.clarinet"
-      ]
-    },
     "2.0.1": {
       "components": [
         "2.winds",
@@ -66,6 +60,27 @@
       "components": [
         "2.winds",
         "2.0.1.flute"
+      ]
+    },
+    "items": {}
+  },
+  "harp": {
+    "2.0.0-alpha.0": {
+      "components": [
+        "2.0.0-alpha.0.harp"
+      ]
+    },
+    "items": {}
+  },
+  "saxophone": {
+    "2.0.0-alpha.0": {
+      "components": [
+        "2.0.0-alpha.saxophone"
+      ]
+    },
+    "2.0.0-alpha.1": {
+      "components": [
+        "2.0.0-alpha.saxophone"
       ]
     },
     "items": {}
@@ -141,16 +156,6 @@
       ]
     },
     "2.0.0-alpha.0": {
-      "components": [
-        "2.0.0-alpha.0.viola"
-      ]
-    },
-    "2.0.0-alpha.1": {
-      "components": [
-        "2.0.0-alpha.0.viola"
-      ]
-    },
-    "2.0.0-beta.0": {
       "components": [
         "2.0.0-alpha.0.viola"
       ]
