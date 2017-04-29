@@ -165,6 +165,26 @@ test('Processed complete test', async (t) => {
   );
 });
 
+test('Get source extensions', async (t) => {
+  t.context.data = await converterFactory('semverist', 'directoryConverter')
+  .then((ConverterClass) => {
+    const converterClass = new ConverterClass();
+    converterClass.init(path.join(
+      __dirname,
+      '../../',
+      'test/helpers/semverishObject'),
+    semverConfig);
+    return Promise.all([converterClass.createConverter(), converterClass]);
+  })
+  .then(components => components[1].getOriginalExtensions());
+
+  t.deepEqual(
+    t.context.data['1']['0']['0'].violin,
+    '.json',
+    'The converter object should be a complete match to the processed converter example..'
+  );
+});
+
 test('getTraceIndex', async (t) => {
   t.context.data = await converterFactory('semverist', 'directoryConverter')
   .then((ConverterClass) => {
