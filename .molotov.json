@@ -38,6 +38,14 @@
           "sortRangeArray",
           "semverAdjacent",
           "semverishLevel"
+        ],
+        "jsonConverter": [
+          "directoryToSemverishObject",
+          "jsonDirectoryToSemverishObject",
+          "parseSemverUtils",
+          "sortRangeArray",
+          "semverAdjacent",
+          "semverishLevel"
         ]
       },
       "manifest": {
