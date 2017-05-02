@@ -32,4 +32,5 @@ semverist: # Name spaced to semverist module.
     destination: a path for directory composers and a path modifier (if desired) for
       default
     priority: default
-
+    utilizeExtantExtensions: true # Uses the original extension of a file for a composition if we have both a directory converter and a directory composer.
+    defaultExtension: '.json' # Used by a directory composer as an extension default if none is provided, will work against the extant extensions.

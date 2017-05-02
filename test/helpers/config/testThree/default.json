@@ -34,6 +34,10 @@
       },
       "directoryFileIgnorePattern": ".* ,*.!{json}",
       "converterType": "default",
+      "converter": {
+        "converterType": "directory",
+        "encoding": "utf-8"
+      },
       "composer": {
         "composerType": "default",
         "destination": null,

@@ -14,6 +14,11 @@
       },
       "groups": {},
       "prereleaseOrdering": {},
+      "converterType": "default",
+      "converter": {
+        "converterType": "default",
+        "encoding": "utf-8"
+      },
       "composer": {
         "composerType": "default",
         "destination": null,
@@ -34,6 +39,11 @@
       },
       "groups": {},
       "prereleaseOrdering": {},
+      "converterType": "default",
+      "converter": {
+        "converterType": "default",
+        "encoding": "utf-8"
+      },
       "composer": {
         "composerType": "default",
         "destination": null,
@@ -54,6 +64,11 @@
       },
       "groups": {},
       "prereleaseOrdering": {},
+      "converterType": "default",
+      "converter": {
+        "converterType": "default",
+        "encoding": "utf-8"
+      },
       "composer": {
         "composerType": "default",
         "destination": null,
@@ -74,6 +89,11 @@
       },
       "groups": {},
       "prereleaseOrdering": {},
+      "converterType": "default",
+      "converter": {
+        "converterType": "default",
+        "encoding": "utf-8"
+      },
       "composer": {
         "composerType": "default",
         "destination": null,
@@ -94,6 +114,11 @@
       },
       "groups": {},
       "prereleaseOrdering": {},
+      "converterType": "default",
+      "converter": {
+        "converterType": "default",
+        "encoding": "utf-8"
+      },
       "composer": {
         "composerType": "default",
         "destination": null,
@@ -114,6 +139,11 @@
       },
       "groups": {},
       "prereleaseOrdering": {},
+      "converterType": "default",
+      "converter": {
+        "converterType": "default",
+        "encoding": "utf-8"
+      },
       "composer": {
         "composerType": "default",
         "destination": null,
@@ -154,6 +184,10 @@
       },
       "directoryFileIgnorePattern": ".* ,*.!{json}",
       "converterType": "default",
+      "converter": {
+        "converterType": "default",
+        "encoding": "utf-8"
+      },
       "composer": {
         "composerType": "default",
         "destination": null,
@@ -193,11 +227,16 @@
         }
       },
       "directoryFileIgnorePattern": ".* ,*.!{json}",
-      "converterType": "directory",
+      "converterType": "json",
+      "converter": {
+        "converterType": "json"
+      },
       "composer": {
-        "composerType": "directory",
+        "composerType": "json",
         "destination": "/tmp/semverist",
-        "priority": "default"
+        "priority": "default",
+        "utilizeExtantExtensions": false,
+        "defaultExtension": null
       }
     },
     "semverImpliedOrchestraDirectoryBroken": {
@@ -233,7 +272,10 @@
         }
       },
       "directoryFileIgnorePattern": ".* ,*.!{json}",
-      "converterType": "directory",
+      "converterType": "json",
+      "converter": {
+        "converterType": "json"
+      },
       "composer": {
         "composerType": "directory",
         "destination": null,
@@ -274,6 +316,10 @@
       },
       "directoryFileIgnorePattern": ".* ,*.!{json}",
       "converterType": "default",
+      "converter": {
+        "converterType": "default",
+        "encoding": "utf-8"
+      },
       "composer": {
         "composerType": "default",
         "destination": null,
@@ -314,6 +360,10 @@
       },
       "directoryFileIgnorePattern": ".* ,*.!{json}",
       "converterType": "default",
+      "converter": {
+        "converterType": "default",
+        "encoding": "utf-8"
+      },
       "composer": {
         "composerType": "default",
         "destination": null,
@@ -354,6 +404,10 @@
       },
       "directoryFileIgnorePattern": ".* ,*.!{json}",
       "converterType": "default",
+      "converter": {
+        "converterType": "default",
+        "encoding": "utf-8"
+      },
       "composer": {
         "composerType": "default",
         "destination": null,
@@ -393,11 +447,68 @@
         }
       },
       "directoryFileIgnorePattern": ".* ,*.!{json}",
-      "converterType": "directory",
+      "converterType": "json",
+      "converter": {
+        "converterType": "json"
+      },
       "composer": {
         "composerType": "default",
         "destination": null,
         "priority": "default"
+      }
+    },
+    "semverImpliedAvengersExtant": {
+      "semveristBehaviors": {
+        "inheritence": "semverImplied",
+        "lazySemverist": {
+          "preReleaseForwards": false,
+          "attributes": true
+        },
+        "default": false,
+        "defaultName": "default",
+        "groups": false,
+        "mergeStrategy": "merge"
+      },
+      "groups": {},
+      "directoryFileIgnorePattern": ".* ,*.!{txt}",
+      "converterType": "directory",
+      "converter": {
+        "converterType": "directory",
+        "encoding": "utf-8"
+      },
+      "composer": {
+        "composerType": "directory",
+        "destination": "/tmp/semverist",
+        "priority": "default",
+        "utilizeExtantExtensions": true,
+        "defaultExtension": null
+      }
+    },
+    "semverImpliedAvengersDefaultExtant": {
+      "semveristBehaviors": {
+        "inheritence": "semverImplied",
+        "lazySemverist": {
+          "preReleaseForwards": false,
+          "attributes": true
+        },
+        "default": true,
+        "defaultName": "default",
+        "groups": true,
+        "mergeStrategy": "merge"
+      },
+      "groups": {},
+      "directoryFileIgnorePattern": ".* ,*.!{txt}",
+      "converterType": "directory",
+      "converter": {
+        "converterType": "directory",
+        "encoding": "utf-8"
+      },
+      "composer": {
+        "composerType": "directory",
+        "destination": "/tmp/semverist",
+        "priority": "default",
+        "utilizeExtantExtensions": true,
+        "defaultExtension": ""
       }
     }
   }

@@ -156,8 +156,12 @@
           ]
         }
       },
-      "directoryFileIgnorePattern": ".* ,*.!{json}",
-      "converterType": "directory"
+      "converterType": "directory",
+      "converter": {
+        "converterType": "directory",
+        "encoding": "utf-8"
+      },
+      "directoryFileIgnorePattern": ".* ,*.!{json}"
     }
   }
 }

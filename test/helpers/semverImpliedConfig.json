@@ -30,5 +30,10 @@
       ]
     }
   },
+  "converterType": "default",
+  "converter": {
+    "converterType": "default",
+    "encoding": "utf-8"
+  },
   "directoryFileIgnorePattern": ".* ,*.!{json}"
 }
