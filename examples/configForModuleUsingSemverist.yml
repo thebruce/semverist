@@ -24,7 +24,7 @@ semverist: # Name spaced to semverist module.
         - ni
         - alpha
         - doNotUseEver
-  directoryFileIgnorePattern: ".* ,*.!{json}"
+  directoryFileIgnorePattern: "json$"
   converterType: default # can be default (for objects), config, (shorthand for objects in config) or directory
   semverishObjectLocation: a path in an object, config or directory path
   composer:

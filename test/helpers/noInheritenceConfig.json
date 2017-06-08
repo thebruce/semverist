@@ -30,5 +30,5 @@
       ]
     }
   },
-  "directoryFileIgnorePattern": ".* ,*.!{json}"
+  "directoryFileIgnorePattern": "json$"
 }

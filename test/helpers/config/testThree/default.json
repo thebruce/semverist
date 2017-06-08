@@ -32,7 +32,7 @@
           ]
         }
       },
-      "directoryFileIgnorePattern": ".* ,*.!{json}",
+      "directoryFileIgnorePattern": "json$",
       "converterType": "default",
       "composer": {
         "composerType": "default",
