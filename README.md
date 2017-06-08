@@ -68,7 +68,7 @@ We will be using the following configuration for our script:
           ]
         }
       },
-      "directoryFileIgnorePattern": ".* ,*.!{json}",
+      "directoryFileIgnorePattern": "json$",
       "converterType": "default",
       "composer": {
         "composerType": "default",
