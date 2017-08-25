@@ -45,19 +45,19 @@
     "version-comparison": "^2.1.1"
   },
   "devDependencies": {
-    "ava": "^0.19.1",
+    "ava": "^0.22.0",
     "coveralls": "^2.11.16",
     "emdaer": "^0.3.3",
-    "documentation": "^4.0.0-beta.19",
+    "documentation": "^5.0.0",
     "eslint": "^4.5.0",
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-find-rules": "^1.13.0",
     "eslint-plugin-ava": "^4.2.0",
     "eslint-plugin-import": "^2.0.1",
-    "husky": "^0.13.1",
+    "husky": "^0.14.3",
     "npm-run-all": "^4.0.1",
     "nyc": "^11.0.2",
-    "semantic-release": "^6.3.2",
+    "semantic-release": "^7.0.1",
     "temp": "^0.8.3"
   }
 }
