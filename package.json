@@ -8,7 +8,7 @@
     "test": "nyc ava && nyc report --reporter=html  --reporter=lcov",
     "precommit": "npm run lint",
     "prepush": "npm test",
-    "coverage": "nyc check-coverage --statements 97 --lines 97 --branches 97 --functions 97",
+    "coverage": "nyc check-coverage --statements 95 --lines 95 --branches 95 --functions 95",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "documentation": "documentation build lib/** -f html -o docs"
