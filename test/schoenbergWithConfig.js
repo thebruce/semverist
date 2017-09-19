@@ -19,7 +19,7 @@ const processedComposition = require('./helpers/processedComposition');
 test('Schoenberg.', async (t) => {
   t.context.data = await schoenberg(
     semverishObject,
-    null,
+    config.semverist,
     'semverImpliedOrchestraObject')
   .then((composer) => {
     composer.assembleManifest();
