@@ -37,7 +37,7 @@
     "klaw-sync": "3.0.0",
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",
-    "molotov": "0.0.3",
+    "molotov": "1.1.0",
     "require-directory": "^2.1.1",
     "semver": "^5.3.0",
     "semver-diff": "^2.1.0",
