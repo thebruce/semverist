@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "nyc ava && nyc report --reporter=html  --reporter=lcov",
+    "test": "jest --coverage",
     "precommit": "npm run lint",
     "prepush": "npm test",
     "coverage": "nyc check-coverage --statements 95 --lines 95 --branches 95 --functions 95",
@@ -14,8 +14,7 @@
     "debug-test": "node --inspect --debug-brk ./node_modules/.bin/jest --runInBand --env jest-environment-node-debug",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "documentation": "documentation build lib/** -f html -o docs",
-    "testjest": "jest --coverage",
-    "testjest-ci": "jest --coverage --runInBand"
+    "test-ci": "jest --coverage --runInBand"
   },
   "repository": {
     "type": "git",
