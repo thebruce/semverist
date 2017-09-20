@@ -1,33 +1,54 @@
+'use strict';
+
 const rangeFactory = require('../../../lib/semverish/range');
+let tmpMocks = [];
+let ranger;
 
-test('terminalBounds', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const rangeClass = new RangeClass();
-    rangeClass.setLowerBounds('0.0.1');
-    rangeClass.setTerminalBounds('0.0.9');
-    return rangeClass.getTerminalBounds();
+describe('Range tests', () => {
+  beforeEach(() => {
+    ranger = rangeFactory('semverist', 'range');
+    tmpMocks.forEach(mock => mock.mockRestore());
+    tmpMocks = [];
+    jest.resetAllMocks();
+    jest.spyOn(Date, 'now').mockReturnValue(2000);
   });
-  expect(t.context.data).toEqual('0.0.9');
-});
 
-test('terminalBoundsRange', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const rangeClass = new RangeClass();
-    rangeClass.setLowerBounds('0.0.1');
-    rangeClass.setTerminalBounds('<0.0.9');
-    return rangeClass.getTerminalBounds();
+  afterAll(() => {
+    jest.restoreAllMocks();
   });
-  expect(t.context.data).toEqual('<0.0.9');
-});
+
+  test('terminalBounds', () => {
+    expect(ranger
+      .then((RangeClass) => {
+        const rangeClass = new RangeClass();
+        rangeClass.setLowerBounds('0.0.1');
+        rangeClass.setTerminalBounds('0.0.9');
+        return rangeClass.getTerminalBounds();
+      })
+    ).resolves.toEqual('0.0.9');
+  });
+
+  test('terminalBoundsRange', () => {
+    expect(ranger
+      .then((RangeClass) => {
+        const rangeClass = new RangeClass();
+        rangeClass.setLowerBounds('0.0.1');
+        rangeClass.setTerminalBounds('<0.0.9');
+        return rangeClass.getTerminalBounds();
+      })
+    ).resolves.toEqual('<0.0.9');
+  });
 
 
-test('terminalBoundsInvalidRange', async () => {
-  await expect(rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const rangeClass = new RangeClass();
-    rangeClass.setLowerBounds('0.0.1');
-    rangeClass.setTerminalBounds('1.R');
-  })).toThrow();
+  test('terminalBoundsInvalidRange', () => {
+    ranger
+      .then((RangeClass) => {
+        const rangeClass = new RangeClass();
+        rangeClass.setLowerBounds('0.0.1');
+        rangeClass.setTerminalBounds('1.R');
+      })
+      .catch((e) => {
+        expect(e.message).toEqual('The passed range is not a valid semver range.');
+      });
+  });
 });

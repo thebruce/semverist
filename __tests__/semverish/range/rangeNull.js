@@ -1,3 +1,5 @@
+'use strict';
+
 const rangeFactory = require('../../../lib/semverish/range');
 
 const tmpConfig = {
@@ -17,8 +19,8 @@ const tmpConfig = {
   prereleaseOrdering: {}
 };
 
-test('setSemveristRangeNull', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
+test('setSemveristRangeNull', () => {
+  expect(rangeFactory('semverist', 'range')
   .then((RangeClass) => {
     const range = new RangeClass();
     range.init(tmpConfig);
@@ -35,8 +37,8 @@ test('setSemveristRangeNull', async () => {
     range.setTerminalBounds('<2.0.0');
     range.setSemveristRange();
     return range.getSemveristRange();
-  });
-  expect(t.context.data).toEqual({
+  }))
+  .resolves.toEqual({
     adjustedExceptions: [],
     lowerBounds: '1.0.0',
     semveristElement: 'entity',

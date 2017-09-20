@@ -1,73 +1,76 @@
+'use strict';
+
 const semverishFactory = require('../../lib/semverish/semverish');
 
-test('extractSemveristElementFromPath', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('4.0.0.entity');
-    return semverishSuper.extractSemveristElementFromPath('4.0.0.entity');
+let tmpMocks = [];
+let semverah;
+
+describe('Range tests', () => {
+  beforeEach(() => {
+    semverah = semverishFactory('semverist', 'semverish')
+      .then(SemverishSuperClass => new SemverishSuperClass());;
+    tmpMocks.forEach(mock => mock.mockRestore());
+    tmpMocks = [];
+    jest.resetAllMocks();
+    jest.spyOn(Date, 'now').mockReturnValue(2000);
   });
-  expect(t.context.data).toEqual('entity');
-});
 
-test('extractSemveristElementBadPath', async () => {
-  await expect(semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('.0.0.entity');
-    semverishSuper.extractSemveristElementFromPath('.0.0.entity');
-  })).toThrowError(String.prototype.concat(
-    'The semverish value must be able to be converted to a semver value. ',
-    'The semverish value must have atleast a major portion.'
-  ));
-});
-
-test('extractSemveristElementBadPath2', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('1.0.0.');
-    return semverishSuper.extractSemveristElementFromPath('1.0.0.');
+  afterAll(() => {
+    jest.restoreAllMocks();
   });
-  expect(t.context.data).toEqual('');
-});
-
-test('extractSemveristElementDeepPath', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('1.0.0.entity.property');
-    return semverishSuper.extractSemveristElementFromPath('1.0.0.entity.property');
+  test('extractSemveristElementFromPath', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('4.0.0.entity');
+      return semverishSuper.extractSemveristElementFromPath('4.0.0.entity');
+    })).resolves.toEqual('entity');
   });
-  expect(t.context.data).toEqual('entity.property');
-});
 
-test('extractSemveristElementDeepPathAlpha', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('1.0.0-deathstar.entity.property');
-    return semverishSuper.extractSemveristElementFromPath(
-      '1.0.0-deathstar.entity.property'
-    );
+  test('extractSemveristElementBadPath', () => {
+    semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('.0.0.entity');
+      semverishSuper.extractSemveristElementFromPath('.0.0.entity');
+    })
+    .catch((e) => {
+      expect(e.message).toEqual('The semverish value must be able to be converted to a semver value. The semverish value must have atleast a major portion.');
+    });
   });
-  expect(t.context.data).toEqual('entity.property');
-});
 
-test('extractSemveristElementDeepPathAlpha0', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('1.0.0-deathstar.0.entity');
-    return semverishSuper.extractSemveristElementFromPath('1.0.0-deathstar.0.entity');
+  test('extractSemveristElementBadPath2', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('1.0.0.');
+      return semverishSuper.extractSemveristElementFromPath('1.0.0.');
+    })).resolves.toEqual('');
   });
-  expect(t.context.data).toEqual('entity');
-});
 
-test('extractSemveristElementNoSemverish', async () => {
-  await expect(semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.extractSemveristElementFromPath('1.0.0.entity');
-  })).toThrowError('You must have a semverish value set before extracting an element');
+  test('extractSemveristElementDeepPath', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('1.0.0.entity.property');
+      return semverishSuper.extractSemveristElementFromPath('1.0.0.entity.property');
+    })).resolves.toEqual('entity.property');
+  });
+
+  test('extractSemveristElementDeepPathAlpha', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('1.0.0-deathstar.entity.property');
+      return semverishSuper.extractSemveristElementFromPath(
+        '1.0.0-deathstar.entity.property'
+      );
+    })).resolves.toEqual('entity.property');
+  });
+
+  test('extractSemveristElementDeepPathAlpha0', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('1.0.0-deathstar.0.entity');
+      return semverishSuper.extractSemveristElementFromPath('1.0.0-deathstar.0.entity');
+    })).resolves.toEqual('entity');
+  });
+
+  test('extractSemveristElementNoSemverish', () => {
+    semverah.then((semverishSuper) => {
+      semverishSuper.extractSemveristElementFromPath('1.0.0.entity');
+    })
+    .catch((e) => {
+      expect(e.message).toEqual('You must have a semverish value set before extracting an element');
+    });
+  });
 });

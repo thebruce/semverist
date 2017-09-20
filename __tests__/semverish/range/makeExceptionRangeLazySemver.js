@@ -17,9 +17,24 @@ const lazySemverConfig = {
   prereleaseOrdering: {}
 };
 
-test('lazySemver', async () => {
-  t.context.data = [];
-  t.context.data.push(await rangeFactory('semverist', 'range')
+let tmpMocks = [];
+let ranger;
+
+beforeEach(() => {
+  ranger = rangeFactory('semverist', 'range');
+  tmpMocks.forEach(mock => mock.mockRestore());
+  tmpMocks = [];
+  jest.resetAllMocks();
+  jest.spyOn(Date, 'now').mockReturnValue(2000);
+});
+
+afterAll(() => {
+  jest.restoreAllMocks();
+});
+
+test('lazySemver', () => {
+  const thing = [];
+  thing.push(ranger
   .then((RangeClass) => {
     const range = new RangeClass();
     range.init(lazySemverConfig);
@@ -34,5 +49,5 @@ test('lazySemver', async () => {
     range.addException('1.7');
     return range.makeExceptionRange();
   }));
-  expect(t.context.data[0]).toEqual('<1.7.0');
+  expect(thing[0]).resolves.toEqual('<1.7.0');
 });

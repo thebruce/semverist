@@ -1,122 +1,107 @@
+'use strict';
+
 const semverishFactory = require('../../lib/semverish/semverish');
+let tmpMocks = [];
+let semverah;
 
-test('semverishLevelBuildWithEntity', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('4.0.0-alpha.0+build124.entity');
-    semverishSuper.setSemverishLevel();
-    return semverishSuper.getSemverishLevel();
+describe('Range tests', () => {
+  beforeEach(() => {
+    semverah = semverishFactory('semverist', 'semverish')
+      .then(SemverishSuperClass => new SemverishSuperClass());
+    tmpMocks.forEach(mock => mock.mockRestore());
+    tmpMocks = [];
+    jest.resetAllMocks();
+    jest.spyOn(Date, 'now').mockReturnValue(2000);
   });
-  expect(t.context.data).toEqual('build');
-});
 
-test('semverishLevelBuildNoEntity', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('4.0.0-alpha.0+build124');
-    semverishSuper.setSemverishLevel();
-    return semverishSuper.getSemverishLevel();
+  afterAll(() => {
+    jest.restoreAllMocks();
   });
-  expect(t.context.data).toEqual('build');
-});
+  test('semverishLevelBuildWithEntity', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('4.0.0-alpha.0+build124.entity');
+      semverishSuper.setSemverishLevel();
+      return semverishSuper.getSemverishLevel();
+    })).resolves.toEqual('build');
+  });
 
-test('semverishLevelPrerelease0WithEntity', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('4.0.0-alpha.0.entity');
-    semverishSuper.setSemverishLevel();
-    return semverishSuper.getSemverishLevel();
+  test('semverishLevelBuildNoEntity', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('4.0.0-alpha.0+build124');
+      semverishSuper.setSemverishLevel();
+      return semverishSuper.getSemverishLevel();
+    })).resolves.toEqual('build');
   });
-  expect(t.context.data).toEqual('prerelease');
-});
 
-test('semverishLevelPrereleaseWithEntity', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('4.0.0-alpha.entity');
-    semverishSuper.setSemverishLevel();
-    return semverishSuper.getSemverishLevel();
+  test('semverishLevelPrerelease0WithEntity', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('4.0.0-alpha.0.entity');
+      semverishSuper.setSemverishLevel();
+      return semverishSuper.getSemverishLevel();
+    })).resolves.toEqual('prerelease');
   });
-  expect(t.context.data).toEqual('prerelease');
-});
 
-test('semverishLevelPrereleaseNoEntity', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('4.0.0-alpha');
-    semverishSuper.setSemverishLevel();
-    return semverishSuper.getSemverishLevel();
+  test('semverishLevelPrereleaseWithEntity', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('4.0.0-alpha.entity');
+      semverishSuper.setSemverishLevel();
+      return semverishSuper.getSemverishLevel();
+    })).resolves.toEqual('prerelease');
   });
-  expect(t.context.data).toEqual('prerelease');
-});
 
-test('semverishLevelPatchWithEntity', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('4.0.0.entity');
-    semverishSuper.setSemverishLevel();
-    return semverishSuper.getSemverishLevel();
+  test('semverishLevelPrereleaseNoEntity', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('4.0.0-alpha');
+      semverishSuper.setSemverishLevel();
+      return semverishSuper.getSemverishLevel();
+    })).resolves.toEqual('prerelease');
   });
-  expect(t.context.data).toEqual('patch');
-});
 
-test('semverishLevelPatchNoEntity', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('4.0.0');
-    semverishSuper.setSemverishLevel();
-    return semverishSuper.getSemverishLevel();
+  test('semverishLevelPatchWithEntity', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('4.0.0.entity');
+      semverishSuper.setSemverishLevel();
+      return semverishSuper.getSemverishLevel();
+    })).resolves.toEqual('patch');
   });
-  expect(t.context.data).toEqual('patch');
-});
 
-test('semverishLevelMinorWithEntity', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('4.0.entity');
-    semverishSuper.setSemverishLevel();
-    return semverishSuper.getSemverishLevel();
+  test('semverishLevelPatchNoEntity', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('4.0.0');
+      semverishSuper.setSemverishLevel();
+      return semverishSuper.getSemverishLevel();
+    })).resolves.toEqual('patch');
   });
-  expect(t.context.data).toEqual('minor');
-});
 
-test('semverishLevelMinorNoEntity', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('4.0');
-    semverishSuper.setSemverishLevel();
-    return semverishSuper.getSemverishLevel();
+  test('semverishLevelMinorWithEntity', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('4.0.entity');
+      semverishSuper.setSemverishLevel();
+      return semverishSuper.getSemverishLevel();
+    })).resolves.toEqual('minor');
   });
-  expect(t.context.data).toEqual('minor');
-});
 
-test('semverishLevelMajorrWithEntity', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('4.entity');
-    semverishSuper.setSemverishLevel();
-    return semverishSuper.getSemverishLevel();
+  test('semverishLevelMinorNoEntity', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('4.0');
+      semverishSuper.setSemverishLevel();
+      return semverishSuper.getSemverishLevel();
+    })).resolves.toEqual('minor');
   });
-  expect(t.context.data).toEqual('major');
-});
 
-test('semverishLevelMajorNoEntity', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemverish('4');
-    semverishSuper.setSemverishLevel();
-    return semverishSuper.getSemverishLevel();
+  test('semverishLevelMajorrWithEntity', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('4.entity');
+      semverishSuper.setSemverishLevel();
+      return semverishSuper.getSemverishLevel();
+    })).resolves.toEqual('major');
   });
-  expect(t.context.data).toEqual('major');
+
+  test('semverishLevelMajorNoEntity', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemverish('4');
+      semverishSuper.setSemverishLevel();
+      return semverishSuper.getSemverishLevel();
+    })).resolves.toEqual('major');
+  });
 });

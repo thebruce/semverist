@@ -1,3 +1,5 @@
+'use strict';
+
 const rangeFactory = require('../../../lib/semverish/range');
 
 const tmpConfig = {
@@ -35,171 +37,187 @@ const lazySemverConfig = {
   prereleaseOrdering: {}
 };
 
-test('exceptionsNoValues', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    range.init(lazySemverConfig);
-    range.setLowerBounds('1.0.0');
-    range.setSemverish('1.0.0');
-    range.setSemverishArray('1.0.0');
-    range.setSemveristElementType('attribute');
-    range.setSemver('1.0.0');
-    range.setOptions();
-    range.setRange();
-    range.setExceptions();
-    return range.getExceptions();
-  });
-  expect(t.context.data).toEqual([]);
-});
+let tmpMocks = [];
+let ranger;
 
-test('exceptionOneValueLazy', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    range.init(lazySemverConfig);
-    range.setLowerBounds('1.0.0');
-    range.setSemverish('1.0.0');
-    range.setSemverishArray('1.0.0');
-    range.setSemveristElementType('attribute');
-    range.setSemver('1.0.0');
-    range.setOptions();
-    range.setRange();
-    range.setExceptions();
-    range.addException('1.1.0');
-    return range.getExceptions();
+describe('Range Exception tests', () => {
+  beforeEach(() => {
+    ranger = rangeFactory('semverist', 'range');
+    tmpMocks.forEach(mock => mock.mockRestore());
+    tmpMocks = [];
+    jest.resetAllMocks();
+    jest.spyOn(Date, 'now').mockReturnValue(2000);
   });
-  expect(t.context.data).toEqual([
-    '1.1.0'
-  ]);
-});
 
-test('exceptionOneValueSemverImplied', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    range.init(tmpConfig);
-    range.setLowerBounds('1.0.0');
-    range.setSemverish('1.0.0');
-    range.setSemverishArray('1.0.0');
-    range.setSemveristElementType('attribute');
-    range.setSemver('1.0.0');
-    range.setOptions();
-    range.setRange();
-    range.setExceptions();
-    range.addException('1.1.0');
-    return range.getExceptions();
+  afterAll(() => {
+    jest.restoreAllMocks();
   });
-  expect(t.context.data).toEqual([
-    '1.1.0'
-  ]);
-});
 
-test('exceptionOneValueLazyExisting', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    range.init(lazySemverConfig);
-    range.setLowerBounds('1.0.0');
-    range.setSemverish('1.0.0');
-    range.setSemverishArray('1.0.0');
-    range.setSemveristElementType('attribute');
-    range.setSemver('1.0.0');
-    range.setOptions();
-    range.setRange();
-    range.setExceptions();
-    range.addException('1.1.0');
-    range.addException('1.1.1');
-    return range.getExceptions();
+  test('exceptionsNoValues', () => {
+    expect(ranger
+    .then((RangeClass) => {
+      const range = new RangeClass();
+      range.init(lazySemverConfig);
+      range.setLowerBounds('1.0.0');
+      range.setSemverish('1.0.0');
+      range.setSemverishArray('1.0.0');
+      range.setSemveristElementType('attribute');
+      range.setSemver('1.0.0');
+      range.setOptions();
+      range.setRange();
+      range.setExceptions();
+      return range.getExceptions();
+    })).resolves.toEqual([]);
   });
-  expect(t.context.data).toEqual([
-    '1.1.0'
-  ]);
-});
 
-test('exceptionOneValueSmallerLazyExisting', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    range.init(lazySemverConfig);
-    range.setLowerBounds('1.0.0');
-    range.setSemverish('1.0.0');
-    range.setSemverishArray('1.0.0');
-    range.setSemveristElementType('attribute');
-    range.setSemver('1.0.0');
-    range.setOptions();
-    range.setRange();
-    range.setExceptions();
-    range.addException('1.1.0');
-    range.addException('1.0.1');
-    return range.getExceptions();
+  test('exceptionOneValueLazy', () => {
+    expect(ranger
+      .then((RangeClass) => {
+        const range = new RangeClass();
+        range.init(lazySemverConfig);
+        range.setLowerBounds('1.0.0');
+        range.setSemverish('1.0.0');
+        range.setSemverishArray('1.0.0');
+        range.setSemveristElementType('attribute');
+        range.setSemver('1.0.0');
+        range.setOptions();
+        range.setRange();
+        range.setExceptions();
+        range.addException('1.1.0');
+        return range.getExceptions();
+      }))
+      .resolves.toEqual([
+        '1.1.0'
+      ]);
   });
-  expect(t.context.data).toEqual([
-    '1.0.1'
-  ]);
-});
 
-test('semverImpliedTwoValues', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    range.init(tmpConfig);
-    range.setLowerBounds('1.0.0');
-    range.setSemverish('1.0');
-    range.setSemverishArray('1.0');
-    range.setSemveristElementType('attribute');
-    range.setSemver('1.0.0');
-    range.setOptions();
-    range.setRange();
-    range.setExceptions();
-    range.addException('1.0.1');
-    return range.getExceptions();
+  test('exceptionOneValueSemverImplied', () => {
+    expect(ranger
+      .then((RangeClass) => {
+        const range = new RangeClass();
+        range.init(tmpConfig);
+        range.setLowerBounds('1.0.0');
+        range.setSemverish('1.0.0');
+        range.setSemverishArray('1.0.0');
+        range.setSemveristElementType('attribute');
+        range.setSemver('1.0.0');
+        range.setOptions();
+        range.setRange();
+        range.setExceptions();
+        range.addException('1.1.0');
+        return range.getExceptions();
+      }))
+      .resolves.toEqual([
+        '1.1.0'
+      ]);
   });
-  expect(t.context.data).toEqual([
-    '1.0.1'
-  ]);
-});
 
-test('semverImpliedTwoValuesChildReplacedByParent', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    range.init(tmpConfig);
-    range.setLowerBounds('1.0.0');
-    range.setSemverish('1');
-    range.setSemverishArray('1');
-    range.setSemveristElementType('attribute');
-    range.setSemver('1.0.0');
-    range.setOptions();
-    range.setRange();
-    range.setExceptions();
-    range.addException('1.1.1');
-    range.addException('1.1');
-    return range.getExceptions();
+  test('exceptionOneValueLazyExisting', () => {
+    expect(ranger
+      .then((RangeClass) => {
+        const range = new RangeClass();
+        range.init(lazySemverConfig);
+        range.setLowerBounds('1.0.0');
+        range.setSemverish('1.0.0');
+        range.setSemverishArray('1.0.0');
+        range.setSemveristElementType('attribute');
+        range.setSemver('1.0.0');
+        range.setOptions();
+        range.setRange();
+        range.setExceptions();
+        range.addException('1.1.0');
+        range.addException('1.1.1');
+        return range.getExceptions();
+      }))
+      .resolves.toEqual([
+        '1.1.0'
+      ]);
   });
-  expect(t.context.data).toEqual([
-    '1.1'
-  ]);
-});
 
-test('semverImpliedTwoValuesParentNotReplacedByChild', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    range.init(tmpConfig);
-    range.setLowerBounds('1.0.0');
-    range.setSemverish('1');
-    range.setSemverishArray('1');
-    range.setSemveristElementType('attribute');
-    range.setSemver('1.0.0');
-    range.setOptions();
-    range.setRange();
-    range.setExceptions();
-    range.addException('1.1');
-    range.addException('1.1.1');
-    return range.getExceptions();
+  test('exceptionOneValueSmallerLazyExisting', () => {
+    expect(ranger
+      .then((RangeClass) => {
+        const range = new RangeClass();
+        range.init(lazySemverConfig);
+        range.setLowerBounds('1.0.0');
+        range.setSemverish('1.0.0');
+        range.setSemverishArray('1.0.0');
+        range.setSemveristElementType('attribute');
+        range.setSemver('1.0.0');
+        range.setOptions();
+        range.setRange();
+        range.setExceptions();
+        range.addException('1.1.0');
+        range.addException('1.0.1');
+        return range.getExceptions();
+      }))
+      .resolves.toEqual([
+        '1.0.1'
+      ]);
   });
-  expect(t.context.data).toEqual([
-    '1.1'
-  ]);
+
+  test('semverImpliedTwoValues', () => {
+    expect(ranger
+      .then((RangeClass) => {
+        const range = new RangeClass();
+        range.init(tmpConfig);
+        range.setLowerBounds('1.0.0');
+        range.setSemverish('1.0');
+        range.setSemverishArray('1.0');
+        range.setSemveristElementType('attribute');
+        range.setSemver('1.0.0');
+        range.setOptions();
+        range.setRange();
+        range.setExceptions();
+        range.addException('1.0.1');
+        return range.getExceptions();
+      }))
+      .resolves.toEqual([
+        '1.0.1'
+      ]);
+  });
+
+  test('semverImpliedTwoValuesChildReplacedByParent', () => {
+    expect(ranger
+      .then((RangeClass) => {
+        const range = new RangeClass();
+        range.init(tmpConfig);
+        range.setLowerBounds('1.0.0');
+        range.setSemverish('1');
+        range.setSemverishArray('1');
+        range.setSemveristElementType('attribute');
+        range.setSemver('1.0.0');
+        range.setOptions();
+        range.setRange();
+        range.setExceptions();
+        range.addException('1.1.1');
+        range.addException('1.1');
+        return range.getExceptions();
+      }))
+      .resolves.toEqual([
+        '1.1'
+      ]);
+  });
+
+  test('semverImpliedTwoValuesParentNotReplacedByChild', () => {
+    expect(ranger
+      .then((RangeClass) => {
+        const range = new RangeClass();
+        range.init(tmpConfig);
+        range.setLowerBounds('1.0.0');
+        range.setSemverish('1');
+        range.setSemverishArray('1');
+        range.setSemveristElementType('attribute');
+        range.setSemver('1.0.0');
+        range.setOptions();
+        range.setRange();
+        range.setExceptions();
+        range.addException('1.1');
+        range.addException('1.1.1');
+        return range.getExceptions();
+      }))
+      .resolves.toEqual([
+        '1.1'
+      ]);
+  });
 });

@@ -1,3 +1,5 @@
+'use strict';
+
 const rangeFactory = require('../../../lib/semverish/range');
 const _ = require('lodash');
 
@@ -18,59 +20,71 @@ const tmpConfig = {
   prereleaseOrdering: {}
 };
 
-test(() => {
-  delete t.context.data;
-  delete t.context;
-});
+let tmpMocks = [];
+let ranger;
 
-test('semverImpliedMultiValues', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const ranger = new RangeClass();
-    ranger.init(tmpConfig);
-    ranger.setLowerBounds('1.0.0');
-    ranger.setSemverish('1');
-    ranger.setSemverishArray('1');
-    ranger.setSemveristElementType('attribute');
-    ranger.setSemver('1.0.0');
-    ranger.setOptions();
-    ranger.setRange();
-    ranger.setExceptions();
-    ranger.addException('1.1');
-    ranger.addException('1.2.1');
-    ranger.addException('1.3');
-    ranger.addException('1.2');
-    return ranger.getExceptions();
+describe('Range tests', () => {
+  beforeEach(() => {
+    ranger = rangeFactory('semverist', 'range');
+    tmpMocks.forEach(mock => mock.mockRestore());
+    tmpMocks = [];
+    jest.resetAllMocks();
+    jest.spyOn(Date, 'now').mockReturnValue(2000);
   });
-  expect(t.context.data).toEqual([
-    '1.1',
-    '1.2',
-    '1.3'
-  ]);
-});
 
-test('semverImpliedThreeoValuesParentNotReplacedByChild', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    const range2 = _.cloneDeep(range);
-    range2.init(tmpConfig);
-    range2.setLowerBounds('1.0.0');
-    range2.setSemverish('1');
-    range2.setSemverishArray('1');
-    range2.setSemveristElementType('attribute');
-    range2.setSemver('1.0.0');
-    range2.setOptions();
-    range2.setRange();
-    range2.setExceptions();
-    range2.addException('1.2');
-    range2.addException('1.3.1');
-    range2.addException('1.4');
-    return range2.getExceptions();
+  afterAll(() => {
+    jest.restoreAllMocks();
   });
-  expect(t.context.data).toEqual([
-    '1.2',
-    '1.3.1',
-    '1.4'
-  ]);
+
+  test('semverImpliedMultiValues', () => {
+    expect(ranger
+      .then((RangeClass) => {
+        const range = new RangeClass();
+        range.init(tmpConfig);
+        range.setLowerBounds('1.0.0');
+        range.setSemverish('1');
+        range.setSemverishArray('1');
+        range.setSemveristElementType('attribute');
+        range.setSemver('1.0.0');
+        range.setOptions();
+        range.setRange();
+        range.setExceptions();
+        range.addException('1.1');
+        range.addException('1.2.1');
+        range.addException('1.3');
+        range.addException('1.2');
+        return range.getExceptions();
+      }))
+      .resolves.toEqual([
+        '1.1',
+        '1.2',
+        '1.3'
+      ]);
+  });
+
+  test('semverImpliedThreeoValuesParentNotReplacedByChild', () => {
+    expect(ranger
+      .then((RangeClass) => {
+        const range = new RangeClass();
+        const range2 = _.cloneDeep(range);
+        range2.init(tmpConfig);
+        range2.setLowerBounds('1.0.0');
+        range2.setSemverish('1');
+        range2.setSemverishArray('1');
+        range2.setSemveristElementType('attribute');
+        range2.setSemver('1.0.0');
+        range2.setOptions();
+        range2.setRange();
+        range2.setExceptions();
+        range2.addException('1.2');
+        range2.addException('1.3.1');
+        range2.addException('1.4');
+        return range2.getExceptions();
+      }))
+      .resolves.toEqual([
+        '1.2',
+        '1.3.1',
+        '1.4'
+      ]);
+  });
 });

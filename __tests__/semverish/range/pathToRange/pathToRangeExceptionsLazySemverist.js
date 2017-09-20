@@ -1,3 +1,5 @@
+'use strict';
+
 const rangeFactory = require('../../../../lib/semverish/range');
 
 // Set Defaults for semverist objects.
@@ -18,29 +20,47 @@ const tmpConfig = {
   prereleaseOrdering: {}
 };
 
+let tmpMocks = [];
 
-test('exceptionRangeSixValuesWithMinorMerge', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    range.init(tmpConfig);
-    range.setLowerBounds('1.0.0');
-    range.setSemverish('1');
-    range.setSemverishArray('1');
-    range.setSemveristElementType('attribute');
-    range.setSemver('1.0.0');
-    range.setOptions();
-    range.setRange();
-    range.setExceptions();
-    range.addException('1.1');
-    range.addException('1.2.1');
-    range.addException('1.2.2');
-    range.addException('1.3');
-    range.addException('1.4');
-    range.addException('1.4.1');
-    return range.pathToRange(
-      '1', {attributeType: 'attribute', inheritence: 'lazySemverist'}
-    );
+beforeEach(() => {
+  tmpMocks.forEach(mock => mock.mockRestore());
+  tmpMocks = [];
+  jest.resetAllMocks();
+  jest.spyOn(Date, 'now').mockReturnValue(2000);
+});
+
+afterAll(() => {
+  jest.restoreAllMocks();
+});
+
+describe('Path to Range with Exceptions using lazy semverist.', () => {
+  test('exceptionRangeSixValuesWithMinorMerge', () => {
+    expect(rangeFactory('semverist', 'range')
+      .then((RangeClass) => {
+        const range = new RangeClass();
+        range.init(tmpConfig);
+        range.setLowerBounds('1.0.0');
+        range.setSemverish('1');
+        range.setSemverishArray('1');
+        range.setSemveristElementType('attribute');
+        range.setSemver('1.0.0');
+        range.setOptions();
+        range.setRange();
+        range.setExceptions();
+        range.addException('1.1');
+        range.addException('1.2.1');
+        range.addException('1.2.2');
+        range.addException('1.3');
+        range.addException('1.4');
+        range.addException('1.4.1');
+        return range.pathToRange(
+          '1', {
+            attributeType: 'attribute',
+            inheritence: 'lazySemverist'
+          }
+        );
+      })
+      .then(obj => obj))
+      .resolves.toEqual('>=1.0.0 <1.1.0');
   });
-  expect(t.context.data).toEqual('>=1.0.0 <1.1.0');
 });

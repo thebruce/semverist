@@ -1,3 +1,5 @@
+'use strict';
+
 const rangeFactory = require('../../../lib/semverish/range');
 
 const tmpConfig = {
@@ -17,28 +19,49 @@ const tmpConfig = {
   prereleaseOrdering: {}
 };
 
-test('exceptionRangeSixValuesWithMinorMerge', async () => {
-  t.context.data = await rangeFactory('semverist', 'range')
-  .then((RangeClass) => {
-    const range = new RangeClass();
-    range.init(tmpConfig);
-    range.setLowerBounds('1.0.0');
-    range.setSemverish('1');
-    range.setSemverishArray('1');
-    range.setSemveristElementType('attribute');
-    range.setSemver('1.0.0');
-    range.setOptions();
-    range.setRange();
-    range.setExceptions();
-    range.addException('1.1');
-    range.addException('1.2.1');
-    range.addException('1.2.2');
-    range.addException('1.3');
-    range.addException('1.4');
-    range.addException('1.4.1');
-    return range.pathToRange(
-      '1', {attributeType: 'attribute', inheritence: 'semverImplied'}
-    );
+let tmpMocks = [];
+let ranger;
+
+describe('Path to range exceptions semver Implied.', () => {
+  beforeEach(() => {
+    ranger = rangeFactory('semverist', 'range');
+    tmpMocks.forEach(mock => mock.mockRestore());
+    tmpMocks = [];
+    jest.resetAllMocks();
+    jest.spyOn(Date, 'now').mockReturnValue(2000);
   });
-  expect(t.context.data).toEqual('>=1.0.0 <1.1.0 >=1.2.0 <1.2.1 >1.2.2 <1.3.0 >=1.5.0 <2.0.0');
+
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
+
+  test('exceptionRangeSixValuesWithMinorMerge', () => {
+    expect(ranger
+      .then((RangeClass) => {
+        const range = new RangeClass();
+        range.init(tmpConfig);
+        range.setLowerBounds('1.0.0');
+        range.setSemverish('1');
+        range.setSemverishArray('1');
+        range.setSemveristElementType('attribute');
+        range.setSemver('1.0.0');
+        range.setOptions();
+        range.setRange();
+        range.setExceptions();
+        range.addException('1.1');
+        range.addException('1.2.1');
+        range.addException('1.2.2');
+        range.addException('1.3');
+        range.addException('1.4');
+        range.addException('1.4.1');
+        return range.pathToRange(
+          '1', {
+            attributeType: 'attribute',
+            inheritence: 'semverImplied'
+          }
+        );
+      })
+      .then(obj => obj))
+      .resolves.toEqual('>=1.0.0 <1.1.0 >=1.2.0 <1.2.1 >1.2.2 <1.3.0 >=1.5.0 <2.0.0');
+  });
 });

@@ -1,11 +1,26 @@
+'use strict';
+
 const semverishFactory = require('../../lib/semverish/semverish');
 
-test('determineSemveristElementTypeAttribute', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemveristGroups(
-      {
+let tmpMocks = [];
+let semverah;
+
+describe('Range tests', () => {
+  beforeEach(() => {
+    semverah = semverishFactory('semverist', 'semverish')
+      .then(SemverishSuperClass => new SemverishSuperClass());
+    tmpMocks.forEach(mock => mock.mockRestore());
+    tmpMocks = [];
+    jest.resetAllMocks();
+    jest.spyOn(Date, 'now').mockReturnValue(2000);
+  });
+
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
+  test('determineSemveristElementTypeAttribute', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemveristGroups({
         testGroup: {
           members: [
             'testItem'
@@ -22,20 +37,15 @@ test('determineSemveristElementTypeAttribute', async () => {
             'testItem'
           ]
         }
-      }
-    );
-    semverishSuper.setDefaultName('default');
-    return semverishSuper.determineSemveristElementType('testItem');
+      });
+      semverishSuper.setDefaultName('default');
+      return semverishSuper.determineSemveristElementType('testItem');
+    })).resolves.toEqual('attribute');
   });
-  expect(t.context.data).toEqual('attribute');
-});
 
-test('determineSemveristElementTypeGroup', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemveristGroups(
-      {
+  test('determineSemveristElementTypeGroup', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemveristGroups({
         testGroup: {
           members: [
             'testItem'
@@ -52,20 +62,15 @@ test('determineSemveristElementTypeGroup', async () => {
             'testItem'
           ]
         }
-      }
-    );
-    semverishSuper.setDefaultName('default');
-    return semverishSuper.determineSemveristElementType('testGroup2');
+      });
+      semverishSuper.setDefaultName('default');
+      return semverishSuper.determineSemveristElementType('testGroup2');
+    })).resolves.toEqual('group');
   });
-  expect(t.context.data).toEqual('group');
-});
 
-test('determineSemveristElementTypeDefault', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemveristGroups(
-      {
+  test('determineSemveristElementTypeDefault', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemveristGroups({
         testGroup: {
           members: [
             'testItem'
@@ -82,21 +87,16 @@ test('determineSemveristElementTypeDefault', async () => {
             'testItem'
           ]
         }
-      }
-    );
-    semverishSuper.setDefaultName('default');
-    return semverishSuper.determineSemveristElementType('default');
+      });
+      semverishSuper.setDefaultName('default');
+      return semverishSuper.determineSemveristElementType('default');
+    })).resolves.toEqual('default');
   });
-  expect(t.context.data).toEqual('default');
-});
 
 
-test('setElementTypeAttribute', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemveristGroups(
-      {
+  test('setElementTypeAttribute', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemveristGroups({
         testGroup: {
           members: [
             'testItem'
@@ -113,21 +113,16 @@ test('setElementTypeAttribute', async () => {
             'testItem'
           ]
         }
-      }
-    );
-    semverishSuper.setDefaultName('default');
-    semverishSuper.setSemveristElementType('testItem');
-    return semverishSuper.getSemveristElementType();
+      });
+      semverishSuper.setDefaultName('default');
+      semverishSuper.setSemveristElementType('testItem');
+      return semverishSuper.getSemveristElementType();
+    })).resolves.toEqual('attribute');
   });
-  expect(t.context.data).toEqual('attribute');
-});
 
-test('setElementTypeGroup', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemveristGroups(
-      {
+  test('setElementTypeGroup', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemveristGroups({
         testGroup: {
           members: [
             'testItem'
@@ -144,21 +139,16 @@ test('setElementTypeGroup', async () => {
             'testItem'
           ]
         }
-      }
-    );
-    semverishSuper.setDefaultName('default');
-    semverishSuper.setSemveristElementType('testGroup2');
-    return semverishSuper.getSemveristElementType();
+      });
+      semverishSuper.setDefaultName('default');
+      semverishSuper.setSemveristElementType('testGroup2');
+      return semverishSuper.getSemveristElementType();
+    })).resolves.toEqual('group');
   });
-  expect(t.context.data).toEqual('group');
-});
 
-test('setElementTypeDefault', async () => {
-  t.context.data = await semverishFactory('semverist', 'semverish')
-  .then((SemverishSuperClass) => {
-    const semverishSuper = new SemverishSuperClass();
-    semverishSuper.setSemveristGroups(
-      {
+  test('setElementTypeDefault', () => {
+    expect(semverah.then((semverishSuper) => {
+      semverishSuper.setSemveristGroups({
         testGroup: {
           members: [
             'testItem'
@@ -175,11 +165,10 @@ test('setElementTypeDefault', async () => {
             'testItem'
           ]
         }
-      }
-    );
-    semverishSuper.setDefaultName('default');
-    semverishSuper.setSemveristElementType('default');
-    return semverishSuper.getSemveristElementType();
+      });
+      semverishSuper.setDefaultName('default');
+      semverishSuper.setSemveristElementType('default');
+      return semverishSuper.getSemveristElementType();
+    })).resolves.toEqual('default');
   });
-  expect(t.context.data).toEqual('default');
 });

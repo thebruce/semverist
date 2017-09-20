@@ -1,20 +1,22 @@
+'use strict';
+
 const schoenberg = require('../lib/schoenberg');
 const nestedConfig = require('./helpers/nestedConfig.json');
 const semverishObject = require('./helpers/semverishObject');
 const processedComposition = require('./helpers/processedComposition');
 
-test('Schoenberg.', async () => {
-  t.context.data = await schoenberg(
+test('Schoenberg.', () => {
+  expect(schoenberg(
     semverishObject,
     nestedConfig.semverist,
     'semverImpliedOrchestraObject')
   .then((composer) => {
     composer.assembleManifest();
     return composer.getComposition();
-  });
-  expect(t.context.data).toEqual(processedComposition);
+  })
+  .then(obj => obj))
+  .resolves.toEqual(processedComposition);
 });
-
 
 test('Schoenberg throws', () => {  // eslint-disable-line
   expect(() => {
