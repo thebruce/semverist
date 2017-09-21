@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Manifest Implementing tests create semver hierarchy. 1`] = `
+Object {
+  "1": Object {
+    "0": Object {
+      "0": Object {},
+      "1": Object {},
+      "2": Object {},
+    },
+    "1": Object {
+      "0": Object {},
+      "1": Object {},
+    },
+    "2": Object {
+      "0": Object {},
+    },
+    "3": Object {
+      "0": Object {},
+    },
+  },
+  "2": Object {
+    "0": Object {
+      "0": Object {},
+      "0-alpha": Object {
+        "0": Object {},
+        "1": Object {},
+      },
+      "0-beta": Object {
+        "0": Object {},
+      },
+      "1": Object {},
+    },
+  },
+}
+`;

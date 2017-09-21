@@ -13,8 +13,10 @@ before_install:
 before_script:
   - npm prune
 script:
-  - npm test && npm run coverage
+  - npm run lint
+  - npm run test-ci
 after_success:
+  - git fetch --tags
   - npm run semantic-release
   - npm run coveralls
 branches:

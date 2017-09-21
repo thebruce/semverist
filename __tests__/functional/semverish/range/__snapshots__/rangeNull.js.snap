@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Range null tests. setSemveristRangeNull 1`] = `
+Object {
+  "adjustedExceptions": Array [],
+  "exceptionRange": null,
+  "exceptions": Array [],
+  "lowerBounds": "1.0.0",
+  "range": "1.0.0",
+  "semverishValue": "1",
+  "semveristElement": "entity",
+  "semveristElementType": "attribute",
+  "terminalBounds": "<2.0.0",
+}
+`;
