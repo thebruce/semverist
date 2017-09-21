@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "nyc ava && nyc report --reporter=html  --reporter=lcov",
+    "test": "jest --coverage",
     "precommit": "npm run lint",
     "prepush": "npm test",
-    "coverage": "nyc check-coverage --statements 95 --lines 95 --branches 95 --functions 95",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "commitmsg": "validate-commit-msg",
+    "debug-test": "node --inspect --debug-brk ./node_modules/.bin/jest --runInBand --env jest-environment-node-debug",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "documentation": "documentation build lib/** -f html -o docs"
+    "documentation": "documentation build lib/** -f html -o docs",
+    "test-ci": "jest --coverage --runInBand"
   },
   "repository": {
     "type": "git",
@@ -24,7 +26,7 @@
     "name": "David Diers",
     "url": "http://github.com/thebruce",
     "id": 590058
-},
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/thebruce/semverist/issues"
@@ -37,7 +39,7 @@
     "klaw-sync": "3.0.0",
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",
-    "molotov": "0.0.3",
+    "molotov": "^1.1.0",
     "require-directory": "^2.1.1",
     "semver": "^5.3.0",
     "semver-diff": "^2.1.0",
@@ -45,7 +47,6 @@
     "version-comparison": "^2.1.1"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
     "coveralls": "^2.11.16",
     "emdaer": "^0.3.3",
     "documentation": "^5.0.0",
@@ -55,9 +56,39 @@
     "eslint-plugin-ava": "^4.2.0",
     "eslint-plugin-import": "^2.0.1",
     "husky": "^0.14.3",
+    "jest": "^20.0.4",
+    "jest-environment-node-debug": "^2.0.0",
     "npm-run-all": "^4.0.1",
-    "nyc": "^11.0.2",
-    "semantic-release": "^7.0.1",
-    "temp": "^0.8.3"
+    "semantic-release": "^7.0.2",
+    "temp": "^0.8.3",
+    "validate-commit-message": "^3.0.1",
+    "validate-commit-msg": "^2.14.0"
+  },
+  "jest": {
+    "cacheDirectory": ".tmp/jest_cache",
+    "coverageDirectory": "__coverage__",
+    "coverageReporters": [
+      "json",
+      "json-summary",
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 97,
+        "functions": 97,
+        "lines": 97,
+        "statements": 97
+      }
+    },
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/__tests__/**/*.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/__tests__/__helpers__/",
+      "<rootDir>/__tests__/.*/[__mocks__|files]/"
+    ]
   }
 }

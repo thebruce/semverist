@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Range tests simple. setSemveristRange 1`] = `
+Object {
+  "adjustedExceptions": Array [
+    "1.1",
+  ],
+  "exceptionRange": "<1.1.0 >=1.2.0",
+  "exceptions": Array [
+    "1.1",
+  ],
+  "lowerBounds": "1.0.0",
+  "range": ">=1.0.0 <1.1.0 >=1.2.0 <2.0.0",
+  "semverishValue": "1",
+  "semveristElement": "entity",
+  "semveristElementType": "attribute",
+  "terminalBounds": "<2.0.0",
+}
+`;
