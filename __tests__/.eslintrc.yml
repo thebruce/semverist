@@ -10,3 +10,4 @@ rules:
   no-plusplus: off
   import/newline-after-import: off
   import/no-extraneous-dependencies: off
+  class-methods-use-this: off

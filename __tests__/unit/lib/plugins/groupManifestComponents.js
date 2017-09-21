@@ -9,6 +9,16 @@ class manifestBase {
   addItemAlters() {}
 }
 
+const conf = {
+  groups: {
+    testGroup: {
+      members: [
+        'item'
+      ]
+    }
+  }
+};
+
 const GroupManifestComponents = require('../../../../lib/plugins/manifest/groupManifestComponents');
 
 let tmpMocks = [];
@@ -30,7 +40,7 @@ describe('contigentSource', () => {
     expect.assertions(1);
     tmpMocks.push(jest.spyOn(manifestBase.prototype, 'getConverter').mockReturnValue({group: {item: ['test']}}));
     tmpMocks.push(jest.spyOn(manifestBase.prototype, 'addItemAlters'));
-    tmpMocks.push(jest.spyOn(manifestBase.prototype, 'getConfig').mockReturnValue({groups:{testGroup:{ members: [ 'item' ]}}}))
+    tmpMocks.push(jest.spyOn(manifestBase.prototype, 'getConfig').mockReturnValue(conf));
     const group = new (GroupManifestComponents(manifestBase))();
     group.addItemAlters('1.0.0', {semveristElement: 'item'});
     expect(manifestBase.prototype.addItemAlters).toHaveBeenCalled();
