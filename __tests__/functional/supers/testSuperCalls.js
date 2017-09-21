@@ -6,13 +6,13 @@ const semverishValueMixin = require('../../../lib/plugins/semverist/semverishVal
 const semveristObjectMixin = require('../../../lib/plugins/semverist/directoryToSemverishObject');
 const semveristElementMixin = require('../../../lib/plugins/semverist/semverishElement');
 
-const MyTestClass = class extends semveristObjectMixin(
-  semverishValueMixin(
-    semveristElementMixin(testSuper)
-  )
-) {};
-
 describe('Test super calls.', () => {
+  const MyTestClass = class extends semveristObjectMixin(
+    semverishValueMixin(
+      semveristElementMixin(testSuper)
+    )
+  ) {};
+
   let tmpMocks = [];
   let semveristSuperTest;
 

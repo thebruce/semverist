@@ -1,3 +1,5 @@
+'use strict';
+
 const superSemverist = require('../../lib/supers/semverist.js');
 
 const superClass = class extends superSemverist {
