@@ -12,22 +12,21 @@ const MyTestClass = class extends semveristObjectMixin(
   )
 ) {};
 
-let tmpMocks = [];
-let semveristSuperTest;
-
-beforeEach(() => {
-  semveristSuperTest = new MyTestClass();
-  tmpMocks.forEach(mock => mock.mockRestore());
-  tmpMocks = [];
-  jest.resetAllMocks();
-  jest.spyOn(Date, 'now').mockReturnValue(2000);
-});
-
-afterAll(() => {
-  jest.restoreAllMocks();
-});
-
 describe('Test super calls.', () => {
+  let tmpMocks = [];
+  let semveristSuperTest;
+
+  beforeEach(() => {
+    semveristSuperTest = new MyTestClass();
+    tmpMocks.forEach(mock => mock.mockRestore());
+    tmpMocks = [];
+    jest.resetAllMocks();
+    jest.spyOn(Date, 'now').mockReturnValue(2000);
+  });
+
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
   test('semverishValueSuperCall', () => {
     semveristSuperTest.setSemverish(2);
     return expect(semveristSuperTest.semverish).toEqual(5);
