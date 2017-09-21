@@ -48,7 +48,6 @@
     "version-comparison": "^2.1.1"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
     "coveralls": "^2.11.16",
     "emdaer": "^0.3.3",
     "documentation": "^5.0.0",
@@ -61,7 +60,6 @@
     "jest": "^20.0.4",
     "jest-environment-node-debug": "^2.0.0",
     "npm-run-all": "^4.0.1",
-    "nyc": "^11.0.2",
     "semantic-release": "^7.0.2",
     "temp": "^0.8.3",
     "validate-commit-message": "^3.0.1",
