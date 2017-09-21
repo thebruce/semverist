@@ -14,7 +14,7 @@ before_script:
   - npm prune
 script:
   - npm run lint
-  - npm test && npm run coverage
+  - npm test ci
 after_success:
   - git fetch --tags
   - npm run semantic-release

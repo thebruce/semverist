@@ -8,7 +8,6 @@
     "test": "jest --coverage",
     "precommit": "npm run lint",
     "prepush": "npm test",
-    "coverage": "nyc check-coverage --statements 95 --lines 95 --branches 95 --functions 95",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "commitmsg": "validate-commit-msg",
     "debug-test": "node --inspect --debug-brk ./node_modules/.bin/jest --runInBand --env jest-environment-node-debug",
