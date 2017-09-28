@@ -47,7 +47,7 @@
     "version-comparison": "^2.1.1"
   },
   "devDependencies": {
-    "coveralls": "^2.11.16",
+    "coveralls": "^3.0.0",
     "emdaer": "^0.3.3",
     "documentation": "^5.0.0",
     "eslint": "^3.16.0",
