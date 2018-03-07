@@ -2,8 +2,8 @@
 
 const converterFactory = require('../../../lib/converter/converter');
 const semverConfig = require('../../__helpers__/semverImpliedConfig');
-const path = require('path');
 const digestedHelper = require('../../__helpers__/semverImpliedProcessed.json');
+const path = require('path');
 
 let converterClass;
 let tmpMocks = [];
@@ -13,10 +13,9 @@ describe('Directory converter', () => {
     converterClass = converterFactory('semverist', 'directoryConverter')
     .then((ConverterClass) => {
       const converterClassa = new ConverterClass();
-      converterClassa.init(path.join(
-          __dirname,
-          '../../..',
-          '__tests__/__helpers__/semverishObject'),
+      semverConfig.callPath = path.join(__dirname, './../../..');
+      converterClassa.init(
+          '__tests__/__helpers__/semverishObject',
         semverConfig);
       return converterClassa;
     });
@@ -113,20 +112,5 @@ describe('Directory converter', () => {
     return converterClass
     .then(conv => conv.createConverter())
     .then(obj => expect(obj).toEqual(digestedHelper));
-  });
-
-  test('getTraceIndex', () => {
-    expect.assertions(1);
-    return converterFactory('semverist', 'directoryConverter')
-      .then((ConverterClass) => {
-        const converterClassb = new ConverterClass();
-        converterClassb.init(path.join(
-            __dirname,
-            '../../..',
-            '__tests__/__helpers__/semverishObject'),
-          semverConfig);
-        return ConverterClass.getTraceIndex(1);
-      })
-      .then(obj => expect(obj).toEqual(0));
   });
 });

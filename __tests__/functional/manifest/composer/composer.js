@@ -6,11 +6,7 @@ const semveristObject = require('../../../__helpers__/semverishObject');
 const path = require('path');
 const processedComposition = require('../../../__helpers__/processedComposition');
 
-const semverishPath = path.join(
-  __dirname,
-  '../../../../',
-  '__tests__/__helpers__/semverishObject'
-);
+const semverishPath = '__tests__/__helpers__/semverishObject';
 let tmpMocks = [];
 let manifestStarter;
 describe('Composer tests', () => {
@@ -93,10 +89,12 @@ describe('Composer tests', () => {
 
   test('Composer directory no destination error.', () => {
     expect.assertions(1);
+    const tempConfig = Object.assign({}, nestedConfig.semverist);
+    tempConfig.semverImpliedOrchestraDirectoryBroken.callPath = path.join(__dirname, './../../../../');
     return manifestFactory(
         'composer',
         'semverImpliedOrchestraDirectoryBroken',
-        nestedConfig.semverist
+        tempConfig
       )
       .then(ManifestClass => Promise.all([
         ManifestClass.createConverter(semverishPath),

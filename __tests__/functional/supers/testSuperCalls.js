@@ -11,7 +11,9 @@ describe('Test super calls.', () => {
     semverishValueMixin(
       semveristElementMixin(testSuper)
     )
-  ) {};
+  ) {
+
+  };
 
   let tmpMocks = [];
   let semveristSuperTest;
@@ -38,10 +40,8 @@ describe('Test super calls.', () => {
   });
 
   test('semveristDirectorySuperCall', () => {
-    semveristSuperTest.init();
+    semveristSuperTest.init({callPath: path.join(__dirname, '../../../')});
     semveristSuperTest.setSemverishObject(path.join(
-      __dirname,
-      '../../..',
       '__tests__/__helpers__/semverishObject'));
     return expect(semveristSuperTest.semverishObject).toEqual(7);
   });

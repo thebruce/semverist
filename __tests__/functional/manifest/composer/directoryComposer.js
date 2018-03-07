@@ -7,11 +7,8 @@ const fs = require('fs-extra');
 const temp = require('temp').track();
 const _ = require('lodash');
 
-const semverishPath = path.join(
-  __dirname,
-  '../../../../',
-  '__tests__/__helpers__/semverishObject'
-);
+const semverishPath = '__tests__/__helpers__/semverishObject';
+
 
 let tmpMocks = [];
 
@@ -39,6 +36,7 @@ describe('Directory Composer', () => {
     return mkDirAsPromise('semverist')
         .then((dirPath) => {
           _.set(tmpConfig, 'semverImpliedOrchestraDirectory.composer.destination', dirPath);
+          _.set(tmpConfig, 'semverImpliedOrchestraDirectory.callPath', path.join(__dirname, './../../../../'));
           return manifestFactory(
             'composer',
             'semverImpliedOrchestraDirectory',

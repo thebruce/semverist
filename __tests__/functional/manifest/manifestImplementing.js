@@ -9,11 +9,8 @@ const digestedHelper = require('../../__helpers__/semverImpliedProcessed.json');
 const manifestSemverImpliedProcessed = require('../../__helpers__/manifestSemverImpliedProcessed');
 const semverUtils = require('semver-utils');
 
-const semverishPath = path.join(
-  __dirname,
-  '../../../',
-  '__tests__/__helpers__/semverishObject'
-);
+const semverishPath = '__tests__/__helpers__/semverishObject';
+
 let tmpMocks = [];
 
 describe('Manifest Implementing tests', () => {
@@ -144,10 +141,12 @@ describe('Manifest Implementing tests', () => {
 
   test('Directory Converter static object to manifest converter.', () => {
     expect.assertions(1);
+    const clonedConfig = Object.assign({}, nestedConfig.semverist);
+    clonedConfig.semverImpliedOrchestraDirectory.callPath = path.join(__dirname, '../../../');
     return manifestFactory(
         null,
         'semverImpliedOrchestraDirectory',
-        nestedConfig.semverist
+        clonedConfig
       )
       .then(ManifestClass => Promise.all([
         ManifestClass.createConverter(semverishPath),
