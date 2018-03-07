@@ -22,7 +22,20 @@ jobs:
   include:
     -
       stage: test
-      node_js: 'lts/boron'
+      node_js:
+        - 'lts/boron'
+      before_install:
+        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+      script:
+        - yarn lint
+        - yarn test
+      after_script:
+        - yarn coveralls
+
+    -
+      stage: test
+      node_js:
+        - 'lts/carbon'
       before_install:
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
       script:
