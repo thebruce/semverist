@@ -19,7 +19,7 @@ const conf = {
   }
 };
 
-const GroupManifestComponents = require('../../../../lib/plugins/manifest/groupManifestComponents');
+const GroupManifestComponents = require('../../../../lib/mixins/manifest/groupManifestComponents');
 
 let tmpMocks = [];
 

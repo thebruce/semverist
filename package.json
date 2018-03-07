@@ -8,7 +8,7 @@
     "test": "jest --coverage",
     "precommit": "npm run lint",
     "prepush": "npm test",
-    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "coveralls": "cat ./__coverage__/lcov.info | coveralls",
     "commitmsg": "validate-commit-msg",
     "debug-test": "node --inspect --debug-brk ./node_modules/.bin/jest --runInBand --env jest-environment-node-debug",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
@@ -39,7 +39,7 @@
     "klaw-sync": "3.0.0",
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",
-    "molotov": "^1.2.0",
+    "molotov": "^2.1.1",
     "require-directory": "^2.1.1",
     "semver": "^5.3.0",
     "semver-diff": "^2.1.0",
@@ -47,9 +47,10 @@
     "version-comparison": "^2.1.1"
   },
   "devDependencies": {
+    "condition-noop": "^1.0.0",
     "coveralls": "^2.11.16",
-    "emdaer": "^0.3.3",
     "documentation": "^5.0.0",
+    "emdaer": "^0.3.3",
     "eslint": "^3.16.0",
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-find-rules": "^3.1.1",
@@ -90,5 +91,8 @@
       "<rootDir>/__tests__/__helpers__/",
       "<rootDir>/__tests__/.*/[__mocks__|files]/"
     ]
+  },
+  "release": {
+    "verifyConditions": "condition-noop"
   }
 }

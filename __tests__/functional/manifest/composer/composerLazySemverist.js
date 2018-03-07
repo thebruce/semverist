@@ -6,11 +6,7 @@ const semveristObject = require('../../../__helpers__/semverishObject');
 const path = require('path');
 const processedLazySemverist = require('../../../__helpers__/processedCompositionLazySemverist');
 
-const semverishPath = path.join(
-  __dirname,
-  '../../../../',
-  '__tests__/__helpers__/semverishObject'
-);
+const semverishPath = '__tests__/__helpers__/semverishObject';
 let tmpMocks = [];
 
 describe('Composer Lazy Semverist Super test', () => {
@@ -27,10 +23,12 @@ describe('Composer Lazy Semverist Super test', () => {
 
   test('Lazy semverist manifest.', () => {
     expect.assertions(1);
+    const confer = Object.assign({}, nestedConfig.semverist);
+    confer.lazySemveristOrchestraObject.callPath = path.join(__dirname, './../../../../');
     return manifestFactory(
         'composer',
           'lazySemveristOrchestraObject',
-          nestedConfig.semverist
+          confer
         )
         .then(ManifestClass => Promise.all(
           [
@@ -51,10 +49,12 @@ describe('Composer Lazy Semverist Super test', () => {
 
   test('Lazy semverist directory manifest.', () => {
     expect.assertions(1);
+    const confer = Object.assign({}, nestedConfig.semverist);
+    confer.lazySemveristOrchestraDirectory.callPath = path.join(__dirname, './../../../../');
     return manifestFactory(
           'composer',
           'lazySemveristOrchestraDirectory',
-          nestedConfig.semverist
+          confer
         )
         .then(ManifestClass => Promise.all(
           [
