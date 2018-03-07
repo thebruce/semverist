@@ -8,7 +8,7 @@
     "test": "jest --coverage",
     "precommit": "npm run lint",
     "prepush": "npm test",
-    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "coveralls": "cat ./__coverage__/lcov.info | coveralls",
     "commitmsg": "validate-commit-msg",
     "debug-test": "node --inspect --debug-brk ./node_modules/.bin/jest --runInBand --env jest-environment-node-debug",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
