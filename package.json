@@ -47,6 +47,7 @@
     "version-comparison": "^2.1.1"
   },
   "devDependencies": {
+    "condition-noop": "^1.0.0",
     "coveralls": "^2.11.16",
     "documentation": "^5.0.0",
     "emdaer": "^0.3.3",
@@ -90,5 +91,8 @@
       "<rootDir>/__tests__/__helpers__/",
       "<rootDir>/__tests__/.*/[__mocks__|files]/"
     ]
+  },
+  "release": {
+    "verifyConditions": "condition-noop"
   }
 }
