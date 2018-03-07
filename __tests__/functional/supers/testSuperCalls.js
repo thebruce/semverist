@@ -2,9 +2,9 @@
 
 const testSuper = require('../../__helpers__/testConverterSuper');
 const path = require('path');
-const semverishValueMixin = require('../../../lib/plugins/semverist/semverishValue');
-const semveristObjectMixin = require('../../../lib/plugins/semverist/directoryToSemverishObject');
-const semveristElementMixin = require('../../../lib/plugins/semverist/semverishElement');
+const semverishValueMixin = require('../../../lib/mixins/semverist/semverishValue');
+const semveristObjectMixin = require('../../../lib/mixins/semverist/directoryToSemverishObject');
+const semveristElementMixin = require('../../../lib/mixins/semverist/semverishElement');
 
 describe('Test super calls.', () => {
   const MyTestClass = class extends semveristObjectMixin(

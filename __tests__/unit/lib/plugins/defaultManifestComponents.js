@@ -9,7 +9,7 @@ class manifestBase {
   addItemAlters() {}
 }
 
-const DefaultManifestComponents = require('../../../../lib/plugins/manifest/defaultManifestComponents');
+const DefaultManifestComponents = require('../../../../lib/mixins/manifest/defaultManifestComponents');
 
 let tmpMocks = [];
 
