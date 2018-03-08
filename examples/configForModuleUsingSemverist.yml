@@ -1,5 +1,6 @@
 ---
 semverist: # Name spaced to semverist module.
+  callPath: '../'
   semveristBehaviors:
     inheritence: semverImplied # null, no inheritence, semverImplied - default semver elements override according to their position in the semver hierarchy, lazySemverist - semver elements override from this version upwards, across its parents and semver siblings.
     lazySemverist: # Turns on last occurence high water mark override for all future leaves and parents.
@@ -24,7 +25,7 @@ semverist: # Name spaced to semverist module.
         - ni
         - alpha
         - doNotUseEver
-  directoryFileIgnorePattern: ".* ,*.!{json}"
+  directoryFileIgnorePattern: "json$"
   converterType: default # can be default (for objects), config, (shorthand for objects in config) or directory
   semverishObjectLocation: a path in an object, config or directory path
   composer:
