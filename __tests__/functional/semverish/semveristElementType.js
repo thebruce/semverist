@@ -1,4 +1,4 @@
-'use strict';
+
 
 const semverishFactory = require('../../../lib/semverish/semverish');
 
@@ -24,25 +24,25 @@ describe('Semverist Element Type tests', () => {
       semverishSuper.setSemveristGroups({
         testGroup: {
           members: [
-            'testItem'
-          ]
+            'testItem',
+          ],
         },
         fakeGroup: {
           members: [
-            'punk'
-          ]
+            'punk',
+          ],
         },
         testGroup2: {
           members: [
             'punk',
-            'testItem'
-          ]
-        }
+            'testItem',
+          ],
+        },
       });
       semverishSuper.setDefaultName('default');
       return semverishSuper.determineSemveristElementType('testItem');
     })
-    .then(obj => expect(obj).toEqual('attribute'));
+      .then(obj => expect(obj).toEqual('attribute'));
   });
 
   test('determineSemveristElementTypeGroup', () => {
@@ -51,25 +51,25 @@ describe('Semverist Element Type tests', () => {
       semverishSuper.setSemveristGroups({
         testGroup: {
           members: [
-            'testItem'
-          ]
+            'testItem',
+          ],
         },
         fakeGroup: {
           members: [
-            'punk'
-          ]
+            'punk',
+          ],
         },
         testGroup2: {
           members: [
             'punk',
-            'testItem'
-          ]
-        }
+            'testItem',
+          ],
+        },
       });
       semverishSuper.setDefaultName('default');
       return semverishSuper.determineSemveristElementType('testGroup2');
     })
-    .then(obj => expect(obj).toEqual('group'));
+      .then(obj => expect(obj).toEqual('group'));
   });
 
   test('determineSemveristElementTypeDefault', () => {
@@ -78,25 +78,25 @@ describe('Semverist Element Type tests', () => {
       semverishSuper.setSemveristGroups({
         testGroup: {
           members: [
-            'testItem'
-          ]
+            'testItem',
+          ],
         },
         fakeGroup: {
           members: [
-            'punk'
-          ]
+            'punk',
+          ],
         },
         testGroup2: {
           members: [
             'punk',
-            'testItem'
-          ]
-        }
+            'testItem',
+          ],
+        },
       });
       semverishSuper.setDefaultName('default');
       return semverishSuper.determineSemveristElementType('default');
     })
-    .then(obj => expect(obj).toEqual('default'));
+      .then(obj => expect(obj).toEqual('default'));
   });
 
 
@@ -106,26 +106,26 @@ describe('Semverist Element Type tests', () => {
       semverishSuper.setSemveristGroups({
         testGroup: {
           members: [
-            'testItem'
-          ]
+            'testItem',
+          ],
         },
         fakeGroup: {
           members: [
-            'punk'
-          ]
+            'punk',
+          ],
         },
         testGroup2: {
           members: [
             'punk',
-            'testItem'
-          ]
-        }
+            'testItem',
+          ],
+        },
       });
       semverishSuper.setDefaultName('default');
       semverishSuper.setSemveristElementType('testItem');
       return semverishSuper.getSemveristElementType();
     })
-    .then(obj => expect(obj).toEqual('attribute'));
+      .then(obj => expect(obj).toEqual('attribute'));
   });
 
   test('setElementTypeGroup', () => {
@@ -134,26 +134,26 @@ describe('Semverist Element Type tests', () => {
       semverishSuper.setSemveristGroups({
         testGroup: {
           members: [
-            'testItem'
-          ]
+            'testItem',
+          ],
         },
         fakeGroup: {
           members: [
-            'punk'
-          ]
+            'punk',
+          ],
         },
         testGroup2: {
           members: [
             'punk',
-            'testItem'
-          ]
-        }
+            'testItem',
+          ],
+        },
       });
       semverishSuper.setDefaultName('default');
       semverishSuper.setSemveristElementType('testGroup2');
       return semverishSuper.getSemveristElementType();
     })
-    .then(obj => expect(obj).toEqual('group'));
+      .then(obj => expect(obj).toEqual('group'));
   });
 
   test('setElementTypeDefault', () => {
@@ -162,25 +162,25 @@ describe('Semverist Element Type tests', () => {
       semverishSuper.setSemveristGroups({
         testGroup: {
           members: [
-            'testItem'
-          ]
+            'testItem',
+          ],
         },
         fakeGroup: {
           members: [
-            'punk'
-          ]
+            'punk',
+          ],
         },
         testGroup2: {
           members: [
             'punk',
-            'testItem'
-          ]
-        }
+            'testItem',
+          ],
+        },
       });
       semverishSuper.setDefaultName('default');
       semverishSuper.setSemveristElementType('default');
       return semverishSuper.getSemveristElementType();
     })
-    .then(obj => expect(obj).toEqual('default'));
+      .then(obj => expect(obj).toEqual('default'));
   });
 });

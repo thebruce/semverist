@@ -1,4 +1,4 @@
-'use strict';
+
 
 const schoenberg = require('../../lib/schoenberg');
 const nestedConfig = require('./../__helpers__/nestedConfig.json');
@@ -10,12 +10,12 @@ test('Schoenberg.', () => {
     semverishObject,
     nestedConfig.semverist,
     'semverImpliedOrchestraObject')
-  .then((composer) => {
-    composer.assembleManifest();
-    return composer.getComposition();
-  })
-  .then(obj => obj))
-  .resolves.toEqual(processedComposition);
+    .then((composer) => {
+      composer.assembleManifest();
+      return composer.getComposition();
+    })
+    .then(obj => obj))
+    .resolves.toEqual(processedComposition);
 });
 
 test('Schoenberg throws', () => {  // eslint-disable-line
