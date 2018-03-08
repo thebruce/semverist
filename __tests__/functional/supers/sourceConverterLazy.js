@@ -1,4 +1,4 @@
-'use strict';
+
 
 const converterFactory = require('../../../lib/converter/converter');
 const semveristObject = require('../../__helpers__/semverishObject');
@@ -82,7 +82,7 @@ describe('Source Converter Super Lazy semver test', () => {
         '1.0.0',
         '1.0.1',
         '1.0.2',
-        '2'
+        '2',
       ]));
   });
 

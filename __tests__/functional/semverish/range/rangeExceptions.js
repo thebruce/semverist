@@ -1,4 +1,4 @@
-'use strict';
+
 
 const rangeFactory = require('../../../../lib/semverish/range');
 
@@ -7,16 +7,16 @@ const tmpConfig = {
     inheritence: 'semverImplied',
     lazySemverist: {
       attribute: true,
-      preReleaseForwards: false
+      preReleaseForwards: false,
     },
     default: true,
     defaultName: 'default',
     groups: true,
     mergeStrategy: 'lastIn',
-    preReleasePattern: /\d-[a-zA-Z]*/g
+    preReleasePattern: /\d-[a-zA-Z]*/g,
   },
   groups: {},
-  prereleaseOrdering: {}
+  prereleaseOrdering: {},
 };
 
 // Set Defaults for semverist objects.
@@ -25,16 +25,16 @@ const lazySemverConfig = {
     inheritence: 'lazySemverist',
     lazySemverist: {
       attribute: true,
-      preReleaseForwards: true
+      preReleaseForwards: true,
     },
     default: true,
     defaultName: 'default',
     groups: true,
     mergeStrategy: 'lastIn',
-    preReleasePattern: /\d-[a-zA-Z]*/g
+    preReleasePattern: /\d-[a-zA-Z]*/g,
   },
   groups: {},
-  prereleaseOrdering: {}
+  prereleaseOrdering: {},
 };
 
 let tmpMocks = [];
@@ -56,20 +56,20 @@ describe('Range Exception tests', () => {
   test('exceptionsNoValues', () => {
     expect.assertions(1);
     return ranger
-    .then((RangeClass) => {
-      const range = new RangeClass();
-      range.init(lazySemverConfig);
-      range.setLowerBounds('1.0.0');
-      range.setSemverish('1.0.0');
-      range.setSemverishArray('1.0.0');
-      range.setSemveristElementType('attribute');
-      range.setSemver('1.0.0');
-      range.setOptions();
-      range.setRange();
-      range.setExceptions();
-      return range.getExceptions();
-    })
-    .then(obj => expect(obj).toEqual([]));
+      .then((RangeClass) => {
+        const range = new RangeClass();
+        range.init(lazySemverConfig);
+        range.setLowerBounds('1.0.0');
+        range.setSemverish('1.0.0');
+        range.setSemverishArray('1.0.0');
+        range.setSemveristElementType('attribute');
+        range.setSemver('1.0.0');
+        range.setOptions();
+        range.setRange();
+        range.setExceptions();
+        return range.getExceptions();
+      })
+      .then(obj => expect(obj).toEqual([]));
   });
 
   test('exceptionOneValueLazy', () => {
@@ -90,7 +90,7 @@ describe('Range Exception tests', () => {
         return range.getExceptions();
       })
       .then(obj => expect(obj).toEqual([
-        '1.1.0'
+        '1.1.0',
       ]));
   });
 
@@ -112,7 +112,7 @@ describe('Range Exception tests', () => {
         return range.getExceptions();
       })
       .then(obj => expect(obj).toEqual([
-        '1.1.0'
+        '1.1.0',
       ]));
   });
 
@@ -135,7 +135,7 @@ describe('Range Exception tests', () => {
         return range.getExceptions();
       })
       .then(obj => expect(obj).toEqual([
-        '1.1.0'
+        '1.1.0',
       ]));
   });
 
@@ -158,7 +158,7 @@ describe('Range Exception tests', () => {
         return range.getExceptions();
       })
       .then(obj => expect(obj).toEqual([
-        '1.0.1'
+        '1.0.1',
       ]));
   });
 
@@ -180,7 +180,7 @@ describe('Range Exception tests', () => {
         return range.getExceptions();
       })
       .then(obj => expect(obj).toEqual([
-        '1.0.1'
+        '1.0.1',
       ]));
   });
 
@@ -203,7 +203,7 @@ describe('Range Exception tests', () => {
         return range.getExceptions();
       })
       .then(obj => expect(obj).toEqual([
-        '1.1'
+        '1.1',
       ]));
   });
 
@@ -226,7 +226,7 @@ describe('Range Exception tests', () => {
         return range.getExceptions();
       })
       .then(obj => expect(obj).toEqual([
-        '1.1'
+        '1.1',
       ]));
   });
 });

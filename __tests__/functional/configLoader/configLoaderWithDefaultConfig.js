@@ -1,4 +1,4 @@
-'use strict';
+
 
 // set up test config dirs.
 const config = {
@@ -7,160 +7,160 @@ const config = {
       inheritence: 'lazySemverist',
       lazySemverist: {
         attribute: true,
-        preReleaseForwards: false
+        preReleaseForwards: false,
       },
       default: true,
       defaultName: 'default',
       groups: true,
-      mergeStrategy: 'lastIn'
+      mergeStrategy: 'lastIn',
     },
     groups: {},
-    prereleaseOrdering: {}
+    prereleaseOrdering: {},
   },
   useSemverImplied: {
     semveristBehaviors: {
       inheritence: 'semverImplied',
       lazySemverist: {
         attribute: true,
-        preReleaseForwards: false
+        preReleaseForwards: false,
       },
       default: true,
       defaultName: 'default',
       groups: true,
-      mergeStrategy: 'lastIn'
+      mergeStrategy: 'lastIn',
     },
     groups: {},
-    prereleaseOrdering: {}
+    prereleaseOrdering: {},
   },
   useNoInheritence: {
     semveristBehaviors: {
       inheritence: null,
       lazySemverist: {
         attribute: true,
-        preReleaseForwards: false
+        preReleaseForwards: false,
       },
       default: true,
       defaultName: 'default',
       groups: true,
-      mergeStrategy: 'lastIn'
+      mergeStrategy: 'lastIn',
     },
     groups: {},
-    prereleaseOrdering: {}
+    prereleaseOrdering: {},
   },
   semverImpliedNoDefaults: {
     semveristBehaviors: {
       inheritence: 'semverImplied',
       lazySemverist: {
         attribute: true,
-        preReleaseForwards: false
+        preReleaseForwards: false,
       },
       default: false,
       defaultName: 'default',
       groups: true,
-      mergeStrategy: 'lastIn'
+      mergeStrategy: 'lastIn',
     },
     groups: {},
-    prereleaseOrdering: {}
+    prereleaseOrdering: {},
   },
   semverImpliedNoGroups: {
     semveristBehaviors: {
       inheritence: 'semverImplied',
       lazySemverist: {
         attribute: true,
-        preReleaseForwards: false
+        preReleaseForwards: false,
       },
       default: true,
       defaultName: 'default',
       groups: false,
-      mergeStrategy: 'lastIn'
+      mergeStrategy: 'lastIn',
     },
     groups: {},
-    prereleaseOrdering: {}
+    prereleaseOrdering: {},
   },
   semverImpliedNoDefaultsNoGroups: {
     semveristBehaviors: {
       inheritence: 'semverImplied',
       lazySemverist: {
         attribute: true,
-        preReleaseForwards: false
+        preReleaseForwards: false,
       },
       default: false,
       defaultName: 'default',
       groups: false,
-      mergeStrategy: 'lastIn'
+      mergeStrategy: 'lastIn',
     },
     groups: {},
-    prereleaseOrdering: {}
+    prereleaseOrdering: {},
   },
   semverImpliedOrchestraObject: {
     semveristBehaviors: {
       inheritence: 'semverImplied',
       lazySemverist: {
         preReleaseForwards: false,
-        attributes: true
+        attributes: true,
       },
       default: true,
       defaultName: 'orchestraDefault',
       groups: true,
-      mergeStrategy: 'lastIn'
+      mergeStrategy: 'lastIn',
     },
     groups: {
       strings: {
         members: [
           'violin',
-          'viola'
-        ]
+          'viola',
+        ],
       },
       winds: {
         members: [
           'flute',
-          'clarinet'
-        ]
+          'clarinet',
+        ],
       },
       brass: {
         members: [
           'trumpet',
-          'trombone'
-        ]
-      }
+          'trombone',
+        ],
+      },
     },
-    directoryFileIgnorePattern: 'json$'
+    directoryFileIgnorePattern: 'json$',
   },
   semverImpliedOrchestraDirectory: {
     semveristBehaviors: {
       inheritence: 'semverImplied',
       lazySemverist: {
         preReleaseForwards: false,
-        attributes: true
+        attributes: true,
       },
       default: true,
       defaultName: 'orchestraDefault',
       groups: true,
-      mergeStrategy: 'lastIn'
+      mergeStrategy: 'lastIn',
     },
     groups: {
       strings: {
         members: [
           'violin',
-          'viola'
-        ]
+          'viola',
+        ],
       },
       winds: {
         members: [
           'flute',
-          'clarinet'
-        ]
+          'clarinet',
+        ],
       },
       brass: {
         members: [
           'trumpet',
-          'trombone'
-        ]
-      }
+          'trombone',
+        ],
+      },
     },
     directoryFileIgnorePattern: 'json$',
-    converterType: 'directory'
-  }
+    converterType: 'directory',
+  },
 };
 let tmpMocks = [];
 describe('Config Loader with Default tests', () => {

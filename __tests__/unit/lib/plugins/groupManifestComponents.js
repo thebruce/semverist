@@ -1,4 +1,4 @@
-'use strict';
+
 
 class manifestBase {
   getConverterGroups() {}
@@ -13,13 +13,13 @@ const conf = {
   groups: {
     testGroup: {
       members: [
-        'item'
-      ]
-    }
-  }
+        'item',
+      ],
+    },
+  },
 };
 
-const GroupManifestComponents = require('../../../../lib/plugins/manifest/groupManifestComponents');
+const GroupManifestComponents = require('../../../../lib/mixins/manifest/groupManifestComponents');
 
 let tmpMocks = [];
 
@@ -38,11 +38,11 @@ describe('contigentSource', () => {
 
   test('getItemGroups', () => {
     expect.assertions(1);
-    tmpMocks.push(jest.spyOn(manifestBase.prototype, 'getConverter').mockReturnValue({group: {item: ['test']}}));
+    tmpMocks.push(jest.spyOn(manifestBase.prototype, 'getConverter').mockReturnValue({ group: { item: ['test'] } }));
     tmpMocks.push(jest.spyOn(manifestBase.prototype, 'addItemAlters'));
     tmpMocks.push(jest.spyOn(manifestBase.prototype, 'getConfig').mockReturnValue(conf));
     const group = new (GroupManifestComponents(manifestBase))();
-    group.addItemAlters('1.0.0', {semveristElement: 'item'});
+    group.addItemAlters('1.0.0', { semveristElement: 'item' });
     expect(manifestBase.prototype.addItemAlters).toHaveBeenCalled();
   });
 });

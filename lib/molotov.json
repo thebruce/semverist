@@ -1,8 +1,8 @@
 {
-  "molotovPath": "lib/molotov.js",
   "semverist" : {
-    "supersNameSpacePaths": {
-      "semverist": "/lib/supers/semverist"
+    "supersNameSpace": {
+      "manifest": "manifest",
+      "semverist": "semverist"
     },
     "molotovPlugins": {
       "semverist": {

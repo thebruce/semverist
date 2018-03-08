@@ -1,4 +1,4 @@
-'use strict';
+
 
 const rangeFactory = require('../../../../lib/semverish/range');
 
@@ -25,13 +25,13 @@ describe('Sort range array tests', () => {
         return rangeClass.sortRangeArray(
           [
             '>2.0.0',
-            '>1.0.0'
+            '>1.0.0',
           ]
         );
       })
       .then(obj => expect(obj).toEqual([
         '>1.0.0',
-        '>2.0.0'
+        '>2.0.0',
       ]));
   });
 
@@ -45,7 +45,7 @@ describe('Sort range array tests', () => {
             '>2.0.0',
             '>1.0.0',
             '>1.0.0-alpha',
-            '>1.0.0-alpha.1'
+            '>1.0.0-alpha.1',
           ]
         );
       })
@@ -53,7 +53,7 @@ describe('Sort range array tests', () => {
         '>1.0.0-alpha',
         '>1.0.0-alpha.1',
         '>1.0.0',
-        '>2.0.0'
+        '>2.0.0',
       ]));
   });
 
@@ -67,7 +67,7 @@ describe('Sort range array tests', () => {
             '>2.0.0',
             '>1.0.0 < 1.0.1',
             '>1.0.0 < 1.1.0',
-            '0.0.1'
+            '0.0.1',
           ]
         );
       })
@@ -75,7 +75,7 @@ describe('Sort range array tests', () => {
         '0.0.1',
         '>1.0.0 < 1.0.1',
         '>1.0.0 < 1.1.0',
-        '>2.0.0'
+        '>2.0.0',
       ]));
   });
 
@@ -92,7 +92,7 @@ describe('Sort range array tests', () => {
             '>0.0.1',
             '>1.1.0 < 1.1.3',
             '>3.0',
-            '>1.1.0 < 1.2.0'
+            '>1.1.0 < 1.2.0',
           ]
         );
       })
@@ -103,7 +103,7 @@ describe('Sort range array tests', () => {
         '>1.1.0 < 1.1.3',
         '>1.1.0 < 1.2.0',
         '>2.0.0',
-        '>3.0'
+        '>3.0',
       ]));
   });
 

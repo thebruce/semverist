@@ -1,4 +1,4 @@
-'use strict';
+
 
 const rangeFactory = require('../../../../lib/semverish/range');
 
@@ -28,8 +28,8 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1', '1.0');
       })
-    .then(obj => obj.child)
-    .then(obj => expect(obj).toBe(true));
+      .then(obj => obj.child)
+      .then(obj => expect(obj).toBe(true));
   });
 
   test('Semverish1ParentTo3Child', () => {
@@ -42,8 +42,8 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1', '1.0.0');
       })
-    .then(obj => obj.child)
-    .then(obj => expect(obj).toBe(true));
+      .then(obj => obj.child)
+      .then(obj => expect(obj).toBe(true));
   });
 
   test('Semverish1ParentTo4Child', () => {
@@ -56,8 +56,8 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1', '1.0.0-alpha');
       })
-    .then(obj => obj.child)
-    .then(obj => expect(obj).toBe(true));
+      .then(obj => obj.child)
+      .then(obj => expect(obj).toBe(true));
   });
 
   test('Semverish1ParentTo2ChildDifferentMinor', () => {
@@ -70,7 +70,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1', '1.1');
       })
-    .then(obj => expect(obj.child).toBe(true));
+      .then(obj => expect(obj.child).toBe(true));
   });
 
   test('Semverish1ParentTo2ChildDifferentPatch', () => {
@@ -83,7 +83,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1', '1.1.0');
       })
-    .then(obj => expect(obj.child).toBe(true));
+      .then(obj => expect(obj.child).toBe(true));
   });
 
   test('Semverish2ParentToChild', () => {
@@ -96,7 +96,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.0', '1.0.0');
       })
-    .then(obj => expect(obj.child).toBe(true));
+      .then(obj => expect(obj.child).toBe(true));
   });
 
   test('Semverish4ParentToChild', () => {
@@ -109,7 +109,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.0.0-alpha', '1.0.0-alpha.0');
       })
-    .then(obj => expect(obj.child).toBe(true));
+      .then(obj => expect(obj.child).toBe(true));
   });
 
   test('Semverish4ParentToNonAdjacent5Child', () => {
@@ -122,7 +122,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.0.0-alpha', '1.0.0-beta.0');
       })
-    .then(obj => expect(obj.child).toBe(false));
+      .then(obj => expect(obj.child).toBe(false));
   });
 
   test('Semverish76ParentToChild', () => {
@@ -135,7 +135,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.0.0-alpha.0', '1.0.0-alpha.1');
       })
-    .then(obj => expect(obj.child).toBe(false));
+      .then(obj => expect(obj.child).toBe(false));
   });
 
   test('adjacentPrereleasesDifferentGreek', () => {
@@ -148,7 +148,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.0.0-alpha.0', '1.0.0-beta.1');
       })
-    .then(obj => expect(obj.adjacent).toBe(false));
+      .then(obj => expect(obj.adjacent).toBe(false));
   });
 
 
@@ -162,7 +162,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.0.0-alpha.0', '1.0.0-alpha.0+build123');
       })
-    .then(obj => expect(obj.child).toBe(true));
+      .then(obj => expect(obj.child).toBe(true));
   });
 
   test('Semverish2toNonChild', () => {
@@ -175,7 +175,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.1', '1.2');
       })
-    .then(obj => expect(obj.child).toBe(false));
+      .then(obj => expect(obj.child).toBe(false));
   });
 
   test('Semverish3toNonChild', () => {
@@ -188,7 +188,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.1.0', '1.1.0-alpha');
       })
-    .then(obj => expect(obj.child).toBe(false));
+      .then(obj => expect(obj.child).toBe(false));
   });
 
   test('Semverish3toEqual', () => {
@@ -201,7 +201,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.1.0', '1.1.0');
       })
-    .then(obj => expect(obj.child).toBe(false));
+      .then(obj => expect(obj.child).toBe(false));
   });
 
   test('Semverish3to3', () => {
@@ -214,7 +214,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.0.0-alpha', '1.0.1');
       })
-    .then(obj => expect(obj.child).toBe(false));
+      .then(obj => expect(obj.child).toBe(false));
   });
 
   test('Semverish1to3', () => {
@@ -227,7 +227,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1', '1.0.1-alpha');
       })
-    .then(obj => expect(obj.child).toBe(true));
+      .then(obj => expect(obj.child).toBe(true));
   });
 
   test('Semverish4to3', () => {
@@ -240,7 +240,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.0.1-alpha', '1.0.2-alpha.0');
       })
-    .then(obj => expect(obj.child).toBe(false));
+      .then(obj => expect(obj.child).toBe(false));
   });
 
   test('Semverish4to5Major', () => {
@@ -253,7 +253,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.0.1-alpha', '2.0.1-alpha.0');
       })
-    .then(obj => expect(obj.child).toBe(false));
+      .then(obj => expect(obj.child).toBe(false));
   });
 
   test('SemverishAdjacent', () => {
@@ -266,7 +266,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.0.0', '1.0.1');
       })
-    .then(obj => expect(obj.adjacent).toBe(true));
+      .then(obj => expect(obj.adjacent).toBe(true));
   });
 
   test('SemverishAdjacentMinorLevels', () => {
@@ -279,7 +279,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.1', '1.2');
       })
-    .then(obj => expect(obj.adjacent).toBe(true));
+      .then(obj => expect(obj.adjacent).toBe(true));
   });
 
   test('SemverishAdjacentMajorLevels', () => {
@@ -292,7 +292,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1', '2');
       })
-    .then(obj => expect(obj.adjacent).toBe(true));
+      .then(obj => expect(obj.adjacent).toBe(true));
   });
 
   test('SemverishAdjacentAlphaLevels', () => {
@@ -305,7 +305,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.1.1-alpha.0', '1.1.1-alpha.1');
       })
-    .then(obj => expect(obj.adjacent).toBe(true));
+      .then(obj => expect(obj.adjacent).toBe(true));
   });
 
   test('SemverishAdjacentPrereleaseLevels', () => {
@@ -318,7 +318,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.1.1-alpha', '1.1.1-beta');
       })
-    .then(obj => expect(obj.adjacent).toBe(false));
+      .then(obj => expect(obj.adjacent).toBe(false));
   });
 
   test('SemverishAdjacentishExplicitLowerDespecifiedHigher', () => {
@@ -331,7 +331,7 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.2.2', '1.3');
       })
-    .then(obj => expect(obj.adjacent).toBe(false));
+      .then(obj => expect(obj.adjacent).toBe(false));
   });
 
   test('SemverishAdjacentishDespecifiedLowerExplicitHigher', () => {
@@ -344,6 +344,6 @@ describe('Semver Adjacent', () => {
         rangeClass.setOptions();
         return rangeClass.analyzeSemverishAdjacency('1.1', '1.2.1');
       })
-    .then(obj => expect(obj.adjacent).toBe(false));
+      .then(obj => expect(obj.adjacent).toBe(false));
   });
 });

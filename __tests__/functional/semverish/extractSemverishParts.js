@@ -1,4 +1,4 @@
-'use strict';
+
 
 const semverishFactory = require('../../../lib/semverish/semverish');
 
@@ -22,8 +22,8 @@ describe('Extract Semverish Parts from semverish.', () => {
     expect.assertions(1);
     return semverah
       .then(semverishSuper => semverishSuper.extractSemverishFromPath('4.1.0')
-    )
-    .then(obj => expect(obj).toEqual('4.1.0'));
+      )
+      .then(obj => expect(obj).toEqual('4.1.0'));
   });
 
   test('extractSemverMinorSemverOnly', () => {
@@ -36,15 +36,15 @@ describe('Extract Semverish Parts from semverish.', () => {
   test('extractSemverAlpha', () => {
     expect.assertions(1);
     return semverah
-    .then(semverishSuper => semverishSuper.extractSemverishFromPath('4.1.0-alpha'))
-    .then(obj => expect(obj).toEqual('4.1.0-alpha'));
+      .then(semverishSuper => semverishSuper.extractSemverishFromPath('4.1.0-alpha'))
+      .then(obj => expect(obj).toEqual('4.1.0-alpha'));
   });
 
   test('extractSemverAlphaDotVersion', () => {
     expect.assertions(1);
     return semverah
-    .then(semverishSuper => semverishSuper.extractSemverishFromPath('4.1.0-alpha.1'))
-    .then(obj => expect(obj).toEqual('4.1.0-alpha.1'));
+      .then(semverishSuper => semverishSuper.extractSemverishFromPath('4.1.0-alpha.1'))
+      .then(obj => expect(obj).toEqual('4.1.0-alpha.1'));
   });
 
   test('extractSemverDeathStar', () => {
@@ -64,7 +64,7 @@ describe('Extract Semverish Parts from semverish.', () => {
   test('extractParitalWithAttribute', () => {
     expect.assertions(1);
     return semverah.then(semverishSuper => semverishSuper.extractSemverishFromPath('4.1.entity'))
-    .then(obj => expect(obj).toEqual('4.1'));
+      .then(obj => expect(obj).toEqual('4.1'));
   });
 
   test('extractMoreParitalWithAttribute', () => {
@@ -77,10 +77,10 @@ describe('Extract Semverish Parts from semverish.', () => {
   test('extractAttributeWithAlpha', () => {
     expect.assertions(1);
     return semverah
-    .then((semverishSuper) => {
-      semverishSuper.setPreReleasePattern();
-      return semverishSuper.extractSemverishFromPath('4.1.0-alpha.entity');
-    }).then(obj => expect(obj).toEqual('4.1.0-alpha'));
+      .then((semverishSuper) => {
+        semverishSuper.setPreReleasePattern();
+        return semverishSuper.extractSemverishFromPath('4.1.0-alpha.entity');
+      }).then(obj => expect(obj).toEqual('4.1.0-alpha'));
   });
 
   test('extractAttributeWithAlpha1', () => {
@@ -94,7 +94,7 @@ describe('Extract Semverish Parts from semverish.', () => {
   test('extractAttributeWithAlphaAndNumber', () => {
     expect.assertions(1);
     return semverah.then(semverishSuper => semverishSuper.extractSemverishFromPath('4.1.0-alpha.0.entity'))
-    .then(obj => expect(obj).toEqual('4.1.0-alpha.0'));
+      .then(obj => expect(obj).toEqual('4.1.0-alpha.0'));
   });
 
   test('setSourceBadSourceLeading0', () => {
@@ -132,10 +132,10 @@ describe('Extract Semverish Parts from semverish.', () => {
     return semverah.then((semverishSuper) => {
       semverishSuper.extractSemverishFromPath('entity.0');
     })
-    .catch((e) => {
-      expect(e.message).toEqual('The semverish value must be able to be converted to a semver value. ' +
+      .catch((e) => {
+        expect(e.message).toEqual('The semverish value must be able to be converted to a semver value. ' +
           'Unable to compare version string: entity.');
-    });
+      });
   });
 
   test('extractTooManySemverWithoutPrerelease', () => {
@@ -153,7 +153,7 @@ describe('Extract Semverish Parts from semverish.', () => {
   test('extractSemverPartsFromTooManyPeriods', () => {
     expect.assertions(1);
     return semverah.then(semverishSuper => semverishSuper.extractSemverishFromPath('4.1.'))
-    .then(obj => expect(obj).toEqual('4.1'));
+      .then(obj => expect(obj).toEqual('4.1'));
   });
 
   test('extractSemverPartsFromLeadingPeriods', () => {

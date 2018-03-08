@@ -1,4 +1,4 @@
-'use strict';
+
 
 const converterFactory = require('../../../lib/converter/converter');
 const semveristObject = require('../../__helpers__/semverishObject');
@@ -10,11 +10,11 @@ let converterEx;
 
 beforeEach(() => {
   converterEx = converterFactory('semverist', 'converter')
-  .then((ConverterClass) => {
-    const converterClass = new ConverterClass();
-    converterClass.init(semveristObject, semverConfig);
-    return converterClass;
-  });
+    .then((ConverterClass) => {
+      const converterClass = new ConverterClass();
+      converterClass.init(semveristObject, semverConfig);
+      return converterClass;
+    });
   tmpMocks.forEach(mock => mock.mockRestore());
   tmpMocks = [];
   jest.resetAllMocks();
@@ -56,7 +56,7 @@ describe('Source Converter Super test', () => {
       .then(obj => expect(obj).toEqual([
         '1.0.0',
         '1.1.0',
-        '1.2.0'
+        '1.2.0',
       ]));
   });
 
@@ -92,7 +92,7 @@ describe('Source Converter Super test', () => {
         '1.0.0',
         '1.0.1',
         '1.0.2',
-        '2'
+        '2',
       ]));
   });
 
@@ -107,19 +107,19 @@ describe('Source Converter Super test', () => {
         '1.0.0',
         '1.0.1',
         '1.0.2',
-        '>=2.0.0 <3.0.0'
+        '>=2.0.0 <3.0.0',
       ]));
   });
 
   test('converterClassNoPlugins', () => {
     expect.assertions(1);
     return converterFactory('semverist')
-    .then((ConverterClass) => {
-      const converterClass = new ConverterClass();
-      converterClass.init(semveristObject, semverConfig);
-      return converterClass.sortRangeArray;
-    })
-    .then(obj => expect(obj).toBeUndefined());
+      .then((ConverterClass) => {
+        const converterClass = new ConverterClass();
+        converterClass.init(semveristObject, semverConfig);
+        return converterClass.sortRangeArray;
+      })
+      .then(obj => expect(obj).toBeUndefined());
   });
 
   test('converterRangeAttributeTests', () => {
@@ -137,7 +137,7 @@ describe('Source Converter Super test', () => {
         '1.0.0',
         '1.0.1',
         '1.0.2',
-        '>=2.0.0 <3.0.0'
+        '>=2.0.0 <3.0.0',
       ]));
   });
 
@@ -164,7 +164,7 @@ describe('Source Converter Super test', () => {
         'attribute',
         'default',
         'group',
-        'semverRealizations'
+        'semverRealizations',
       ]));
   });
 
@@ -180,7 +180,7 @@ describe('Source Converter Super test', () => {
         'aNewElement',
         'attribute',
         'default',
-        'group'
+        'group',
       ]));
   });
 
