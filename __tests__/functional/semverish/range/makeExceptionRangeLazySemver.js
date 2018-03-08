@@ -1,4 +1,4 @@
-'use strict';
+
 
 const rangeFactory = require('../../../../lib/semverish/range');
 // Set Defaults for semverist objects.
@@ -7,16 +7,16 @@ const lazySemverConfig = {
     inheritence: 'lazySemverist',
     lazySemverist: {
       attribute: true,
-      preReleaseForwards: true
+      preReleaseForwards: true,
     },
     default: true,
     defaultName: 'default',
     groups: true,
     mergeStrategy: 'lastIn',
-    preReleasePattern: /\d-[a-zA-Z]*/g
+    preReleasePattern: /\d-[a-zA-Z]*/g,
   },
   groups: {},
-  prereleaseOrdering: {}
+  prereleaseOrdering: {},
 };
 
 let ranger;

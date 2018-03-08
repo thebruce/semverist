@@ -1,4 +1,4 @@
-'use strict';
+
 
 const converterFactory = require('../../../../lib/converter/converter');
 

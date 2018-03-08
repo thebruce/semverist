@@ -1,4 +1,4 @@
-'use strict';
+
 
 const converterFactory = require('../../../lib/converter/converter');
 const semverConfig = require('../../__helpers__/semverImpliedConfig');
@@ -11,14 +11,14 @@ let tmpMocks = [];
 describe('Directory converter', () => {
   beforeEach(() => {
     converterClass = converterFactory('semverist', 'directoryConverter')
-    .then((ConverterClass) => {
-      const converterClassa = new ConverterClass();
-      semverConfig.callPath = path.join(__dirname, './../../..');
-      converterClassa.init(
+      .then((ConverterClass) => {
+        const converterClassa = new ConverterClass();
+        semverConfig.callPath = path.join(__dirname, './../../..');
+        converterClassa.init(
           '__tests__/__helpers__/semverishObject',
-        semverConfig);
-      return converterClassa;
-    });
+          semverConfig);
+        return converterClassa;
+      });
     tmpMocks.forEach(mock => mock.mockRestore());
     tmpMocks = [];
     jest.resetAllMocks();
@@ -32,7 +32,7 @@ describe('Directory converter', () => {
   test('initWithOptions', () => {
     expect.assertions(1);
     return converterClass.then(conv => conv.getSemverishObject())
-    .then(semv => expect(Object.keys(semv['1']['0']['0'])).toEqual(['violin']));
+      .then(semv => expect(Object.keys(semv['1']['0']['0'])).toEqual(['violin']));
   });
 
   test('setGetSemverRealizations', () => {
@@ -41,8 +41,8 @@ describe('Directory converter', () => {
       conv.setSemverRealizations(['1.0.0']);
       return conv.getSemverRealizations();
     })
-    .then(obj => expect(obj)
-    .toEqual(['1.0.0']));
+      .then(obj => expect(obj)
+        .toEqual(['1.0.0']));
   });
 
   test('addSemverRealizations', () => {
@@ -53,64 +53,64 @@ describe('Directory converter', () => {
       conv.addSemverRealizations('1.2.0');
       return conv.getSemverRealizations();
     })
-    .then(obj => expect(obj).toEqual([
-      '1.0.0',
-      '1.1.0',
-      '1.2.0'
-    ]));
+      .then(obj => expect(obj).toEqual([
+        '1.0.0',
+        '1.1.0',
+        '1.2.0',
+      ]));
   });
 
   test('semveristAssemble', () => {
     expect.assertions(1);
     return converterClass
-    .then(conv => conv.createConverter())
-    .then(c => c.semverRealizations)
-    .then(obj => expect(obj).toEqual([
-      '1.0.0',
-      '1.0.1',
-      '1.0.2',
-      '1.1.0',
-      '1.1.1',
-      '1.2.0',
-      '1.3.0',
-      '2.0.0-alpha.0',
-      '2.0.0-alpha.1',
-      '2.0.0-beta.0',
-      '2.0.0',
-      '2.0.1',
-    ]));
+      .then(conv => conv.createConverter())
+      .then(c => c.semverRealizations)
+      .then(obj => expect(obj).toEqual([
+        '1.0.0',
+        '1.0.1',
+        '1.0.2',
+        '1.1.0',
+        '1.1.1',
+        '1.2.0',
+        '1.3.0',
+        '2.0.0-alpha.0',
+        '2.0.0-alpha.1',
+        '2.0.0-beta.0',
+        '2.0.0',
+        '2.0.1',
+      ]));
   });
 
   test('testSemveristAssembleForViolin', () => {
     expect.assertions(1);
     return converterClass
-    .then(conv => conv.semveristAssemble('root'))
-    .then(semv => Object.keys(semv.attribute.violin).sort())
-    .then(obj => expect(obj).toEqual([
-      '1',
-      '1.0',
-      '1.0.0',
-      '1.0.1',
-      '1.0.2',
-      '2'
-    ]));
+      .then(conv => conv.semveristAssemble('root'))
+      .then(semv => Object.keys(semv.attribute.violin).sort())
+      .then(obj => expect(obj).toEqual([
+        '1',
+        '1.0',
+        '1.0.0',
+        '1.0.1',
+        '1.0.2',
+        '2',
+      ]));
   });
 
   test('converterRangeTests', () => {
     expect.assertions(1);
     return converterClass.then(conv => conv.createConverter())
-    .then(semv => Object.keys(semv.group.winds))
-    .then(obj => expect(obj).toEqual([
-      '>=1.0.0 <2.0.0',
-      '>=2.0.0-alpha.1 <2.0.0-beta.0',
-      '>=2.0.0 <3.0.0'
-    ]));
+      .then(semv => Object.keys(semv.group.winds))
+      .then(obj => expect(obj).toEqual([
+        '>=1.0.0 <2.0.0',
+        '>=2.0.0-alpha.1 <2.0.0-beta.0',
+        '>=2.0.0 <3.0.0',
+      ]));
   });
 
   test('Processed complete test', () => {
     expect.assertions(1);
     return converterClass
-    .then(conv => conv.createConverter())
-    .then(obj => expect(obj).toEqual(digestedHelper));
+      .then(conv => conv.createConverter())
+      .then(obj => expect(obj).toEqual(digestedHelper));
   });
 });

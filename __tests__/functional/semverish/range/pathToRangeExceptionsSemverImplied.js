@@ -1,4 +1,4 @@
-'use strict';
+
 
 const rangeFactory = require('../../../../lib/semverish/range');
 
@@ -7,16 +7,16 @@ const tmpConfig = {
     inheritence: 'semverImplied',
     lazySemverist: {
       attribute: true,
-      preReleaseForwards: false
+      preReleaseForwards: false,
     },
     default: true,
     defaultName: 'default',
     groups: true,
     mergeStrategy: 'lastIn',
-    preReleasePattern: /\d-[a-zA-Z]*/g
+    preReleasePattern: /\d-[a-zA-Z]*/g,
   },
   groups: {},
-  prereleaseOrdering: {}
+  prereleaseOrdering: {},
 };
 
 let tmpMocks = [];
@@ -58,7 +58,7 @@ describe('Path to range exceptions semver Implied.', () => {
         return range.pathToRange(
           '1', {
             attributeType: 'attribute',
-            inheritence: 'semverImplied'
+            inheritence: 'semverImplied',
           }
         );
       })

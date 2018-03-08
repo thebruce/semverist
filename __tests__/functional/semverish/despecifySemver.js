@@ -1,4 +1,4 @@
-'use strict';
+
 
 const semverishFactory = require('../../../lib/semverish/semverish');
 
@@ -25,7 +25,7 @@ describe('Despecify Semver tests', () => {
       semverishSuper.setSemverishArray('1');
       return semverishSuper.despecifySemver(1);
     })
-    .then(obj => expect(obj).toEqual('1'));
+      .then(obj => expect(obj).toEqual('1'));
   });
 
   test('despecifySemver2to1', () => {

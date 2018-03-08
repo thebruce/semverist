@@ -1,4 +1,4 @@
-'use strict';
+
 
 const testSuper = require('../../__helpers__/testConverterSuper');
 const path = require('path');
@@ -40,7 +40,7 @@ describe('Test super calls.', () => {
   });
 
   test('semveristDirectorySuperCall', () => {
-    semveristSuperTest.init({callPath: path.join(__dirname, '../../../')});
+    semveristSuperTest.init({ callPath: path.join(__dirname, '../../../') });
     semveristSuperTest.setSemverishObject(path.join(
       '__tests__/__helpers__/semverishObject'));
     return expect(semveristSuperTest.semverishObject).toEqual(7);
