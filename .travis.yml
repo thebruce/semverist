@@ -28,7 +28,7 @@ jobs:
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
       script:
         - yarn lint
-        - yarn test
+        - yarn test-ci
       after_script:
         - yarn coveralls
 
@@ -40,7 +40,7 @@ jobs:
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
       script:
         - yarn lint
-        - yarn test
+        - yarn test-ci
       after_script:
         - yarn coveralls
 

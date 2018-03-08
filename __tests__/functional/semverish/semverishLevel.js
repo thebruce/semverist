@@ -1,4 +1,4 @@
-'use strict';
+
 
 const semverishFactory = require('../../../lib/semverish/semverish');
 let tmpMocks = [];
@@ -24,7 +24,7 @@ describe('Check semverish Level', () => {
       semverishSuper.setSemverishLevel();
       return semverishSuper.getSemverishLevel();
     })
-    .then(obj => expect(obj).toEqual('build'));
+      .then(obj => expect(obj).toEqual('build'));
   });
 
   test('semverishLevelBuildNoEntity', () => {
@@ -34,7 +34,7 @@ describe('Check semverish Level', () => {
       semverishSuper.setSemverishLevel();
       return semverishSuper.getSemverishLevel();
     })
-    .then(obj => expect(obj).toEqual('build'));
+      .then(obj => expect(obj).toEqual('build'));
   });
 
   test('semverishLevelPrerelease0WithEntity', () => {

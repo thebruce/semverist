@@ -1,4 +1,4 @@
-'use strict';
+
 
 const path = require('path');
 
@@ -37,7 +37,7 @@ describe('Manifest Implementing tests', () => {
       .then(obj => expect(obj).toEqual([
         'attribute',
         'default',
-        'group'
+        'group',
       ]));
   });
 
@@ -52,7 +52,7 @@ describe('Manifest Implementing tests', () => {
       .then(obj => obj.sort())
       .then(obj => expect(obj).toEqual([
         'attribute',
-        'group'
+        'group',
       ]));
   });
 
@@ -67,17 +67,17 @@ describe('Manifest Implementing tests', () => {
       .then(obj => obj.sort())
       .then(obj => expect(obj).toEqual([
         'attribute',
-        'default'
+        'default',
       ]));
   });
 
   test('manifestNoPluginName No Defaults No Groups', () => {
     expect.assertions(1);
     return manifestFactory(
-        null,
-        'semverImpliedNoDefaultsNoGroups',
-        nestedConfig.semverist
-      )
+      null,
+      'semverImpliedNoDefaultsNoGroups',
+      nestedConfig.semverist
+    )
       .then((ManifestClass) => {
         const schoenberg = new ManifestClass();
         schoenberg.setManifestCapabilities();
@@ -85,7 +85,7 @@ describe('Manifest Implementing tests', () => {
       })
       .then(obj => obj.sort())
       .then(obj => expect(obj).toEqual([
-        'attribute'
+        'attribute',
       ]));
   });
 
@@ -101,17 +101,17 @@ describe('Manifest Implementing tests', () => {
       .then(obj => expect(obj).toEqual([
         'attribute',
         'default',
-        'group'
+        'group',
       ]));
   });
 
   test('Converter static object.', () => {
     expect.assertions(1);
     return manifestFactory(
-        null,
-        'semverImpliedOrchestraObject',
-        nestedConfig.semverist
-      )
+      null,
+      'semverImpliedOrchestraObject',
+      nestedConfig.semverist
+    )
       .then(ManifestClass => ManifestClass.createConverter(semveristObject))
       .then(obj => obj[0])
       .then(obj => expect(obj).toEqual(digestedHelper));
@@ -120,14 +120,14 @@ describe('Manifest Implementing tests', () => {
   test('Converter static object to manifest converter.', () => {
     expect.assertions(1);
     return manifestFactory(
-        null,
-        'semverImpliedOrchestraObject',
-        nestedConfig.semverist
-      )
+      null,
+      'semverImpliedOrchestraObject',
+      nestedConfig.semverist
+    )
       .then(ManifestClass => Promise.all(
         [
           ManifestClass.createConverter(semveristObject),
-          ManifestClass
+          ManifestClass,
         ]))
       .then((manifestIngredients) => {
         const ManifestClass = manifestIngredients[1];
@@ -144,13 +144,13 @@ describe('Manifest Implementing tests', () => {
     const clonedConfig = Object.assign({}, nestedConfig.semverist);
     clonedConfig.semverImpliedOrchestraDirectory.callPath = path.join(__dirname, '../../../');
     return manifestFactory(
-        null,
-        'semverImpliedOrchestraDirectory',
-        clonedConfig
-      )
+      null,
+      'semverImpliedOrchestraDirectory',
+      clonedConfig
+    )
       .then(ManifestClass => Promise.all([
         ManifestClass.createConverter(semverishPath),
-        ManifestClass
+        ManifestClass,
       ]))
       .then((manifestIngredients) => {
         const ManifestClass = manifestIngredients[1];
@@ -165,14 +165,14 @@ describe('Manifest Implementing tests', () => {
   test('Manifest component Defaults.', () => {
     expect.assertions(1);
     return manifestFactory(
-        null,
-        'semverImpliedOrchestraObject',
-        nestedConfig.semverist
-      )
+      null,
+      'semverImpliedOrchestraObject',
+      nestedConfig.semverist
+    )
       .then(ManifestClass => Promise.all(
         [
           ManifestClass.createConverter(semveristObject),
-          ManifestClass
+          ManifestClass,
         ]))
       .then((manifestIngredients) => {
         const ManifestClass = manifestIngredients[1];
@@ -189,14 +189,14 @@ describe('Manifest Implementing tests', () => {
   test('Manifest component Groups.', () => {
     expect.assertions(1);
     return manifestFactory(
-        null,
-        'semverImpliedOrchestraObject',
-        nestedConfig.semverist
-      )
+      null,
+      'semverImpliedOrchestraObject',
+      nestedConfig.semverist
+    )
       .then(ManifestClass => Promise.all(
         [
           ManifestClass.createConverter(semveristObject),
-          ManifestClass
+          ManifestClass,
         ]))
       .then((manifestIngredients) => {
         const ManifestClass = manifestIngredients[1];
@@ -213,14 +213,14 @@ describe('Manifest Implementing tests', () => {
   test('Manifest component no Groups.', () => {
     expect.assertions(1);
     return manifestFactory(
-        null,
-        'semverImpliedNoDefaultsNoGroups',
-        nestedConfig.semverist
-      )
+      null,
+      'semverImpliedNoDefaultsNoGroups',
+      nestedConfig.semverist
+    )
       .then(ManifestClass => Promise.all(
         [
           ManifestClass.createConverter(semveristObject),
-          ManifestClass
+          ManifestClass,
         ]))
       .then((manifestIngredients) => {
         const ManifestClass = manifestIngredients[1];
@@ -237,14 +237,14 @@ describe('Manifest Implementing tests', () => {
   test('Manifest component no Defaults.', () => {
     expect.assertions(1);
     return manifestFactory(
-        null,
-        'semverImpliedNoDefaultsNoGroups',
-        nestedConfig.semverist
-      )
+      null,
+      'semverImpliedNoDefaultsNoGroups',
+      nestedConfig.semverist
+    )
       .then(ManifestClass => Promise.all(
         [
           ManifestClass.createConverter(semveristObject),
-          ManifestClass
+          ManifestClass,
         ]))
       .then((manifestIngredients) => {
         const ManifestClass = manifestIngredients[1];
@@ -261,14 +261,14 @@ describe('Manifest Implementing tests', () => {
   test('Manifest component attributes.', () => {
     expect.assertions(1);
     return manifestFactory(
-        null,
-        'semverImpliedOrchestraObject',
-        nestedConfig.semverist
-      )
+      null,
+      'semverImpliedOrchestraObject',
+      nestedConfig.semverist
+    )
       .then(ManifestClass => Promise.all(
         [
           ManifestClass.createConverter(semveristObject),
-          ManifestClass
+          ManifestClass,
         ]))
       .then((manifestIngredients) => {
         const ManifestClass = manifestIngredients[1];
@@ -284,14 +284,14 @@ describe('Manifest Implementing tests', () => {
   test('Manifest converter class.', () => {
     expect.assertions(1);
     return manifestFactory(
-        null,
-        'semverImpliedOrchestraObjectNoGroups',
-        nestedConfig.semverist
-      )
+      null,
+      'semverImpliedOrchestraObjectNoGroups',
+      nestedConfig.semverist
+    )
       .then(ManifestClass => Promise.all(
         [
           ManifestClass.createConverter(semveristObject),
-          ManifestClass
+          ManifestClass,
         ]))
       .then((manifestIngredients) => {
         const ManifestClass = manifestIngredients[1];
@@ -307,14 +307,14 @@ describe('Manifest Implementing tests', () => {
   test('pathBuildImprovement.', () => {
     expect.assertions(1);
     return manifestFactory(
-        'composer',
-        'semverImpliedOrchestraObject',
-        nestedConfig.semverist
-      )
+      'composer',
+      'semverImpliedOrchestraObject',
+      nestedConfig.semverist
+    )
       .then(ManifestClass => Promise.all(
         [
           ManifestClass.createConverter(semveristObject),
-          ManifestClass
+          ManifestClass,
         ]))
       .then((manifestIngredients) => {
         const ManifestClass = manifestIngredients[1];
@@ -331,14 +331,14 @@ describe('Manifest Implementing tests', () => {
   test('pathBuildImprovement no build.', () => {
     expect.assertions(1);
     return manifestFactory(
-        'composer',
-        'semverImpliedOrchestraObject',
-        nestedConfig.semverist
-      )
+      'composer',
+      'semverImpliedOrchestraObject',
+      nestedConfig.semverist
+    )
       .then(ManifestClass => Promise.all(
         [
           ManifestClass.createConverter(semveristObject),
-          ManifestClass
+          ManifestClass,
         ]))
       .then((manifestIngredients) => {
         const ManifestClass = manifestIngredients[1];
@@ -355,14 +355,14 @@ describe('Manifest Implementing tests', () => {
   test('create semver hierarchy.', () => {
     expect.assertions(1);
     return manifestFactory(
-        'composer',
-        'semverImpliedOrchestraObject',
-        nestedConfig.semverist
-      )
+      'composer',
+      'semverImpliedOrchestraObject',
+      nestedConfig.semverist
+    )
       .then(ManifestClass => Promise.all(
         [
           ManifestClass.createConverter(semveristObject),
-          ManifestClass
+          ManifestClass,
         ]))
       .then((manifestIngredients) => {
         const ManifestClass = manifestIngredients[1];

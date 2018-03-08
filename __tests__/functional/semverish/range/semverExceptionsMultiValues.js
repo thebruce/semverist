@@ -1,4 +1,4 @@
-'use strict';
+
 
 const rangeFactory = require('../../../../lib/semverish/range');
 const _ = require('lodash');
@@ -8,16 +8,16 @@ const tmpConfig = {
     inheritence: 'semverImplied',
     lazySemverist: {
       attribute: true,
-      preReleaseForwards: false
+      preReleaseForwards: false,
     },
     default: true,
     defaultName: 'default',
     groups: true,
     mergeStrategy: 'lastIn',
-    preReleasePattern: /\d-[a-zA-Z]*/g
+    preReleasePattern: /\d-[a-zA-Z]*/g,
   },
   groups: {},
-  prereleaseOrdering: {}
+  prereleaseOrdering: {},
 };
 
 let tmpMocks = [];
@@ -59,7 +59,7 @@ describe('Semver Exceptions MultiValues', () => {
       .then(obj => expect(obj).toEqual([
         '1.1',
         '1.2',
-        '1.3'
+        '1.3',
       ]));
   });
 
@@ -86,7 +86,7 @@ describe('Semver Exceptions MultiValues', () => {
       .then(obj => expect(obj).toEqual([
         '1.2',
         '1.3.1',
-        '1.4'
+        '1.4',
       ]));
   });
 });
