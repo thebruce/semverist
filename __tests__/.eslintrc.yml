@@ -11,3 +11,4 @@ rules:
   import/newline-after-import: off
   import/no-extraneous-dependencies: off
   class-methods-use-this: off
+  function-paren-newline: off
