@@ -1,0 +1,53 @@
+{
+  "semverist" : {
+    "supersNameSpace": {
+      "manifest": "manifest",
+      "semverist": "semverist"
+    },
+    "molotovPlugins": {
+      "semverist": {
+        "range": [
+          "semverishElement",
+          "parseSemverUtils",
+          "semverAdjacent",
+          "toCaretRange",
+          "toTildeRange",
+          "semverishValue",
+          "semveristElementType",
+          "sortRangeArray",
+          "semverishLevel",
+          "semverAdjacent"
+        ],
+        "semverish": [
+          "semverishElement",
+          "parseSemverUtils",
+          "semverishValue",
+          "semveristElementType",
+          "semverishLevel",
+          "semverAdjacent"
+        ],
+        "converter": [
+          "parseSemverUtils",
+          "sortRangeArray",
+          "semverAdjacent",
+          "semverishLevel"
+        ],
+        "directoryConverter": [
+          "directoryToSemverishObject",
+          "parseSemverUtils",
+          "sortRangeArray",
+          "semverAdjacent",
+          "semverishLevel"
+        ]
+      },
+      "manifest": {
+        "composer": [
+          "composer"
+        ],
+        "inspector": [
+          "inspector"
+        ]
+      }
+    }
+  }
+}
