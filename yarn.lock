@@ -2232,7 +2232,7 @@ conventional-commits-filter@^1.1.1:
     is-subset "^0.1.1"
     modify-values "^1.0.0"
 
-conventional-commits-parser@^2.0.0, conventional-commits-parser@^2.1.0:
+conventional-commits-parser@^2.1.0:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/conventional-commits-parser/-/conventional-commits-parser-2.1.5.tgz#9ac3a4ab221c0c3c9e9dd2c09ae01e6d1e1dabe0"
   dependencies:
@@ -7248,12 +7248,6 @@ sane@~1.6.0:
 sax@^1.2.1:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
-
-semantic-release-conventional-commits@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/semantic-release-conventional-commits/-/semantic-release-conventional-commits-2.0.0.tgz#2bc779725c6e19b1f9f2a4c37d15ceaabdebc05c"
-  dependencies:
-    conventional-commits-parser "^2.0.0"
 
 semantic-release@^7.0.2:
   version "7.0.2"
