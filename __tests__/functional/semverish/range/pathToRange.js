@@ -1,4 +1,4 @@
-'use strict';
+
 
 const rangeFactory = require('../../../../lib/semverish/range');
 
@@ -7,16 +7,16 @@ const tmpConfig = {
     inheritence: 'semverImplied',
     lazySemverist: {
       attribute: true,
-      preReleaseForwards: false
+      preReleaseForwards: false,
     },
     default: true,
     defaultName: 'default',
     groups: true,
     mergeStrategy: 'lastIn',
-    preReleasePattern: /\d-[a-zA-Z]*/g
+    preReleasePattern: /\d-[a-zA-Z]*/g,
   },
   groups: {},
-  prereleaseOrdering: {}
+  prereleaseOrdering: {},
 };
 
 // Set Defaults for semverist objects.
@@ -25,16 +25,16 @@ const lazySemverConfig = {
     inheritence: 'lazySemverist',
     lazySemverist: {
       attribute: true,
-      preReleaseForwards: true
+      preReleaseForwards: true,
     },
     default: true,
     defaultName: 'default',
     groups: true,
     mergeStrategy: 'lastIn',
-    preReleasePattern: /\d-[a-zA-Z]*/g
+    preReleasePattern: /\d-[a-zA-Z]*/g,
   },
   groups: {},
-  prereleaseOrdering: {}
+  prereleaseOrdering: {},
 };
 let tmpMocks = [];
 let ranger;
@@ -73,7 +73,7 @@ describe('Path to range tests simple.', () => {
         range.init();
         range.setOptions();
         return range.pathToRange('1.0.0', {
-          inheritence: null
+          inheritence: null,
         });
       })
       .then(obj => expect(obj).toEqual('1.0.0'));
@@ -89,7 +89,7 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.0.0', {
             attribute: 'semveristObject',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
@@ -106,7 +106,7 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.0.0-alpha.0+124', {
             attribute: 'semveristObject',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
@@ -125,7 +125,7 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1', {
             attributeType: 'semveristObject',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
@@ -142,7 +142,7 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.0', {
             attributeType: 'semveristObject',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
@@ -164,7 +164,7 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.0.0-alpha.1', {
             attributeType: 'semveristObject',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
@@ -181,11 +181,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.0.0', {
             attributeType: 'attribute',
-            inheritence: 'semverImplied'
+            inheritence: 'semverImplied',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('1.0.0'));
+      .then(obj => expect(obj).toEqual('1.0.0'));
   });
 
   test('semverImpliedTestsMaxLevel4', () => {
@@ -198,11 +198,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.0.0-alpha+124', {
             attributeType: 'attribute',
-            inheritence: 'semverImplied'
+            inheritence: 'semverImplied',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('1.0.0-alpha'));
+      .then(obj => expect(obj).toEqual('1.0.0-alpha'));
   });
 
   test('semverImpliedTestsPartial1', () => {
@@ -215,11 +215,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1', {
             attributeType: 'attribute',
-            inheritence: 'semverImplied'
+            inheritence: 'semverImplied',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('>=1.0.0 <2.0.0'));
+      .then(obj => expect(obj).toEqual('>=1.0.0 <2.0.0'));
   });
 
   test('semverImpliedTestsPartial2', () => {
@@ -232,11 +232,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.0', {
             attributeType: 'attribute',
-            inheritence: 'semverImplied'
+            inheritence: 'semverImplied',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('>=1.0.0 <1.1.0'));
+      .then(obj => expect(obj).toEqual('>=1.0.0 <1.1.0'));
   });
 
   test('semverImpliedTestsAlpha', () => {
@@ -253,11 +253,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.0.0-alpha.1', {
             attributeType: 'attribute',
-            inheritence: 'semverImplied'
+            inheritence: 'semverImplied',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('>=1.0.0-alpha.1 <1.0.0'));
+      .then(obj => expect(obj).toEqual('>=1.0.0-alpha.1 <1.0.0'));
   });
 
   test('toTildeRange', () => {
@@ -269,7 +269,7 @@ describe('Path to range tests simple.', () => {
         range.setOptions();
         return range.toTildeRange('1.0');
       })
-    .then(obj => expect(obj).toEqual('>=1.0.0 <1.1.0'));
+      .then(obj => expect(obj).toEqual('>=1.0.0 <1.1.0'));
   });
 
   test('pathHasPrereleaseWithForwardingLeading0FullSemver', () => {
@@ -288,11 +288,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '0.1.0-alpha.1', {
             attributeType: 'attribute',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('>=0.1.0-alpha.1 <0.1.0 >=0.1.0 <1.0.0'));
+      .then(obj => expect(obj).toEqual('>=0.1.0-alpha.1 <0.1.0 >=0.1.0 <1.0.0'));
   });
 
   test('pathHasPrereleaseWithForwardingLeadingNonZeroFullSemver', () => {
@@ -312,11 +312,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.1.0-alpha.1', {
             attributeType: 'attribute',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('>=1.1.0-alpha.1 <1.1.0 >=1.1.0 <2.0.0'));
+      .then(obj => expect(obj).toEqual('>=1.1.0-alpha.1 <1.1.0 >=1.1.0 <2.0.0'));
   });
 
   test('pathHasPrereleaseWithForwardingLeadingZeroPartialSemver', () => {
@@ -337,11 +337,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '0.1.0-alpha', {
             attributeType: 'attribute',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('>=0.1.0-alpha <0.1.0 >=0.1.0 <1.0.0'));
+      .then(obj => expect(obj).toEqual('>=0.1.0-alpha <0.1.0 >=0.1.0 <1.0.0'));
   });
 
   test('pathHasPrereleaseWithForwardingLeadingNonZeroPartialSemver', () => {
@@ -359,11 +359,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.1.0-alpha', {
             attributeType: 'attribute',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('>=1.1.0-alpha <1.1.0 >=1.1.0 <2.0.0'));
+      .then(obj => expect(obj).toEqual('>=1.1.0-alpha <1.1.0 >=1.1.0 <2.0.0'));
   });
 
   test('pathHasPrereleaseNoForwarding', () => {
@@ -377,11 +377,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.1.0-alpha.1', {
             attributeType: 'attribute',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('>=1.1.0-alpha.1 <1.1.0'));
+      .then(obj => expect(obj).toEqual('>=1.1.0-alpha.1 <1.1.0'));
   });
 
 
@@ -397,11 +397,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.1.0', {
             attributeType: 'attribute',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('>=1.1.0 <2.0.0'));
+      .then(obj => expect(obj).toEqual('>=1.1.0 <2.0.0'));
   });
 
   test('lazySemveristNoPrerelease3LongLeadingZero', () => {
@@ -415,11 +415,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '0.1.0', {
             attributeType: 'attribute',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('>=0.1.0 <1.0.0'));
+      .then(obj => expect(obj).toEqual('>=0.1.0 <1.0.0'));
   });
 
   test('lazySemveristNoPrerelease2Long', () => {
@@ -433,11 +433,11 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1.1', {
             attributeType: 'attribute',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('>=1.1.0 <2.0.0'));
+      .then(obj => expect(obj).toEqual('>=1.1.0 <2.0.0'));
   });
 
   test('lazySemveristNoPrerelease1Long', () => {
@@ -451,10 +451,10 @@ describe('Path to range tests simple.', () => {
         return range.pathToRange(
           '1', {
             attributeType: 'attribute',
-            inheritence: 'lazySemverist'
+            inheritence: 'lazySemverist',
           }
         );
       })
-    .then(obj => expect(obj).toEqual('>=1.0.0 <2.0.0'));
+      .then(obj => expect(obj).toEqual('>=1.0.0 <2.0.0'));
   });
 });

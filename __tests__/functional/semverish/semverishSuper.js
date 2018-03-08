@@ -1,4 +1,4 @@
-'use strict';
+
 
 const semverishFactory = require('../../../lib/semverish/semverish');
 
@@ -78,7 +78,7 @@ describe('Semverish Super tests.', () => {
       return semverishSuper.getRawSemveristElement();
     }).then(obj => expect(obj).toEqual([
       'episode',
-      'property'
+      'property',
     ]));
   });
 
@@ -106,9 +106,9 @@ describe('Semverish Super tests.', () => {
     return semverah.then((semverishSuper) => {
       semverishSuper.setIsPreReleasePath();
     })
-    .catch((e) => {
-      expect(e.message).toEqual('There is no semver value to check for prerelease.');
-    });
+      .catch((e) => {
+        expect(e.message).toEqual('There is no semver value to check for prerelease.');
+      });
   });
 
   test('init', () => {
@@ -117,31 +117,31 @@ describe('Semverish Super tests.', () => {
       semverishSuper.init('4.1.entity');
       return semverishSuper.getSemverishArray();
     })
-    .then(obj => expect(obj).toEqual([
-      '4',
-      '1',
-      'entity'
-    ]));
+      .then(obj => expect(obj).toEqual([
+        '4',
+        '1',
+        'entity',
+      ]));
   });
 
   test('init full semver', () => {
     expect.assertions(1);
     return semverah
-    .then((semverishSuper) => {
-      semverishSuper.init('4.1.0');
-      return semverishSuper.getSemverishArray();
-    })
-    .then(obj => expect(obj).toEqual([
-      '4',
-      '1',
-      '0'
-    ]));
+      .then((semverishSuper) => {
+        semverishSuper.init('4.1.0');
+        return semverishSuper.getSemverishArray();
+      })
+      .then(obj => expect(obj).toEqual([
+        '4',
+        '1',
+        '0',
+      ]));
   });
 
   test('No plugin', () => {
     expect.assertions(1);
     return semverishFactory('semverist')
-    .then(SemverishSuperClass => new SemverishSuperClass())
+      .then(SemverishSuperClass => new SemverishSuperClass())
       .then((semverishSuper) => {
         if (semverishSuper.despecifySemver) {
           return 'exists';

@@ -1,4 +1,4 @@
-'use strict';
+
 
 const ManifestSuperBase = require('../../../../lib/supers/manifest');
 
@@ -12,10 +12,10 @@ test('setConfigNameSpace', () => {
 test('setConfig', () => {
   expect.assertions(1);
   const manifestSuperBase = new ManifestSuperBase({
-    happy: 'happy'
+    happy: 'happy',
   });
   return expect(manifestSuperBase.getConfig())
-  .toEqual({
-    happy: 'happy'
-  });
+    .toEqual({
+      happy: 'happy',
+    });
 });
