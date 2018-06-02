@@ -63,7 +63,7 @@
     "version-comparison": "^2.1.1"
   },
   "devDependencies": {
-    "@commitlint/config-angular": "^6.1.3",
+    "@commitlint/config-angular": "^7.0.0",
     "babel-eslint": "^8.2.2",
     "commitlint": "^6.1.2",
     "condition-noop": "^1.0.0",
