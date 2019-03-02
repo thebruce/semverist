@@ -4,15 +4,16 @@
   "description": "The Semverist provides a uniform interface for understanding and manipulating directories, config, and objects with a semver influenced hierarchy.",
   "main": "index.js",
   "scripts": {
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "coveralls": "cat ./__coverage__/lcov.info | coveralls",
+    "debug-test": "node --inspect --debug-brk ./node_modules/.bin/jest --runInBand --env jest-environment-node-debug",
+    "documentation": "documentation build lib/** -f html -o docs",
     "lint": "eslint .",
-    "test": "jest --coverage",
     "precommit": "npm run lint",
     "prepush": "npm test",
-    "coveralls": "cat ./__coverage__/lcov.info | coveralls",
-    "commitmsg": "commitlint -e $GIT_PARAMS",
-    "debug-test": "node --inspect --debug-brk ./node_modules/.bin/jest --runInBand --env jest-environment-node-debug",
+    "prettier": "prettier --write 'src/**/*.js' && eslint 'src/**/*.js' --fix",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "documentation": "documentation build lib/** -f html -o docs",
+    "test": "jest --coverage",
     "test-ci": "jest --coverage --runInBand"
   },
   "repository": {
@@ -56,58 +57,41 @@
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",
     "molotov": "^2.1.1",
-    "npm": "^5.7.1",
     "semver": "^5.3.0",
     "semver-diff": "^2.1.0",
     "semver-utils": "^1.1.1",
     "version-comparison": "^2.1.1"
   },
   "devDependencies": {
-    "@commitlint/config-angular": "^6.1.3",
-    "babel-eslint": "^8.2.2",
-    "commitlint": "^6.1.2",
+    "@babel/core": "^7.3.4",
+    "@commitlint/config-angular": "^7.5.0",
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/github": "^5.2.10",
+    "@semantic-release/npm": "^5.1.4",
+    "@semantic-release/release-notes-generator": "^7.1.4",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
+    "commitlint": "^7.5.2",
     "condition-noop": "^1.0.0",
     "coveralls": "3.0.0",
     "documentation": "^6.1.0",
     "emdaer": "^0.3.3",
-    "eslint": "^4.18.1",
-    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint": "^5.12.1",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-config-problems": "^2.0.0",
+    "eslint-plugin-better": "^0.1.5",
     "eslint-plugin-import": "^2.9.0",
-    "husky": "^0.14.3",
-    "jest": "^22.1.4",
+    "eslint-plugin-jest": "^22.3.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "husky": "1.3.1",
+    "jest": "23.6.0",
     "jest-environment-node-debug": "^2.0.0",
     "npm-run-all": "^4.0.1",
-    "semantic-release": "^7.0.2",
-    "temp": "^0.8.3",
-    "validate-commit-message": "^3.0.1",
-    "validate-commit-msg": "^2.14.0"
+    "prettier": "^1.16.4",
+    "semantic-release": "^15.13.3",
+    "temp": "^0.8.3"
   },
-  "jest": {
-    "cacheDirectory": ".tmp/jest_cache",
-    "coverageDirectory": "__coverage__",
-    "coverageReporters": [
-      "lcov",
-      "text",
-      "text-summary"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 97,
-        "functions": 97,
-        "lines": 97,
-        "statements": 97
-      }
-    },
-    "testEnvironment": "node",
-    "testMatch": [
-      "<rootDir>/__tests__/**/*.js"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/__helpers__/",
-      "<rootDir>/__tests__/.*/[__mocks__|files]/"
-    ]
-  },
-  "release": {
-    "verifyConditions": "condition-noop"
+  "engines": {
+    "node": ">=8"
   }
 }

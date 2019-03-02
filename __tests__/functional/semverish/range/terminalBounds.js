@@ -1,5 +1,3 @@
-
-
 const rangeFactory = require('../../../../lib/semverish/range');
 let tmpMocks = [];
 let ranger;
@@ -20,7 +18,7 @@ describe('Terminal Bounds tests', () => {
   test('terminalBounds', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const rangeClass = new RangeClass();
         rangeClass.setLowerBounds('0.0.1');
         rangeClass.setTerminalBounds('0.0.9');
@@ -32,7 +30,7 @@ describe('Terminal Bounds tests', () => {
   test('terminalBoundsRange', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const rangeClass = new RangeClass();
         rangeClass.setLowerBounds('0.0.1');
         rangeClass.setTerminalBounds('<0.0.9');
@@ -41,17 +39,18 @@ describe('Terminal Bounds tests', () => {
       .then(obj => expect(obj).toEqual('<0.0.9'));
   });
 
-
   test('terminalBoundsInvalidRange', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const rangeClass = new RangeClass();
         rangeClass.setLowerBounds('0.0.1');
         rangeClass.setTerminalBounds('1.R');
       })
-      .catch((e) => {
-        expect(e.message).toEqual('The passed range is not a valid semver range.');
+      .catch(e => {
+        expect(e.message).toEqual(
+          'The passed range is not a valid semver range.'
+        );
       });
   });
 });

@@ -5,7 +5,6 @@ cache:
 notifications:
   email: false
 
-
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
@@ -23,31 +22,19 @@ jobs:
     -
       stage: test
       node_js:
-        - 'lts/boron'
-      before_install:
-        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-      script:
-        - yarn lint
-        - yarn test-ci
-      after_script:
-        - yarn coveralls
-
-    -
-      stage: test
-      node_js:
         - 'lts/carbon'
-      before_install:
-        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
       script:
         - yarn lint
         - yarn test-ci
       after_script:
         - yarn coveralls
-
     -
       stage: release
+      if: branch = master
       node_js: 'lts/carbon'
       before_install:
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+      provider: script
+      skip_cleanup: true
       script:
-        - yarn semantic-release
+        - npx semantic-release

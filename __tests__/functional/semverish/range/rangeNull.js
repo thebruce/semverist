@@ -1,5 +1,3 @@
-
-
 const rangeFactory = require('../../../../lib/semverish/range');
 
 const tmpConfig = {
@@ -22,7 +20,7 @@ describe('Range null tests.', () => {
   test('setSemveristRangeNull', () => {
     expect.assertions(1);
     return rangeFactory('semverist', 'range')
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setOptions();

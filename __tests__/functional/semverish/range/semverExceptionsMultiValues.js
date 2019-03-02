@@ -1,5 +1,3 @@
-
-
 const rangeFactory = require('../../../../lib/semverish/range');
 const _ = require('lodash');
 
@@ -39,7 +37,7 @@ describe('Semver Exceptions MultiValues', () => {
   test('semverImpliedMultiValues', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -56,17 +54,13 @@ describe('Semver Exceptions MultiValues', () => {
         range.addException('1.2');
         return range.getExceptions();
       })
-      .then(obj => expect(obj).toEqual([
-        '1.1',
-        '1.2',
-        '1.3',
-      ]));
+      .then(obj => expect(obj).toEqual(['1.1', '1.2', '1.3']));
   });
 
   test('semverImpliedThreeoValuesParentNotReplacedByChild', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         const range2 = _.cloneDeep(range);
         range2.init(tmpConfig);
@@ -83,10 +77,6 @@ describe('Semver Exceptions MultiValues', () => {
         range2.addException('1.4');
         return range2.getExceptions();
       })
-      .then(obj => expect(obj).toEqual([
-        '1.2',
-        '1.3.1',
-        '1.4',
-      ]));
+      .then(obj => expect(obj).toEqual(['1.2', '1.3.1', '1.4']));
   });
 });

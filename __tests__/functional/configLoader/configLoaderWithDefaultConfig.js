@@ -1,5 +1,3 @@
-
-
 // set up test config dirs.
 const config = {
   useLazySemverist: {
@@ -106,22 +104,13 @@ const config = {
     },
     groups: {
       strings: {
-        members: [
-          'violin',
-          'viola',
-        ],
+        members: ['violin', 'viola'],
       },
       winds: {
-        members: [
-          'flute',
-          'clarinet',
-        ],
+        members: ['flute', 'clarinet'],
       },
       brass: {
-        members: [
-          'trumpet',
-          'trombone',
-        ],
+        members: ['trumpet', 'trombone'],
       },
     },
     directoryFileIgnorePattern: 'json$',
@@ -140,22 +129,13 @@ const config = {
     },
     groups: {
       strings: {
-        members: [
-          'violin',
-          'viola',
-        ],
+        members: ['violin', 'viola'],
       },
       winds: {
-        members: [
-          'flute',
-          'clarinet',
-        ],
+        members: ['flute', 'clarinet'],
       },
       brass: {
-        members: [
-          'trumpet',
-          'trombone',
-        ],
+        members: ['trumpet', 'trombone'],
       },
     },
     directoryFileIgnorePattern: 'json$',

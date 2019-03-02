@@ -1,5 +1,3 @@
-
-
 const rangeFactory = require('../../../../lib/semverish/range');
 
 const tmpConfig = {
@@ -37,7 +35,7 @@ describe('Make Exception Range', () => {
   test('exceptionRangeOneValue', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -57,7 +55,7 @@ describe('Make Exception Range', () => {
   test('exceptionRangeThreeValuesTwoAdjacent', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -76,11 +74,10 @@ describe('Make Exception Range', () => {
       .then(obj => expect(obj).toEqual('<1.1.0 >=1.2.0 <1.2.1 >1.2.2'));
   });
 
-
   test('exceptionRangeSixValuesFourAdjacent', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -99,13 +96,15 @@ describe('Make Exception Range', () => {
         range.addException('1.4.1');
         return range.makeExceptionRange();
       })
-      .then(obj => expect(obj).toEqual('<1.1.0 >=1.2.0 <1.2.1 >1.2.2 <1.3.0 >1.4.1'));
+      .then(obj =>
+        expect(obj).toEqual('<1.1.0 >=1.2.0 <1.2.1 >1.2.2 <1.3.0 >1.4.1')
+      );
   });
 
   test('exceptionRangeSixValuesWithMinorMerge', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -124,13 +123,15 @@ describe('Make Exception Range', () => {
         range.addException('1.4.1');
         return range.makeExceptionRange();
       })
-      .then(obj => expect(obj).toEqual('<1.1.0 >=1.2.0 <1.2.1 >1.2.2 <1.3.0 >=1.5.0'));
+      .then(obj =>
+        expect(obj).toEqual('<1.1.0 >=1.2.0 <1.2.1 >1.2.2 <1.3.0 >=1.5.0')
+      );
   });
 
   test('no exceptions', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -149,7 +150,7 @@ describe('Make Exception Range', () => {
   test('exceptionRangeSameValuewWithAdjacents', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -171,6 +172,8 @@ describe('Make Exception Range', () => {
         return range.getSemveristRange();
       })
       .then(obj => obj.range)
-      .then(obj => expect(obj).toEqual('>=1.2.1 <1.4.0 >=1.5.0 <1.5.1 >=1.5.2 <2.0.0'));
+      .then(obj =>
+        expect(obj).toEqual('>=1.2.1 <1.4.0 >=1.5.0 <1.5.1 >=1.5.2 <2.0.0')
+      );
   });
 });

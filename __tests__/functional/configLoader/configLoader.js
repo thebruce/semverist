@@ -1,5 +1,3 @@
-
-
 const configLoader = require('../../../lib/configLoader');
 const nestedConfig = require('../../__helpers__/nestedConfig.json');
 
