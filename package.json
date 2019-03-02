@@ -63,7 +63,6 @@
     "version-comparison": "^2.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
     "@commitlint/config-angular": "^7.5.0",
     "@semantic-release/commit-analyzer": "^6.1.0",
     "@semantic-release/github": "^5.2.10",
