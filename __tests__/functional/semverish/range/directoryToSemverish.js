@@ -1,5 +1,3 @@
-
-
 const converterFactory = require('../../../../lib/converter/converter');
 
 let tmpMocks = [];

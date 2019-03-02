@@ -1,5 +1,3 @@
-
-
 const rangeFactory = require('../../../../lib/semverish/range');
 
 let tmpMocks = [];
@@ -21,87 +19,58 @@ describe('Sort Semverish Array tests', () => {
   test('sortSemverishArray', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const rangeClass = new RangeClass();
-        return rangeClass.sortSemverishArray(
-          [
-            '2.0.0',
-            '1.0.0',
-          ]
-        );
+        return rangeClass.sortSemverishArray(['2.0.0', '1.0.0']);
       })
-      .then(obj => expect(obj).toEqual([
-        '1.0.0',
-        '2.0.0',
-      ]));
+      .then(obj => expect(obj).toEqual(['1.0.0', '2.0.0']));
   });
 
   test('sortSemverishArrayMixedSemverish', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const rangeClass = new RangeClass();
-        return rangeClass.sortSemverishArray(
-          [
-            '1',
-            '1.2',
-            '1.1',
-            '1.2.1',
-          ]
-        );
+        return rangeClass.sortSemverishArray(['1', '1.2', '1.1', '1.2.1']);
       })
-      .then(obj => expect(obj).toEqual([
-        '1',
-        '1.1',
-        '1.2',
-        '1.2.1',
-      ]));
+      .then(obj => expect(obj).toEqual(['1', '1.1', '1.2', '1.2.1']));
   });
 
   test('sortSemverishArrayWayMixedSemverish', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const rangeClass = new RangeClass();
-        return rangeClass.sortSemverishArray(
-          [
-            '1',
-            '1.2',
-            '1.1',
-            '1.5.1',
-            '1.2.1',
-            '1.3',
-          ]
-        );
+        return rangeClass.sortSemverishArray([
+          '1',
+          '1.2',
+          '1.1',
+          '1.5.1',
+          '1.2.1',
+          '1.3',
+        ]);
       })
-      .then(obj => expect(obj).toEqual([
-        '1',
-        '1.1',
-        '1.2',
-        '1.2.1',
-        '1.3',
-        '1.5.1',
-      ]));
+      .then(obj =>
+        expect(obj).toEqual(['1', '1.1', '1.2', '1.2.1', '1.3', '1.5.1'])
+      );
   });
 
   test('sortSemverishArrayWayMixedSemverishWithEquivs', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const rangeClass = new RangeClass();
-        return rangeClass.sortSemverishArray(
-          [
-            '1.0.0',
-            '1.0',
-            '1.1',
-            '1.2',
-            '1.1.0',
-            '1.2.0',
-            '1.3',
-            '1.5.1',
-            '1',
-          ]
-        );
+        return rangeClass.sortSemverishArray([
+          '1.0.0',
+          '1.0',
+          '1.1',
+          '1.2',
+          '1.1.0',
+          '1.2.0',
+          '1.3',
+          '1.5.1',
+          '1',
+        ]);
       })
       .then(obj => expect(obj).toMatchSnapshot());
   });
@@ -109,24 +78,28 @@ describe('Sort Semverish Array tests', () => {
   test('sortSemverishArrayNull', () => {
     expect.assertions(1);
     return rangeFactory('semverist', 'range')
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         return range.sortSemverishArray();
       })
-      .catch((e) => {
-        expect(e.message).toEqual('Can not sort a semverish Array that is not actually range.');
+      .catch(e => {
+        expect(e.message).toEqual(
+          'Can not sort a semverish Array that is not actually range.'
+        );
       });
   });
 
   test('sortSemverishArrayString', () => {
     expect.assertions(1);
     return rangeFactory('semverist', 'range')
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         return range.sortSemverishArray('not a range');
       })
-      .catch((e) => {
-        expect(e.message).toEqual('Can not sort a semverish Array that is not actually range.');
+      .catch(e => {
+        expect(e.message).toEqual(
+          'Can not sort a semverish Array that is not actually range.'
+        );
       });
   });
 });

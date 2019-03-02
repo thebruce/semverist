@@ -2,3 +2,4 @@ coverage
 docs
 __tests__/__helpers__/*
 __coverage__
+examples

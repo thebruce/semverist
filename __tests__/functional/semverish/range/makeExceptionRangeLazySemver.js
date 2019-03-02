@@ -1,5 +1,3 @@
-
-
 const rangeFactory = require('../../../../lib/semverish/range');
 // Set Defaults for semverist objects.
 const lazySemverConfig = {
@@ -37,8 +35,8 @@ describe('Make Exception Range for Lazy Semver', () => {
 
   test('lazySemver', () => {
     const thing = [];
-    thing.push(ranger
-      .then((RangeClass) => {
+    thing.push(
+      ranger.then(RangeClass => {
         const range = new RangeClass();
         range.init(lazySemverConfig);
         range.setLowerBounds('1.0.0');
@@ -51,7 +49,8 @@ describe('Make Exception Range for Lazy Semver', () => {
         range.setExceptions();
         range.addException('1.7');
         return range.makeExceptionRange();
-      }));
+      })
+    );
     expect(thing[0]).resolves.toEqual('<1.7.0');
   });
 });

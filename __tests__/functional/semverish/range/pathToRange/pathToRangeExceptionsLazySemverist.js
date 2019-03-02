@@ -1,5 +1,3 @@
-
-
 const rangeFactory = require('../../../../../lib/semverish/range');
 
 // Set Defaults for semverist objects.
@@ -35,7 +33,7 @@ describe('Path to Range with Exceptions using lazy semverist.', () => {
   test('exceptionRangeSixValuesWithMinorMerge', () => {
     expect.assertions(1);
     return rangeFactory('semverist', 'range')
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -52,12 +50,10 @@ describe('Path to Range with Exceptions using lazy semverist.', () => {
         range.addException('1.3');
         range.addException('1.4');
         range.addException('1.4.1');
-        return range.pathToRange(
-          '1', {
-            attributeType: 'attribute',
-            inheritence: 'lazySemverist',
-          }
-        );
+        return range.pathToRange('1', {
+          attributeType: 'attribute',
+          inheritence: 'lazySemverist',
+        });
       })
       .then(obj => expect(obj).toEqual('>=1.0.0 <1.1.0'));
   });

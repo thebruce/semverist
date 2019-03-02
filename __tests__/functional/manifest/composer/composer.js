@@ -1,5 +1,3 @@
-
-
 const manifestFactory = require('../../../../lib/manifest/manifest');
 const nestedConfig = require('../../../__helpers__/nestedConfig.json');
 const semveristObject = require('../../../__helpers__/semverishObject');
@@ -15,12 +13,12 @@ describe('Composer tests', () => {
       'composer',
       'semverImpliedOrchestraObject',
       nestedConfig.semverist
-    )
-      .then(ManifestClass => Promise.all(
-        [
-          ManifestClass.createConverter(semveristObject),
-          ManifestClass,
-        ]));
+    ).then(ManifestClass =>
+      Promise.all([
+        ManifestClass.createConverter(semveristObject),
+        ManifestClass,
+      ])
+    );
     tmpMocks.forEach(mock => mock.mockRestore());
     tmpMocks = [];
     jest.resetAllMocks();
@@ -38,23 +36,19 @@ describe('Composer tests', () => {
       'useLazySemverist',
       nestedConfig.semverist
     )
-      .then((ManifestClass) => {
+      .then(ManifestClass => {
         const schoenberg = new ManifestClass();
         schoenberg.setManifestCapabilities();
         return schoenberg.getManifestCapabilities();
       })
       .then(obj => obj.sort())
-      .then(obj => expect(obj).toEqual([
-        'attribute',
-        'default',
-        'group',
-      ]));
+      .then(obj => expect(obj).toEqual(['attribute', 'default', 'group']));
   });
 
   test('Composer get and set composition tests.', () => {
     expect.assertions(1);
     return manifestStarter
-      .then((manifestIngredients) => {
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -65,15 +59,17 @@ describe('Composer tests', () => {
         });
         return schoenberg.getComposition();
       })
-      .then(obj => expect(obj).toEqual({
-        test: 'test',
-      }));
+      .then(obj =>
+        expect(obj).toEqual({
+          test: 'test',
+        })
+      );
   });
 
   test('Manifest get composition destination.', () => {
     expect.assertions(1);
     return manifestStarter
-      .then((manifestIngredients) => {
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -90,35 +86,39 @@ describe('Composer tests', () => {
   test('Composer directory no destination error.', () => {
     expect.assertions(1);
     const tempConfig = Object.assign({}, nestedConfig.semverist);
-    tempConfig.semverImpliedOrchestraDirectoryBroken.callPath = path.join(__dirname, './../../../../');
+    tempConfig.semverImpliedOrchestraDirectoryBroken.callPath = path.join(
+      __dirname,
+      './../../../../'
+    );
     return manifestFactory(
       'composer',
       'semverImpliedOrchestraDirectoryBroken',
       tempConfig
     )
-      .then(ManifestClass => Promise.all([
-        ManifestClass.createConverter(semverishPath),
-        ManifestClass,
-      ]))
-      .then((manifestIngredients) => {
+      .then(ManifestClass =>
+        Promise.all([
+          ManifestClass.createConverter(semverishPath),
+          ManifestClass,
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
         const schoenberg = new ManifestClass(converter, converterClass);
         schoenberg.init();
       })
-      .catch((e) => {
-        expect(e.message)
-          .toEqual(
-            'If the composition type is directory there must be a destination path'
-          );
+      .catch(e => {
+        expect(e.message).toEqual(
+          'If the composition type is directory there must be a destination path'
+        );
       });
   });
 
   test('strategizeComposition.', () => {
     expect.assertions(1);
     return manifestStarter
-      .then((manifestIngredients) => {
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -133,43 +133,40 @@ describe('Composer tests', () => {
         };
         return schoenberg.strategizeComposition('clarinet', '1.1.1', draft);
       })
-      .then(obj => expect(obj).toEqual({
-        1: {
+      .then(obj =>
+        expect(obj).toEqual({
           1: {
             1: {
-              clarinet: {
-                fromClarinet: 'this is from 1.1.1',
-                fromDefault: 'this is from 1',
-                fromWinds: 'this is from 1',
-                toItem: 'clarinet',
+              1: {
+                clarinet: {
+                  fromClarinet: 'this is from 1.1.1',
+                  fromDefault: 'this is from 1',
+                  fromWinds: 'this is from 1',
+                  toItem: 'clarinet',
+                },
               },
             },
           },
-        },
-      }));
+        })
+      );
   });
 
   test('prioritize component', () => {
     expect.assertions(1);
     return manifestStarter
-      .then((manifestIngredients) => {
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
         const schoenberg = new ManifestClass(converter, converterClass);
         schoenberg.init();
-        const semveristArray = [
-          'clarinet',
-          '1.1.1',
-        ];
+        const semveristArray = ['clarinet', '1.1.1'];
         schoenberg.prioritizeComponent(semveristArray);
         return schoenberg.getManifestComponents().clarinet['1.1.1'].components;
       })
-      .then(obj => expect(obj).toEqual([
-        '1.orchestraDefault',
-        '1.winds',
-        '1.1.1.clarinet',
-      ]));
+      .then(obj =>
+        expect(obj).toEqual(['1.orchestraDefault', '1.winds', '1.1.1.clarinet'])
+      );
   });
 
   test('prioritize component no groups', () => {
@@ -179,28 +176,25 @@ describe('Composer tests', () => {
       'semverImpliedOrchestraObjectNoGroups',
       nestedConfig.semverist
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
         const schoenberg = new ManifestClass(converter, converterClass);
         schoenberg.init();
-        const semveristArray = [
-          'clarinet',
-          '1.1.1',
-        ];
+        const semveristArray = ['clarinet', '1.1.1'];
         schoenberg.prioritizeComponent(semveristArray);
         return schoenberg.getManifestComponents().clarinet['1.1.1'].components;
       })
-      .then(obj => expect(obj).toEqual([
-        '1.orchestraDefault',
-        '1.1.1.clarinet',
-      ]));
+      .then(obj =>
+        expect(obj).toEqual(['1.orchestraDefault', '1.1.1.clarinet'])
+      );
   });
 
   test('prioritize component no defaults', () => {
@@ -210,34 +204,29 @@ describe('Composer tests', () => {
       'semverImpliedOrchestraObjectNoDefaults',
       nestedConfig.semverist
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
         const schoenberg = new ManifestClass(converter, converterClass);
         schoenberg.init();
-        const semveristArray = [
-          'clarinet',
-          '1.1.1',
-        ];
+        const semveristArray = ['clarinet', '1.1.1'];
         schoenberg.prioritizeComponent(semveristArray);
         return schoenberg.getManifestComponents().clarinet['1.1.1'].components;
       })
-      .then(obj => expect(obj).toEqual([
-        '1.winds',
-        '1.1.1.clarinet',
-      ]));
+      .then(obj => expect(obj).toEqual(['1.winds', '1.1.1.clarinet']));
   });
 
   test('write composition.', () => {
     expect.assertions(1);
     return manifestStarter
-      .then((manifestIngredients) => {
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -252,7 +241,7 @@ describe('Composer tests', () => {
   test('assemble manifest.', () => {
     expect.assertions(1);
     return manifestStarter
-      .then((manifestIngredients) => {
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];

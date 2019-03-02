@@ -1,11 +1,9 @@
-
-
 const rangeFactory = require('../../../../lib/semverish/range');
 
 test('range test with bad config.', () => {
   expect.assertions(1);
   return rangeFactory('semverist', 'range')
-    .then((RangeClass) => {
+    .then(RangeClass => {
       const range = new RangeClass();
       const badConfig = {
         semveristBehaviors: {
@@ -14,7 +12,7 @@ test('range test with bad config.', () => {
       };
       range.init(badConfig);
     })
-    .catch((e) => {
+    .catch(e => {
       expect(e.message).toEqual(
         'The options inheritence attribute must one of the following values: semverImplied, null, or lazySemverist'
       );

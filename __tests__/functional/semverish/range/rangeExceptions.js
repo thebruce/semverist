@@ -1,5 +1,3 @@
-
-
 const rangeFactory = require('../../../../lib/semverish/range');
 
 const tmpConfig = {
@@ -56,7 +54,7 @@ describe('Range Exception tests', () => {
   test('exceptionsNoValues', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(lazySemverConfig);
         range.setLowerBounds('1.0.0');
@@ -75,7 +73,7 @@ describe('Range Exception tests', () => {
   test('exceptionOneValueLazy', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(lazySemverConfig);
         range.setLowerBounds('1.0.0');
@@ -89,15 +87,13 @@ describe('Range Exception tests', () => {
         range.addException('1.1.0');
         return range.getExceptions();
       })
-      .then(obj => expect(obj).toEqual([
-        '1.1.0',
-      ]));
+      .then(obj => expect(obj).toEqual(['1.1.0']));
   });
 
   test('exceptionOneValueSemverImplied', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -111,15 +107,13 @@ describe('Range Exception tests', () => {
         range.addException('1.1.0');
         return range.getExceptions();
       })
-      .then(obj => expect(obj).toEqual([
-        '1.1.0',
-      ]));
+      .then(obj => expect(obj).toEqual(['1.1.0']));
   });
 
   test('exceptionOneValueLazyExisting', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(lazySemverConfig);
         range.setLowerBounds('1.0.0');
@@ -134,15 +128,13 @@ describe('Range Exception tests', () => {
         range.addException('1.1.1');
         return range.getExceptions();
       })
-      .then(obj => expect(obj).toEqual([
-        '1.1.0',
-      ]));
+      .then(obj => expect(obj).toEqual(['1.1.0']));
   });
 
   test('exceptionOneValueSmallerLazyExisting', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(lazySemverConfig);
         range.setLowerBounds('1.0.0');
@@ -157,15 +149,13 @@ describe('Range Exception tests', () => {
         range.addException('1.0.1');
         return range.getExceptions();
       })
-      .then(obj => expect(obj).toEqual([
-        '1.0.1',
-      ]));
+      .then(obj => expect(obj).toEqual(['1.0.1']));
   });
 
   test('semverImpliedTwoValues', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -179,15 +169,13 @@ describe('Range Exception tests', () => {
         range.addException('1.0.1');
         return range.getExceptions();
       })
-      .then(obj => expect(obj).toEqual([
-        '1.0.1',
-      ]));
+      .then(obj => expect(obj).toEqual(['1.0.1']));
   });
 
   test('semverImpliedTwoValuesChildReplacedByParent', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -202,15 +190,13 @@ describe('Range Exception tests', () => {
         range.addException('1.1');
         return range.getExceptions();
       })
-      .then(obj => expect(obj).toEqual([
-        '1.1',
-      ]));
+      .then(obj => expect(obj).toEqual(['1.1']));
   });
 
   test('semverImpliedTwoValuesParentNotReplacedByChild', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -225,8 +211,6 @@ describe('Range Exception tests', () => {
         range.addException('1.1.1');
         return range.getExceptions();
       })
-      .then(obj => expect(obj).toEqual([
-        '1.1',
-      ]));
+      .then(obj => expect(obj).toEqual(['1.1']));
   });
 });

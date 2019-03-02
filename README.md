@@ -9,7 +9,7 @@ The Semverist provides a uniform interface for understanding and manipulating di
 
 Read our full API docs at [https://thebruce.github.io/semverist/](https://thebruce.github.io/semverist/)
 
-The Semverist combines tree hierarchy and semver enabling a richly expressive object or directory structure with less hassle. redundancy accompanied by several utilities to assist and empower maintenance.
+The Semverist combines tree hierarchy organization and semver enabling a richly expressive object or directory structure with less hassle. redundancy accompanied by several utilities to assist and empower maintenance.
 
 ## Semantic Version upgrades for objects and directories
 

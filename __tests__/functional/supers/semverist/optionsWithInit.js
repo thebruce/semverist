@@ -1,5 +1,3 @@
-
-
 const SemveristSuperBase = require('../../../../lib/supers/semverist');
 
 const alternateConfig = {
@@ -23,9 +21,8 @@ test('init with options', () => {
   const semveristSuperBase = new SemveristSuperBase();
   expect.assertions(1);
   semveristSuperBase.init(alternateConfig);
-  expect(semveristSuperBase.createOptions('attribute'))
-    .toEqual({
-      attributeType: 'attribute',
-      inheritence: 'lazySemverist',
-    });
+  expect(semveristSuperBase.createOptions('attribute')).toEqual({
+    attributeType: 'attribute',
+    inheritence: 'lazySemverist',
+  });
 });
