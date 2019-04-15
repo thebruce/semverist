@@ -1,5 +1,3 @@
-
-
 const rangeFactory = require('../../../../lib/semverish/range');
 
 const tmpConfig = {
@@ -38,7 +36,7 @@ describe('Path to range exceptions semver Implied.', () => {
   test('exceptionRangeSixValuesWithMinorMerge', () => {
     expect.assertions(1);
     return ranger
-      .then((RangeClass) => {
+      .then(RangeClass => {
         const range = new RangeClass();
         range.init(tmpConfig);
         range.setLowerBounds('1.0.0');
@@ -55,13 +53,15 @@ describe('Path to range exceptions semver Implied.', () => {
         range.addException('1.3');
         range.addException('1.4');
         range.addException('1.4.1');
-        return range.pathToRange(
-          '1', {
-            attributeType: 'attribute',
-            inheritence: 'semverImplied',
-          }
-        );
+        return range.pathToRange('1', {
+          attributeType: 'attribute',
+          inheritence: 'semverImplied',
+        });
       })
-      .then(obj => expect(obj).toEqual('>=1.0.0 <1.1.0 >=1.2.0 <1.2.1 >1.2.2 <1.3.0 >=1.5.0 <2.0.0'));
+      .then(obj =>
+        expect(obj).toEqual(
+          '>=1.0.0 <1.1.0 >=1.2.0 <1.2.1 >1.2.2 <1.3.0 >=1.5.0 <2.0.0'
+        )
+      );
   });
 });

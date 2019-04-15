@@ -1,5 +1,3 @@
-
-
 const manifestFactory = require('../../../../lib/manifest/manifest');
 const nestedConfig = require('../../../__helpers__/nestedConfig.json');
 const semveristObject = require('../../../__helpers__/semverishObject');
@@ -24,18 +22,18 @@ describe('Composer Lazy Semverist Super test', () => {
   test('Lazy semverist manifest.', () => {
     expect.assertions(1);
     const confer = Object.assign({}, nestedConfig.semverist);
-    confer.lazySemveristOrchestraObject.callPath = path.join(__dirname, './../../../../');
-    return manifestFactory(
-      'composer',
-      'lazySemveristOrchestraObject',
-      confer
-    )
-      .then(ManifestClass => Promise.all(
-        [
+    confer.lazySemveristOrchestraObject.callPath = path.join(
+      __dirname,
+      './../../../../'
+    );
+    return manifestFactory('composer', 'lazySemveristOrchestraObject', confer)
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -50,18 +48,22 @@ describe('Composer Lazy Semverist Super test', () => {
   test('Lazy semverist directory manifest.', () => {
     expect.assertions(1);
     const confer = Object.assign({}, nestedConfig.semverist);
-    confer.lazySemveristOrchestraDirectory.callPath = path.join(__dirname, './../../../../');
+    confer.lazySemveristOrchestraDirectory.callPath = path.join(
+      __dirname,
+      './../../../../'
+    );
     return manifestFactory(
       'composer',
       'lazySemveristOrchestraDirectory',
       confer
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semverishPath),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];

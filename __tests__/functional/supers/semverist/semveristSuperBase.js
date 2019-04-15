@@ -1,5 +1,3 @@
-
-
 const SemveristSuperBase = require('../../../../lib/supers/semverist');
 
 const alternateConfig = {
@@ -38,16 +36,16 @@ describe('Semverist Super Base tests', () => {
   test('setPreleasePatternWithArg', () => {
     expect.assertions(1);
     semveristSuperBase.setPreReleasePattern(/\d-[A-Z]*/g);
-    return expect(semveristSuperBase.getPreReleasePattern())
-      .toEqual(/\d-[A-Z]*/g);
+    return expect(semveristSuperBase.getPreReleasePattern()).toEqual(
+      /\d-[A-Z]*/g
+    );
   });
 
   test('setPreleasePatternNoArg', () => {
     expect.assertions(1);
-    return expect(semveristSuperBase.getPreReleasePattern())
-      .toEqual(
-        /\d+-([0-9A-Za-z-]*)((\.\d*(\+[a-zA-Z0-9-]*)|\.\d+\b)*\.?|\+[a-zA-Z0-9-]+\.?)?/g
-      );
+    return expect(semveristSuperBase.getPreReleasePattern()).toEqual(
+      /\d+-([0-9A-Za-z-]*)((\.\d*(\+[a-zA-Z0-9-]*)|\.\d+\b)*\.?|\+[a-zA-Z0-9-]+\.?)?/g
+    );
   });
 
   test('setSourceGoodSource', () => {
@@ -55,10 +53,9 @@ describe('Semverist Super Base tests', () => {
     semveristSuperBase.setSource({
       test: [],
     });
-    return expect(semveristSuperBase.getSource())
-      .toEqual({
-        test: [],
-      });
+    return expect(semveristSuperBase.getSource()).toEqual({
+      test: [],
+    });
   });
 
   test('setSourceBadSource', () => {
@@ -71,33 +68,31 @@ describe('Semverist Super Base tests', () => {
   test('setDefaultName', () => {
     expect.assertions(1);
     semveristSuperBase.setDefaultName('default');
-    return expect(semveristSuperBase.getDefaultName())
-      .toEqual('default');
+    return expect(semveristSuperBase.getDefaultName()).toEqual('default');
   });
 
   test('doesAttributeBelongToGroupTrue', () => {
     expect.assertions(1);
     semveristSuperBase.setSemveristGroups({
       testGroup: {
-        members: [
-          'testItem',
-        ],
+        members: ['testItem'],
       },
     });
-    return expect(semveristSuperBase.doesAttributeBelongToGroup('testItem', 'testGroup')).toBe(true);
+    return expect(
+      semveristSuperBase.doesAttributeBelongToGroup('testItem', 'testGroup')
+    ).toBe(true);
   });
-
 
   test('doesAttributeBelongToGroupFalse', () => {
     expect.assertions(1);
     semveristSuperBase.setSemveristGroups({
       testGroup: {
-        members: [
-          'junkItem',
-        ],
+        members: ['junkItem'],
       },
     });
-    expect(semveristSuperBase.doesAttributeBelongToGroup('testItem', 'testGroup')).toBe(false);
+    expect(
+      semveristSuperBase.doesAttributeBelongToGroup('testItem', 'testGroup')
+    ).toBe(false);
   });
 
   test('doesAttributeBelongToGroupError', () => {
@@ -107,34 +102,27 @@ describe('Semverist Super Base tests', () => {
     });
     expect(() => {
       semveristSuperBase.doesAttributeBelongToGroup('testItem', 'testGroup');
-    }).toThrowError('testGroup group is not properly formed and has no members array');
+    }).toThrowError(
+      'testGroup group is not properly formed and has no members array'
+    );
   });
 
   test('getSemveristGroups', () => {
     expect.assertions(1);
     semveristSuperBase.setSemveristGroups({
       testGroup: {
-        members: [
-          'testItem',
-        ],
+        members: ['testItem'],
       },
       fakeGroup: {
-        members: [
-          'punk',
-        ],
+        members: ['punk'],
       },
       testGroup2: {
-        members: [
-          'punk',
-          'testItem',
-        ],
+        members: ['punk', 'testItem'],
       },
     });
-    expect(semveristSuperBase.getSemveristAttributeGroups('testItem').sort())
-      .toEqual([
-        'testGroup',
-        'testGroup2',
-      ]);
+    expect(
+      semveristSuperBase.getSemveristAttributeGroups('testItem').sort()
+    ).toEqual(['testGroup', 'testGroup2']);
   });
 
   test('getSemveristConfig', () => {
@@ -142,20 +130,21 @@ describe('Semverist Super Base tests', () => {
     semveristSuperBase.setSemveristConfig({
       semveristBehaviors: {},
     });
-    expect(Object.keys(semveristSuperBase.getSemveristConfig()))
-      .toEqual(['semveristBehaviors']);
+    expect(Object.keys(semveristSuperBase.getSemveristConfig())).toEqual([
+      'semveristBehaviors',
+    ]);
   });
 
   test('init with overrides', () => {
     expect.assertions(1);
     semveristSuperBase.init(alternateConfig);
-    expect(semveristSuperBase.getSemveristConfig().semveristBehaviors.inheritence)
-      .toEqual('lazySemverist');
+    expect(
+      semveristSuperBase.getSemveristConfig().semveristBehaviors.inheritence
+    ).toEqual('lazySemverist');
   });
 
   test('get Semver Level index', () => {
     expect.assertions(1);
-    expect(SemveristSuperBase.getSemverLevelIndex('prerelease'))
-      .toEqual(3);
+    expect(SemveristSuperBase.getSemverLevelIndex('prerelease')).toEqual(3);
   });
 });

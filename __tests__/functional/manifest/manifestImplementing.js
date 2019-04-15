@@ -1,5 +1,3 @@
-
-
 const path = require('path');
 
 const manifestFactory = require('../../../lib/manifest/manifest');
@@ -28,47 +26,45 @@ describe('Manifest Implementing tests', () => {
   test('manifestNoPluginName still has capabilities', () => {
     expect.assertions(1);
     return manifestFactory(null, 'useLazySemverist', nestedConfig.semverist)
-      .then((ManifestClass) => {
+      .then(ManifestClass => {
         const schoenberg = new ManifestClass();
         schoenberg.setManifestCapabilities();
         return schoenberg.getManifestCapabilities();
       })
       .then(obj => obj.sort())
-      .then(obj => expect(obj).toEqual([
-        'attribute',
-        'default',
-        'group',
-      ]));
+      .then(obj => expect(obj).toEqual(['attribute', 'default', 'group']));
   });
 
   test('manifestNoPluginName No Defaults', () => {
     expect.assertions(1);
-    return manifestFactory(null, 'semverImpliedNoDefaults', nestedConfig.semverist)
-      .then((ManifestClass) => {
+    return manifestFactory(
+      null,
+      'semverImpliedNoDefaults',
+      nestedConfig.semverist
+    )
+      .then(ManifestClass => {
         const schoenberg = new ManifestClass();
         schoenberg.setManifestCapabilities();
         return schoenberg.getManifestCapabilities();
       })
       .then(obj => obj.sort())
-      .then(obj => expect(obj).toEqual([
-        'attribute',
-        'group',
-      ]));
+      .then(obj => expect(obj).toEqual(['attribute', 'group']));
   });
 
   test('manifestNoPluginName No Groups', () => {
     expect.assertions(1);
-    return manifestFactory(null, 'semverImpliedNoGroups', nestedConfig.semverist)
-      .then((ManifestClass) => {
+    return manifestFactory(
+      null,
+      'semverImpliedNoGroups',
+      nestedConfig.semverist
+    )
+      .then(ManifestClass => {
         const schoenberg = new ManifestClass();
         schoenberg.setManifestCapabilities();
         return schoenberg.getManifestCapabilities();
       })
       .then(obj => obj.sort())
-      .then(obj => expect(obj).toEqual([
-        'attribute',
-        'default',
-      ]));
+      .then(obj => expect(obj).toEqual(['attribute', 'default']));
   });
 
   test('manifestNoPluginName No Defaults No Groups', () => {
@@ -78,31 +74,25 @@ describe('Manifest Implementing tests', () => {
       'semverImpliedNoDefaultsNoGroups',
       nestedConfig.semverist
     )
-      .then((ManifestClass) => {
+      .then(ManifestClass => {
         const schoenberg = new ManifestClass();
         schoenberg.setManifestCapabilities();
         return schoenberg.getManifestCapabilities();
       })
       .then(obj => obj.sort())
-      .then(obj => expect(obj).toEqual([
-        'attribute',
-      ]));
+      .then(obj => expect(obj).toEqual(['attribute']));
   });
 
   test('manifestNoPluginName default config still has capabilities', () => {
     expect.assertions(1);
     return manifestFactory()
-      .then((ManifestClass) => {
+      .then(ManifestClass => {
         const schoenberg = new ManifestClass();
         schoenberg.setManifestCapabilities();
         return schoenberg.getManifestCapabilities();
       })
       .then(obj => obj.sort())
-      .then(obj => expect(obj).toEqual([
-        'attribute',
-        'default',
-        'group',
-      ]));
+      .then(obj => expect(obj).toEqual(['attribute', 'default', 'group']));
   });
 
   test('Converter static object.', () => {
@@ -124,12 +114,13 @@ describe('Manifest Implementing tests', () => {
       'semverImpliedOrchestraObject',
       nestedConfig.semverist
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -142,17 +133,22 @@ describe('Manifest Implementing tests', () => {
   test('Directory Converter static object to manifest converter.', () => {
     expect.assertions(1);
     const clonedConfig = Object.assign({}, nestedConfig.semverist);
-    clonedConfig.semverImpliedOrchestraDirectory.callPath = path.join(__dirname, '../../../');
+    clonedConfig.semverImpliedOrchestraDirectory.callPath = path.join(
+      __dirname,
+      '../../../'
+    );
     return manifestFactory(
       null,
       'semverImpliedOrchestraDirectory',
       clonedConfig
     )
-      .then(ManifestClass => Promise.all([
-        ManifestClass.createConverter(semverishPath),
-        ManifestClass,
-      ]))
-      .then((manifestIngredients) => {
+      .then(ManifestClass =>
+        Promise.all([
+          ManifestClass.createConverter(semverishPath),
+          ManifestClass,
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -169,12 +165,13 @@ describe('Manifest Implementing tests', () => {
       'semverImpliedOrchestraObject',
       nestedConfig.semverist
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -182,7 +179,9 @@ describe('Manifest Implementing tests', () => {
         schoenberg.init();
         return schoenberg.getManifestComponents();
       })
-      .then(obj => obj.clarinet['1.1.1'].components.indexOf('1.orchestraDefault'))
+      .then(obj =>
+        obj.clarinet['1.1.1'].components.indexOf('1.orchestraDefault')
+      )
       .then(obj => expect(obj).not.toBe(-1));
   });
 
@@ -193,12 +192,13 @@ describe('Manifest Implementing tests', () => {
       'semverImpliedOrchestraObject',
       nestedConfig.semverist
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -217,12 +217,13 @@ describe('Manifest Implementing tests', () => {
       'semverImpliedNoDefaultsNoGroups',
       nestedConfig.semverist
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -241,12 +242,13 @@ describe('Manifest Implementing tests', () => {
       'semverImpliedNoDefaultsNoGroups',
       nestedConfig.semverist
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -254,7 +256,9 @@ describe('Manifest Implementing tests', () => {
         schoenberg.init();
         return schoenberg.getManifestComponents();
       })
-      .then(obj => obj.clarinet['1.1.1'].components.indexOf('1.orchestraDefault'))
+      .then(obj =>
+        obj.clarinet['1.1.1'].components.indexOf('1.orchestraDefault')
+      )
       .then(obj => expect(obj).toBe(-1));
   });
 
@@ -265,12 +269,13 @@ describe('Manifest Implementing tests', () => {
       'semverImpliedOrchestraObject',
       nestedConfig.semverist
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -288,12 +293,13 @@ describe('Manifest Implementing tests', () => {
       'semverImpliedOrchestraObjectNoGroups',
       nestedConfig.semverist
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -311,12 +317,13 @@ describe('Manifest Implementing tests', () => {
       'semverImpliedOrchestraObject',
       nestedConfig.semverist
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -335,12 +342,13 @@ describe('Manifest Implementing tests', () => {
       'semverImpliedOrchestraObject',
       nestedConfig.semverist
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];
@@ -359,12 +367,13 @@ describe('Manifest Implementing tests', () => {
       'semverImpliedOrchestraObject',
       nestedConfig.semverist
     )
-      .then(ManifestClass => Promise.all(
-        [
+      .then(ManifestClass =>
+        Promise.all([
           ManifestClass.createConverter(semveristObject),
           ManifestClass,
-        ]))
-      .then((manifestIngredients) => {
+        ])
+      )
+      .then(manifestIngredients => {
         const ManifestClass = manifestIngredients[1];
         const converter = manifestIngredients[0][0];
         const converterClass = manifestIngredients[0][1];

@@ -1,5 +1,3 @@
-
-
 class manifestBase {
   getConverterGroups() {}
   addManifestCompinentItem() {}
@@ -28,7 +26,11 @@ describe('Default manifest components', () => {
 
   test('getItemGAlters Defaults', () => {
     expect.assertions(1);
-    tmpMocks.push(jest.spyOn(manifestBase.prototype, 'getConverter').mockReturnValue({ default: {} }));
+    tmpMocks.push(
+      jest
+        .spyOn(manifestBase.prototype, 'getConverter')
+        .mockReturnValue({ default: {} })
+    );
     tmpMocks.push(jest.spyOn(manifestBase.prototype, 'addItemAlters'));
     const group = new (DefaultManifestComponents(manifestBase))();
     group.addItemAlters('1.0.0', { semveristElement: 'item' });
