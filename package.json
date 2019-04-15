@@ -73,7 +73,7 @@
     "babel-jest": "^24.1.0",
     "commitlint": "^7.5.2",
     "condition-noop": "^1.0.0",
-    "coveralls": "3.0.0",
+    "coveralls": "3.0.1",
     "documentation": "^6.1.0",
     "emdaer": "^0.3.3",
     "eslint": "^5.12.1",
