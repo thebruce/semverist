@@ -51,7 +51,6 @@
   },
   "homepage": "https://github.com/thebruce/semverist#readme",
   "dependencies": {
-    "@babel/core": "^7.0.0",
     "config": "3.0.1",
     "fs-extra": "7.0.1",
     "klaw-sync": "3.0.1",
@@ -64,6 +63,7 @@
     "version-comparison": "^2.1.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
     "@commitlint/config-angular": "^7.5.0",
     "@semantic-release/commit-analyzer": "^6.1.0",
     "@semantic-release/github": "^5.2.10",
