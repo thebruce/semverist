@@ -6,7 +6,7 @@ module.exports = {
   parser: 'babel-eslint',
   env: { node: true },
   plugins: ['prettier'],
-  extends: ['problems', 'plugin:prettier/recommended'],
+  extends: ['plugin:prettier/recommended'],
   overrides: [
     {
       files: [

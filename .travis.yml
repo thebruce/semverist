@@ -22,7 +22,7 @@ jobs:
     -
       stage: test
       node_js:
-        - 'lts/carbon'
+        - 'lts/dubnium'
       script:
         - yarn lint
         - yarn test-ci
@@ -31,7 +31,7 @@ jobs:
     -
       stage: release
       if: branch = master
-      node_js: 'lts/carbon'
+      node_js: 'lts/dubnium'
       before_install:
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
       provider: script
