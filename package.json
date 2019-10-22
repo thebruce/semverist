@@ -14,7 +14,8 @@
     "prettier": "prettier --write 'src/**/*.js' && eslint 'src/**/*.js' --fix",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jest --coverage",
-    "test-ci": "jest --coverage --runInBand"
+    "test-ci": "jest --coverage --runInBand",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "repository": {
     "type": "git",
@@ -67,7 +68,7 @@
     "@commitlint/config-angular": "^8.2.0",
     "@semantic-release/commit-analyzer": "^6.3.0",
     "@semantic-release/github": "^5.5.4",
-    "@semantic-release/npm": "^5.2.0",
+    "@semantic-release/npm": "5.3.0",
     "@semantic-release/release-notes-generator": "^7.3.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "24.9.0",
