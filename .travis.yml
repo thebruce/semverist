@@ -31,9 +31,7 @@ jobs:
     -
       stage: release
       if: branch = master
-      node_js: 'lts/dubnium'
-      before_install:
-        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+      node_js: 'lts/*'
       provider: script
       skip_cleanup: true
       script:
